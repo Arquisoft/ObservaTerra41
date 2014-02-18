@@ -1,5 +1,11 @@
 <<<<<<< HEAD
-cambios mios
+<<<<<<< HEAD
+hello world!!
 =======
 Limpiando Labra el Playground en clase
+=======
+Sergio
+=======
+Carlos Miguel
+>>>>>>> branch 'master' of https://github.com/Arquisoft/ObservaTerra41.git
 >>>>>>> branch 'master' of https://github.com/Arquisoft/ObservaTerra41.git
