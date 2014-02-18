@@ -1,1 +1,5 @@
-cambios
+<<<<<<< HEAD
+cambios mios
+=======
+Limpiando Labra el Playground en clase
+>>>>>>> branch 'master' of https://github.com/Arquisoft/ObservaTerra41.git
