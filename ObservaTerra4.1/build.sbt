@@ -1,4 +1,4 @@
-name := "ObservaTerra4_1_0"
+name := "ObservaTerra"
 
 version := "1.0-SNAPSHOT"
 
