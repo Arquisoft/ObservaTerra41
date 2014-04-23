@@ -1,0 +1,15 @@
+@(countries: List[Country], userForm: Form[User]) @import play.i18n._
+@import helper._ @main(Messages.get("list.countries")) {
+
+<h1>Registrar</h1>
+
+
+<h2></h2>
+
+@form(action = routes.UserController.newUser()) {
+
+@inputText(countryForm("code")) @inputText(countryForm("name"))
+
+<input type="submit" value="Registrar">
+
+} }

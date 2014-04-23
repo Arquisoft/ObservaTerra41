@@ -19,28 +19,32 @@ import utils.ExcelReader;
 
 public class Application extends Controller {
 
-    public static Result index() {
-        return ok(index.render(Observation.all(),Country.all(),Indicator.all()));
-    }
+	public static Result index() {
+		return ok(index.render(Observation.all(), Country.all(),
+				Indicator.all()));
+	}
 
-    public static Result showCountries() {
-    	return ok(country.render(Country.all(),countryForm));
-    }
-    
-    public static Result showIndicators() {
-    	return ok(indicator.render(Indicator.all(),indicatorForm));
-    }
-    
-    public static Result showObservations() {
-    	return ok(observation.render(Observation.find.all(),Country.all(),Indicator.all(),observationForm));
-    }
-    
-    public static Result bars(String indicator) {
-    	return ok(bars.render(Indicator.findByCode(indicator)));
-    }
+	public static Result showCountries() {
+		return ok(country.render(Country.all(), countryForm));
+	}
 
-    static Form<Country>  	  countryForm     = Form.form(Country.class);
-    static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
-    static Form<Observation>  observationForm = Form.form(Observation.class);
+
+	public static Result showIndicators() {
+		return ok(indicator.render(Indicator.all(), indicatorForm));
+	}
+
+	public static Result showObservations() {
+		return ok(observation.render(Observation.find.all(), Country.all(),
+				Indicator.all(), observationForm));
+	}
+
+	public static Result bars(String indicator) {
+		return ok(bars.render(Indicator.findByCode(indicator)));
+	}
+
+	static Form<Country> countryForm = Form.form(Country.class);
+	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
+	static Form<Observation> observationForm = Form.form(Observation.class);
+	static Form<User> userForm = Form.form(User.class);
 
 }

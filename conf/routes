@@ -14,7 +14,6 @@ POST	/country/delete/:code         controllers.Admin.deleteCountry(code: String)
 POST	/indicator					controllers.Admin.newIndicator()
 POST	/indicator/delete/:code       controllers.Admin.deleteIndicator(code: String)
 
-
 POST	/observation				controllers.Admin.newObservation()
 POST	/observation/delete/:code     controllers.Admin.deleteObservation(code: Long)
 
