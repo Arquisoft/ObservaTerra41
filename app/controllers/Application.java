@@ -28,7 +28,6 @@ public class Application extends Controller {
 		return ok(country.render(Country.all(), countryForm));
 	}
 
-
 	public static Result showIndicators() {
 		return ok(indicator.render(Indicator.all(), indicatorForm));
 	}
@@ -40,6 +39,10 @@ public class Application extends Controller {
 
 	public static Result bars(String indicator) {
 		return ok(bars.render(Indicator.findByCode(indicator)));
+	}
+
+	public static Result showRegister() {
+		return ok(register.render(userForm));
 	}
 
 	static Form<Country> countryForm = Form.form(Country.class);

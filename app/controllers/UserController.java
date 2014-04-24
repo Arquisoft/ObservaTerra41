@@ -8,8 +8,8 @@ import play.mvc.Result;
 public class UserController extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 
-	public Result newUser() {
-	 return redirect(routes.Application.showCountries());
+	public static Result newUser() {
+		return redirect(routes.Application.showRegister());
 
 	}
 }
