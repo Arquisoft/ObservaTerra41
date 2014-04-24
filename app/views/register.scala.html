@@ -9,12 +9,12 @@
 
 @form(action = routes.UserController.newUser()) {
 
-@inputText(userForm("user")) 
-@inputText(userForm("name"))
-@inputText(userForm("surname"))
-@inputText(userForm("email"))   
-@inputPassword(userForm("pass"))
-@inputPassword(userForm("pass2"))
+@helper.inputText(userForm("user"),'required -> "true", 'size ->20) 
+@inputText(userForm("name"),'required -> "true", 'size ->20)
+@inputText(userForm("surname"),'required -> "true", 'size ->20)
+@inputText(userForm("email"),'required -> "true", 'size ->20)   
+@inputPassword(userForm("pass"),'required -> "true", 'size ->20)
+@inputPassword(userForm("pass2"),'required -> "true", 'size ->20)
 
 <input type="submit" value="Registrar">
 
