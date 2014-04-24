@@ -57,3 +57,4 @@ POST	/register			controllers.UserController.newUser()
 # Login
 GET     /login                  controllers.Application.login()
 POST    /login                  controllers.Application.authenticate()
+GET 	/logout					controllers.Application.cerrarSesion()

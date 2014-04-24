@@ -21,6 +21,9 @@ public class UserController extends Controller {
 		name = "User: " + usuario + " name: " + nombre + " apellidos: "
 				+ apellidos + " email: " + email + " pass: " + pass
 				+ " pass2: " + pass2;
+		
+		new User(usuario, nombre, apellidos, pass, email).save();
+		
 		return redirect(routes.Application.showRegister());
 	}
 }

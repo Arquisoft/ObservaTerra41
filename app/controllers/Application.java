@@ -61,6 +61,15 @@ public class Application extends Controller {
 		}
 	}
 
+	public static String getSessionUser(){
+		return session("user");
+	}
+	
+	public static Result cerrarSesion(){
+		session().clear();
+		return redirect(routes.Application.index());
+	}
+	
 	static Form<Country> countryForm = Form.form(Country.class);
 	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
 	static Form<Observation> observationForm = Form.form(Observation.class);
@@ -73,10 +82,12 @@ public class Application extends Controller {
 
 		public String validate() {
 			// Llamada a método que checkee si existen
-			if (user.equals("asw") && password.equals("asw"))
-				return null;
-			else
-				return "Invalid user or password";
+			User usuario = User.findByUserName(user);
+			
+			if (usuario == null) return "Invalid user or password";
+			if(!usuario.password.equals(password)) return "Invalid user or password";
+				
+			return null;
 		}
 
 	}
