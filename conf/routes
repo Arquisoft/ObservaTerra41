@@ -53,3 +53,7 @@ GET		/parallel					controllers.Pruebas.parallel()
 
 GET	/register		controllers.Application.showRegister()
 POST	/register			controllers.UserController.newUser()
+
+# Login
+GET     /login                  controllers.Application.login()
+POST    /login                  controllers.Application.authenticate()

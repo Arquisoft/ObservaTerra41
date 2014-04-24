@@ -16,6 +16,7 @@ import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import utils.ExcelReader;
+import play.data.*;
 
 public class Application extends Controller {
 
@@ -45,9 +46,39 @@ public class Application extends Controller {
 		return ok(register.render(userForm));
 	}
 
+	public static Result login() {
+		return ok(login.render(Form.form(Login.class)));
+	}
+
+	public static Result authenticate() {
+		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+		if (loginForm.hasErrors()) {
+			return badRequest(login.render(loginForm));
+		} else {
+			session().clear();
+			session("user", loginForm.get().user);
+			return redirect(routes.Application.index());
+		}
+	}
+
 	static Form<Country> countryForm = Form.form(Country.class);
 	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
 	static Form<Observation> observationForm = Form.form(Observation.class);
 	static Form<User> userForm = Form.form(User.class);
+
+	public static class Login {
+
+		public String user;
+		public String password;
+
+		public String validate() {
+			// Llamada a método que checkee si existen
+			if (user.equals("asw") && password.equals("asw"))
+				return null;
+			else
+				return "Invalid user or password";
+		}
+
+	}
 
 }
