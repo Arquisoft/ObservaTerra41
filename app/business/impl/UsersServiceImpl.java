@@ -9,14 +9,14 @@ import business.UsersService;
 public class UsersServiceImpl implements UsersService {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private Finder<String, User> find = new Finder(String.class, User.class);
+	private Finder<String, User> find = new Finder(Long.class, User.class);
 
 	public List<User> findAllUsers() {
 		return find.all();
 	}
 
 	public User findByUserName(String userName) {
-		return find.byId(userName);
+		return find.where().eq("userName", userName).findUnique();
 	}
 
 	public void removeUser(String userName) {
@@ -37,7 +37,5 @@ public class UsersServiceImpl implements UsersService {
 		toUpdate.setSurname(user.getSurname());
 		toUpdate.save();
 	}
-
-
 
 }

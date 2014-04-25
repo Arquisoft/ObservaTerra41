@@ -1,8 +1,7 @@
 package models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import play.db.ebean.Model;
@@ -10,7 +9,15 @@ import play.db.ebean.Model;
 @Entity
 public class User extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue
+	private Long id;
+
 	private String userName;
 
 	private String name;
@@ -27,8 +34,17 @@ public class User extends Model {
 		this.email = email;
 	}
 
-	
-	
+	public User() {
+		super();
+
+	}
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", name=" + name + ", surname="
+				+ surname + ", password=" + password + ", email=" + email + "]";
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -65,7 +81,4 @@ public class User extends Model {
 		return userName;
 	}
 
-
-	
-	
 }
