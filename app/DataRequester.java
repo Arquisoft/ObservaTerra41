@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+
+import utils.URLLoader;
 /**
  * Ejemplo de tata request
  * @author Sergio
@@ -11,7 +13,7 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class DataRequester {
 
-	private static String HumanDevelopmentIndexAndItsComponents ="https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD";
+	private static String HumanDevelopmentIndexAndItsComponents =URLLoader.getUrl("HumanDevelopmentIndexAndItsComponents");
 	
 
 	public static void request(){
