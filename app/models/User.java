@@ -47,4 +47,55 @@ public class User extends Model {
 		}
 	}
 	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public static void update(User user){
+		User toUpdate = find.ref(user.getUserName());
+		toUpdate.setEmail(user.getEmail());
+		toUpdate.setName(user.getName());
+		toUpdate.setPassword(user.getPassword());
+		toUpdate.setSurname(user.getSurname());
+		toUpdate.save();
+	}
+	
+	public static void addUser(User user){
+		user.save();
+	}
+	
+	
 }
