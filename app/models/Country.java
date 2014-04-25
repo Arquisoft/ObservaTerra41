@@ -9,12 +9,15 @@ import play.db.ebean.Model;
 import play.libs.Json;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
 public class Country extends Model {
     
-  @Id
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+@Id
   public String code;
   public String name;
   
@@ -51,7 +54,20 @@ public class Country extends Model {
 	  return find.byId(code);
   }
   
-  public static JsonNode toJson(Country country) {
+  
+  public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public String getCode() {
+	return code;
+}
+
+public static JsonNode toJson(Country country) {
 	return Json.toJson(country);
   }
 }

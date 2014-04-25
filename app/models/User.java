@@ -27,25 +27,6 @@ public class User extends Model {
 		this.email = email;
 	}
 
-	public static Finder<String, User> find = new Finder(String.class, User.class);
-
-	public static List<User> all() {
-		return find.all();
-	}
-	
-	public static User findByUserName(String userName){
-		return find.byId(userName);
-	}
-
-	public static void remove(String userName) {
-		find.ref(userName).delete();
-	}
-
-	public static void create(User user) {
-		if (findByUserName(user.userName) == null) {
-			user.save();
-		}
-	}
 	
 	
 	public String getName() {
@@ -84,18 +65,7 @@ public class User extends Model {
 		return userName;
 	}
 
-	public static void update(User user){
-		User toUpdate = find.ref(user.getUserName());
-		toUpdate.setEmail(user.getEmail());
-		toUpdate.setName(user.getName());
-		toUpdate.setPassword(user.getPassword());
-		toUpdate.setSurname(user.getSurname());
-		toUpdate.save();
-	}
-	
-	public static void addUser(User user){
-		user.save();
-	}
+
 	
 	
 }

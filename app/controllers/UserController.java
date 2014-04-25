@@ -1,5 +1,6 @@
 package controllers;
 
+import conf.ServicesFactory;
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;
@@ -21,8 +22,7 @@ public class UserController extends Controller {
 		name = "User: " + usuario + " name: " + nombre + " apellidos: "
 				+ apellidos + " email: " + email + " pass: " + pass
 				+ " pass2: " + pass2;
-		
-		User.addUser(new User(usuario, nombre, apellidos, pass, email));
+		ServicesFactory.getUsersService().createUser(new User(usuario, nombre, apellidos, pass, email));
 		return redirect(routes.Application.showRegister());
 	}
 }

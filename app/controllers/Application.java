@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import conf.ServicesFactory;
 import models.*;
 import views.html.*;
-
 import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -82,7 +82,7 @@ public class Application extends Controller {
 
 		public String validate() {
 			// Llamada a método que checkee si existen
-			User usuario = User.findByUserName(user);
+			User usuario=ServicesFactory.getUsersService().findByUserName(user);
 			
 			if (usuario == null) return "Invalid user or password";
 			if(!usuario.password.equals(password)) return "Invalid user or password";
