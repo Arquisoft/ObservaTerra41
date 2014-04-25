@@ -29,6 +29,7 @@ public class Global extends GlobalSettings {
 				new Observation("it","hdi",3.0).save();
 				
 				new User("roque", "Alberto Roque", "Carrizo Fernandez", "123456", "roque@roque.roque").save();
+				DataRequester.request();
 			}
 		}
 	}

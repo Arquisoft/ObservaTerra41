@@ -33,7 +33,7 @@
     @if(Application.getSessionUser() != null){
     	<p>Logued as: <i>@Application.getSessionUser()</i> | <a href="@routes.Application.cerrarSesion">Logout</a></p>
     } else {
-    	<a href="@routes.Application.login">Log in</a> | <a href="@routes.UserController.newUser">Registrarse</a>
+    	<a href="@routes.Application.login">Log in</a> | <a href="@routes.UserController.newUser">Registrarse</a> 
     }
     </footer>
     </body>
