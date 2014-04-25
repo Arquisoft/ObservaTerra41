@@ -24,12 +24,13 @@ create table observation (
 ;
 
 create table user (
-  user_name                 varchar(255) not null,
+  id                        bigint not null,
+  user_name                 varchar(255),
   name                      varchar(255),
   surname                   varchar(255),
   password                  varchar(255),
   email                     varchar(255),
-  constraint pk_user primary key (user_name))
+  constraint pk_user primary key (id))
 ;
 
 create sequence country_seq;
