@@ -11,12 +11,12 @@ import play.db.ebean.Model;
 public class User extends Model {
 
 	@Id
-	public String userName;
+	private String userName;
 
-	public String name;
-	public String surname;
-	public String password;
-	public String email;
+	private String name;
+	private String surname;
+	private String password;
+	private String email;
 
 	public User(String userName, String name, String surname, String password,
 			String email) {

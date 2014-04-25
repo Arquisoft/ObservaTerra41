@@ -24,7 +24,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	public void createUser(User user) {
-		if (findByUserName(user.userName) == null) {
+		if (findByUserName(user.getName()) == null) {
 			user.save();
 		}
 	}

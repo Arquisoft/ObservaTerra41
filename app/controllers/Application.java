@@ -85,7 +85,7 @@ public class Application extends Controller {
 			User usuario=ServicesFactory.getUsersService().findByUserName(user);
 			
 			if (usuario == null) return "Invalid user or password";
-			if(!usuario.password.equals(password)) return "Invalid user or password";
+			if(!usuario.getPassword().equals(password)) return "Invalid user or password";
 				
 			return null;
 		}
