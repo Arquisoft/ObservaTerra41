@@ -1,7 +1,5 @@
 package controllers;
 
-
-
 import conf.ServicesFactory;
 import models.*;
 import views.html.*;
@@ -51,48 +49,49 @@ public class Application extends Controller {
 		} else {
 			session().clear();
 			session("user", loginForm.get().user);
+			System.out.println("USUARIO "+Form.form().bindFromRequest("yhugbu"));
 			return redirect(routes.Application.index());
 		}
 	}
 
-	public static String getSessionUser(){
+	public static String getSessionUser() {
 		return session("user");
 	}
-	
-	public static Result cerrarSesion(){
+
+	public static Result cerrarSesion() {
 		session().clear();
 		return redirect(routes.Application.index());
 	}
-	public static Result seleccionPais(){
-		
-		return ok(SeleccionDeComparacion.render(Country.all(),SelectedCountry));
-		
-	}
-	public static Result graficas(){
-		String a="a";
-		String b= "b";
-		return ok(GraficasPaises.render(a,b));
-		
-	}
-	
-	public static Result comparar(){
-		Form<CountryTemp> loginForm = Form.form(CountryTemp.class).bindFromRequest();
-		String pais1= loginForm.get().PrimerPais;
-		String pais2= loginForm.get().SegundoPais;
-		
-		System.out.println(loginForm.value().toString());
-		return ok(MostrarComparacion.render(pais1,pais2));
+
+	public static Result seleccionPais() {
+
+		return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry));
+
 	}
 
-	
-	
-	
+	public static Result graficas() {
+		String a = "a";
+		String b = "b";
+		return ok(GraficasPaises.render(a, b));
+
+	}
+
+	public static Result comparar() {
+		Form<CountryTemp> loginForm = Form.form(CountryTemp.class)
+				.bindFromRequest();
+		String pais1 = Form.form().bindFromRequest().get("primero");
+		String pais2 = Form.form().bindFromRequest().get("segundo");
+
+		System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
+		return ok(MostrarComparacion.render(pais1, pais2));
+	}
+
 	static Form<Country> countryForm = Form.form(Country.class);
 	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
 	static Form<Observation> observationForm = Form.form(Observation.class);
 	static Form<User> userForm = Form.form(User.class);
-	static Form<CountryTemp>SelectedCountry= Form.form(CountryTemp.class);
-	
+	static Form<CountryTemp> SelectedCountry = Form.form(CountryTemp.class);
+
 	public static class Login {
 
 		public String user;
@@ -100,25 +99,44 @@ public class Application extends Controller {
 
 		public String validate() {
 			// Llamada a método que checkee si existen
-			User usuario=ServicesFactory.getUsersService().findByUserName(user);
-			
-			if (usuario == null) return "Invalid user or password";
-			if(!usuario.getPassword().equals(password)) return "Invalid user or password";
-				
+			User usuario = ServicesFactory.getUsersService().findByUserName(
+					user);
+
+			if (usuario == null)
+				return "Invalid user or password";
+			if (!usuario.getPassword().equals(password))
+				return "Invalid user or password";
+
 			return null;
 		}
 
 	}
+
 	public static class CountryTemp {
 
-		public String PrimerPais;
-		public String SegundoPais;
+		private String primerPais;
+		private String segundoPais;
 
-		public String toString(){
-			return PrimerPais;
+		public String toString() {
+			return primerPais;
 		}
-	}
 
-	
+		public String getPrimerPais() {
+			return primerPais;
+		}
+
+		public void setPrimerPais(String primerPais) {
+			this.primerPais = primerPais;
+		}
+
+		public String getSegundoPais() {
+			return segundoPais;
+		}
+
+		public void setSegundoPais(String segundoPais) {
+			this.segundoPais = segundoPais;
+		}
+
+	}
 
 }
