@@ -1,0 +1,27 @@
+body {
+  font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  color: #404040;
+  background: white;
+}
+#paises{
+	padding-left:3in;
+	width:3in;
+	margin-top:1in;
+	float:left;
+}
+table {
+	border: 1px solid;
+	
+}
+#enviarpais{
+	width:3in;
+	margin-right:4in;
+	margin-top:1.7in;
+	float:right;
+}
+footer{
+	border:solid;
+	float:left;
+	margin-top:1in;
+	width:100%;
+}

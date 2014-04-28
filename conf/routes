@@ -7,7 +7,9 @@ GET		/country					controllers.Application.showCountries()
 GET		/indicator					controllers.Application.showIndicators()
 GET		/observation				controllers.Application.showObservations()
 GET     /bars/:indicator   			controllers.Application.bars(indicator:String)
-
+GET		/compararpais				controllers.Application.seleccionPais()
+POST	/comparacion				controllers.Application.comparar()
+POST 	/graficas					controllers.Application.graficas()
 
 POST	/country					controllers.Admin.newCountry()
 POST	/country/delete/:code         controllers.Admin.deleteCountry(code: String)

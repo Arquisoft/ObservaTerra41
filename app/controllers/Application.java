@@ -63,12 +63,36 @@ public class Application extends Controller {
 		session().clear();
 		return redirect(routes.Application.index());
 	}
+	public static Result seleccionPais(){
+		
+		return ok(SeleccionDeComparacion.render(Country.all(),SelectedCountry));
+		
+	}
+	public static Result graficas(){
+		String a="a";
+		String b= "b";
+		return ok(GraficasPaises.render(a,b));
+		
+	}
+	
+	public static Result comparar(){
+		Form<CountryTemp> loginForm = Form.form(CountryTemp.class).bindFromRequest();
+		String pais1= loginForm.get().PrimerPais;
+		String pais2= loginForm.get().SegundoPais;
+		
+		System.out.println(loginForm.value().toString());
+		return ok(MostrarComparacion.render(pais1,pais2));
+	}
+
+	
+	
 	
 	static Form<Country> countryForm = Form.form(Country.class);
 	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
 	static Form<Observation> observationForm = Form.form(Observation.class);
 	static Form<User> userForm = Form.form(User.class);
-
+	static Form<CountryTemp>SelectedCountry= Form.form(CountryTemp.class);
+	
 	public static class Login {
 
 		public String user;
@@ -85,5 +109,16 @@ public class Application extends Controller {
 		}
 
 	}
+	public static class CountryTemp {
+
+		public String PrimerPais;
+		public String SegundoPais;
+
+		public String toString(){
+			return PrimerPais;
+		}
+	}
+
+	
 
 }
