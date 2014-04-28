@@ -35,6 +35,7 @@ POST	/api/observation/:country/:indicator	controllers.API.addObservation(country
 DELETE	/api/observation/:country/:indicator	controllers.API.delObservation(country:String, indicator: String)
 
 POST	/api/excel/upload			controllers.API.uploadExcel()
+POST	/api/json/upload			controllers.API.uploadJSON()
 
 # API2 showing the concept of HATEOAS
 GET		/api2/country					controllers.API.countriesHATEOAS()

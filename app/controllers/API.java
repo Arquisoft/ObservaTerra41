@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -134,7 +135,25 @@ public class API extends Controller {
       return(badRequest(Messages.get("read.excel.error") + "." + e.getLocalizedMessage()));	
     }
     }
-
+    public static Result  uploadJSON(){
+    	MultipartFormData body = request().body().asMultipartFormData();
+        FilePart JSON = body.getFile("JSON");
+        
+        JSONReader reader = new JSONReader();
+        File file = JSON.getFile();
+        try {
+			List<Observation> aux= reader.read(new FileInputStream(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return redirect(routes.Application.index()); 
+         
+    }
     static Form<Country>  	  countryForm     = Form.form(Country.class);
     static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
     static Form<Observation>  observationForm = Form.form(Observation.class);
