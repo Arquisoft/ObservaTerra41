@@ -5,20 +5,21 @@ import java.util.List;
 import conf.ServicesFactory;
 import models.*;
 import views.html.*;
-
 import play.data.Form;
-
 import play.mvc.Controller;
-
 import play.mvc.Result;
+import play.mvc.*;
+
 
 public class Application extends Controller {
+
 
 	public static Result index() {
 		return ok(index.render(Observation.all(), Country.all(),
 				Indicator.all()));
 	}
-
+	//ESTA LINEA MIRA SI SE PUEDE ACCEDER O NO A LA VISTA
+	@Security.Authenticated(Secured.class)
 	public static Result showCountries() {
 		return ok(country.render(Country.all(), countryForm));
 	}
