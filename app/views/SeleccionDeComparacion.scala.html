@@ -1,4 +1,4 @@
-@(countries: List[Country], form: Form[Application.CountryTemp])
+@(countries: List[Country], form: Form[Application.CountryTemp],mensaje:String)
 @import play.i18n._
 
 @main(Messages.get("list.countries")) {
@@ -55,6 +55,7 @@
 	}
 	@helper.form(routes.Application.graficas){ 
 	<input type="submit" value="Graficas">
+	<h1>@mensaje</h1>
 	}
 		
 	</section>

@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import conf.ServicesFactory;
 import models.*;
 import views.html.*;
@@ -65,7 +67,8 @@ public class Application extends Controller {
 
 	public static Result seleccionPais() {
 
-		return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry));
+		String mensaje="";
+		return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry,mensaje));
 
 	}
 
@@ -81,9 +84,29 @@ public class Application extends Controller {
 				.bindFromRequest();
 		String pais1 = Form.form().bindFromRequest().get("primero");
 		String pais2 = Form.form().bindFromRequest().get("segundo");
-
-		System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
-		return ok(MostrarComparacion.render(pais1, pais2));
+		
+		List<Country> paises= Country.all();
+		
+		boolean encontrado1=false;
+		boolean encontrado2=false;
+		
+		for(Country c : paises){
+			if(c.getCode().compareToIgnoreCase(pais1)==0){
+				encontrado1=true;
+				
+			}
+			if(c.getCode().compareToIgnoreCase(pais2)==0){
+				encontrado2=true;
+			}
+		}
+		if(encontrado1==false || encontrado2 ==false){
+			return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry,"Pais Invalido"));
+		}else{
+			System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
+			return ok(MostrarComparacion.render(pais1, pais2));
+		}
+			
+		
 	}
 
 	static Form<Country> countryForm = Form.form(Country.class);
