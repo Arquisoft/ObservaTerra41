@@ -142,7 +142,10 @@ public class API extends Controller {
         JSONReader reader = new JSONReader();
         File file = JSON.getFile();
         try {
-			List<Observation> aux= reader.read(new FileInputStream(file));
+			List<Observation> obsList= reader.read(new FileInputStream(file));
+			  for (Observation obs: obsList) {
+	    	    	obs.save();
+	    	    }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -154,6 +157,30 @@ public class API extends Controller {
         return redirect(routes.Application.index()); 
          
     }
+    
+    public static Result  uploadCSV(){
+    	MultipartFormData body = request().body().asMultipartFormData();
+        FilePart JSON = body.getFile("csv");
+        
+        CSVReader reader = new CSVReader();
+        File file = JSON.getFile();
+        try {
+			List<Observation> obsList= reader.read(new FileInputStream(file));
+			  for (Observation obs: obsList) {
+	    	    	obs.save();
+	    	    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return redirect(routes.Application.index()); 
+         
+    }
+    
     static Form<Country>  	  countryForm     = Form.form(Country.class);
     static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
     static Form<Observation>  observationForm = Form.form(Observation.class);
