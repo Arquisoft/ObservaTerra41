@@ -11,8 +11,12 @@ body {
 }
 table {
 	border: 1px solid;
-	
 }
+
+tr:nth-child(odd) {
+ background-color: DarkSeaGreen ;
+}
+
 #enviarpais{
 	width:3in;
 	margin-right:4in;
