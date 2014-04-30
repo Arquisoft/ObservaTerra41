@@ -1,9 +1,9 @@
 
 {"lectura": {
      "valores": [
-       {"pais": "es","Indicador": "Gripe","valor":"12.4"},
-       {"pais": "it","Indicador": "Gripe","valor":"11"},
-       {"pais": "fr","Indicador": "Gripe","valor": "13.5"}
+       {"pais": "es","Indicador": "hdi","valor":"12.4"},
+       {"pais": "it","Indicador": "hdi","valor":"11"},
+       {"pais": "fr","Indicador": "hdi","valor": "13.5"}
      ]
    }
 }
