@@ -1,0 +1,9 @@
+
+{"lectura": {
+     "valores": [
+       {"pais": "es","Indicador": "Gripe","valor":"12.4"},
+       {"pais": "it","Indicador": "Gripe","valor":"11"},
+       {"pais": "fr","Indicador": "Gripe","valor": "13.5"}
+     ]
+   }
+}

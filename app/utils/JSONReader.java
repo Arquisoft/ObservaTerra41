@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import models.Observation;
+import org.json.*;
 
 public class JSONReader {
 
@@ -22,8 +23,41 @@ public class JSONReader {
 		while ((inputStr = streamReader.readLine()) != null) {
 			responseStrBuilder.append(inputStr);
 		}
-
-		System.out.println(responseStrBuilder);
+		
+		try {
+			JSONObject jsonObj= new JSONObject (responseStrBuilder.toString());
+			System.out.println("LLEGO HASTA CREACION DE OBJETO");
+			
+			
+			
+			JSONObject aux= (JSONObject) jsonObj.get("lectura");
+			JSONArray aux2= (JSONArray) aux.get("valores");
+			
+			List<Observation>observaciones= new ArrayList<Observation>();
+			
+			String pais;
+			String indicador;
+			double value;
+			
+	        for(int i = 0; i < aux2.length(); i++){
+	            pais = aux2.getJSONObject(i).getString("pais");
+	            indicador = aux2.getJSONObject(i).getString("Indicador");
+	            String valueaux = aux2.getJSONObject(i).getString("valor");
+	            value= Double.parseDouble(valueaux);
+	           
+	            Observation ob= new Observation(pais, indicador, value);
+	            observaciones.add(ob);
+	        }
+			System.out.println(observaciones.size());
+	        
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 
 		// .....................
 		// List<Observation> obsList = new ArrayList<Observation>();
