@@ -10,8 +10,8 @@ import conf.ServicesFactory;
 import models.*;
 import views.html.*;
 import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
+import play.mvc.*;
+import models.*;
 
 public class Application extends Controller {
 
@@ -19,27 +19,33 @@ public class Application extends Controller {
 		ObservationService ob = ServicesFactory.getObservationService();
 		CountryService cs = ServicesFactory.getCountryService();
 		IndicatorSercive is = ServicesFactory.getIndicatorService();
-		return ok(index.render(ob.all(), cs.all(),
-				is.all()));
+		return ok(index.render(ob.all(), cs.all(), is.all()));
 	}
 
+	@Security.Authenticated(SecuredAdmin.class)
 	public static Result showCountries() {
-		return ok(country.render(ServicesFactory.getCountryService().all(), countryForm));
+		return ok(country.render(ServicesFactory.getCountryService().all(),
+				countryForm));
 	}
 
+	@Security.Authenticated(SecuredAdmin.class)
 	public static Result showIndicators() {
-		return ok(indicator.render(ServicesFactory.getIndicatorService().all(), indicatorForm));
+		return ok(indicator.render(ServicesFactory.getIndicatorService().all(),
+				indicatorForm));
 	}
 
+	@Security.Authenticated(SecuredAdmin.class)
 	public static Result showObservations() {
-		String mensaje="";
-		return ok(observation.render(ServicesFactory.getObservationService().all(),
-				ServicesFactory.getCountryService().all(),
-				ServicesFactory.getIndicatorService().all(), observationForm,mensaje));
+		String mensaje = "";
+		return ok(observation.render(ServicesFactory.getObservationService()
+				.all(), ServicesFactory.getCountryService().all(),
+				ServicesFactory.getIndicatorService().all(), observationForm,
+				mensaje));
 	}
 
 	public static Result bars(String indicator) {
-		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(indicator)));
+		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
+				indicator)));
 	}
 
 	public static Result showRegister() {
@@ -57,13 +63,24 @@ public class Application extends Controller {
 		} else {
 			session().clear();
 			session("user", loginForm.get().user);
-			System.out.println("USUARIO "+Form.form().bindFromRequest("yhugbu"));
+			/*
+			 * UsersService s = new UsersService();
+			 * if(s.findByUserName(loginForm.get().user).isAdmin())
+			 * session("admin", "true");
+			 */
+			// QUITAR ESTA LINEA Y DESCOMENTAR LO DE ARRIBA CUANDO ESTE EL VER
+			// SI ES ADMIN!!!!
+			session("admin", "true");
 			return redirect(routes.Application.index());
 		}
 	}
 
 	public static String getSessionUser() {
 		return session("user");
+	}
+	
+	public static String isAdmin(){
+		return session("admin");
 	}
 
 	public static Result cerrarSesion() {
@@ -75,7 +92,8 @@ public class Application extends Controller {
 		/*
 		String mensaje="";
 		return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,mensaje));
-*/return redirect(routes.Application.index());
+		*/
+		return redirect(routes.Application.index());
 	}
 
 	public static Result graficas() {
@@ -91,25 +109,28 @@ public class Application extends Controller {
 				.bindFromRequest();
 		String pais1 = Form.form().bindFromRequest().get("primero");
 		String pais2 = Form.form().bindFromRequest().get("segundo");
-		
-		List<Country> paises= ServicesFactory.getCountryService().all();
-		
-		boolean encontrado1=false;
-		boolean encontrado2=false;
-		
-		for(Country c : paises){
-			if(c.getCode().compareToIgnoreCase(pais1)==0){
-				encontrado1=true;
-				
+
+		List<Country> paises = ServicesFactory.getCountryService().all();
+
+		boolean encontrado1 = false;
+		boolean encontrado2 = false;
+
+		for (Country c : paises) {
+			if (c.getCode().compareToIgnoreCase(pais1) == 0) {
+				encontrado1 = true;
+
 			}
-			if(c.getCode().compareToIgnoreCase(pais2)==0){
-				encontrado2=true;
+			if (c.getCode().compareToIgnoreCase(pais2) == 0) {
+				encontrado2 = true;
 			}
 		}
-		if(encontrado1==false || encontrado2 ==false){
-			return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,"Pais Invalido"));
-		}else{
-			System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
+		if (encontrado1 == false || encontrado2 == false) {
+			return ok(SeleccionDeComparacion.render(ServicesFactory
+					.getCountryService().all(), SelectedCountry,
+					"Pais Invalido"));
+		} else {
+			System.out.println("EL pais numero 1 +"
+					+ Form.form().bindFromRequest("yhugbu"));
 			return ok(MostrarComparacion.render(pais1, pais2));
 		}*/
 		return ok(compare.render(ServicesFactory.getCountryService().all(), ServicesFactory.getIndicatorService().all(), new ArrayList<Country>(), SelectedCountry));
