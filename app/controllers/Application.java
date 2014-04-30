@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import business.CountryService;
@@ -71,21 +72,22 @@ public class Application extends Controller {
 	}
 
 	public static Result seleccionPais() {
-
+		/*
 		String mensaje="";
 		return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,mensaje));
-
+*/return redirect(routes.Application.index());
 	}
 
 	public static Result graficas() {
+		/*
 		String a = "a";
 		String b = "b";
 		return ok(GraficasPaises.render(a, b));
-
+*/return redirect(routes.Application.index());
 	}
 
 	public static Result comparar() {
-		Form<CountryTemp> loginForm = Form.form(CountryTemp.class)
+		/*Form<CountryTemp> loginForm = Form.form(CountryTemp.class)
 				.bindFromRequest();
 		String pais1 = Form.form().bindFromRequest().get("primero");
 		String pais2 = Form.form().bindFromRequest().get("segundo");
@@ -109,9 +111,8 @@ public class Application extends Controller {
 		}else{
 			System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
 			return ok(MostrarComparacion.render(pais1, pais2));
-		}
-			
-		
+		}*/
+		return ok(compare.render(ServicesFactory.getCountryService().all(), ServicesFactory.getIndicatorService().all(), new ArrayList<Country>(), SelectedCountry));
 	}
 
 	static Form<Country> countryForm = Form.form(Country.class);

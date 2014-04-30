@@ -1,0 +1,27 @@
+@(countries: List[Country], indicators: List[Indicator], selected: List[Country], form: Form[Application.CountryTemp])
+@import play.i18n._
+
+@main(Messages.get("compare.countries")) {
+
+	<html>
+	
+	<form action="">
+		
+		<select>
+		@for(indicator <- indicators) {
+			<option value=@indicator.getCode()>@indicator.getName()</option>
+		}
+		</select>
+		
+		<select>
+		@for(country <- countries) {
+			<option value=@country.getCode()>@country.getName()</option>
+		}
+		</select>
+		
+		<input>
+		
+	</form>
+	
+	</html>
+}
