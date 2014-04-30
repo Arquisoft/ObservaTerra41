@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,19 +12,54 @@ import play.db.ebean.Model;
 @Entity
 public class Observation extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -960050308782230568L;
+
 	@Id
-	public Long id;
+	private Long id;
 
 	@Required
-	public Double obsValue;
+	private Double obsValue;
 
 	@ManyToOne
-	public Country country;
+	private Country country;
 
 	@ManyToOne
-	public Indicator indicator;
+	private Indicator indicator;
 
-	public static Finder<Long, Observation> find = new Finder(Long.class,
+	public Double getObsValue() {
+		return obsValue;
+	}
+
+	public void setObsValue(Double obsValue) {
+		this.obsValue = obsValue;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public Indicator getIndicator() {
+		return indicator;
+	}
+
+	public void setIndicator(Indicator indicator) {
+		this.indicator = indicator;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected static Finder<Long, Observation> find = new Finder(Long.class,
 			Observation.class);
 
 	public Observation(Country country, Indicator indicator, Double value) {
@@ -40,26 +74,7 @@ public class Observation extends Model {
 		this.obsValue = value;
 	}
 
-	public static List<Observation> all() {
-		return find.all();
-	}
-
-	public static Observation create(String code, String indicator, Double value) {
-		Observation observation = new Observation(code, indicator, value);
-		observation.save();
-		return observation;
-	}
-
-	public static void delete(Long id) {
-		find.ref(id).delete();
-	}
-
-	public static void deleteAll() {
-		for (Observation obs : all()) {
-			obs.delete();
-		}
-	}
-
+	
 	public static Double average(List<Observation> observations) {
 		Double sum = 0.0;
 		for (Observation obs : observations) {
@@ -68,28 +83,7 @@ public class Observation extends Model {
 		return sum / observations.size();
 	}
 
-	public static List<Observation> filterByIndicatorName(String indicatorName,
-			List<Observation> observations) {
-		List<Observation> result = new ArrayList<Observation>();
-		for (Observation obs : observations) {
-			if (obs.indicator.name == indicatorName)
-				result.add(obs);
-		}
-		return result;
-	}
-
-	public static List<Observation> findByIndicatorName(String indicatorCode) {
-		Indicator ind = Indicator.findByCode(indicatorCode);
-		List<Observation> result = find.where().eq("indicator", ind).findList();
-		return result;
-	}
-
-	public static List<Observation> findByCountryCode(String countryCode) {
-		Country c = Country.find.byId(countryCode);
-		List<Observation> result = find.where().eq("country", c).findList();
-		return result;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Observation [id=" + id + ", obsValue=" + obsValue

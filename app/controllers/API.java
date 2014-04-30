@@ -18,14 +18,17 @@ import utils.*;
 
 import com.fasterxml.jackson.databind.node.*;
 
+import conf.ServicesFactory;
+
 public class API extends Controller {
 
     public static Result countries() {
-    	return ok(Json.toJson(Country.all()));
+    	return ok(Json.toJson(ServicesFactory.getCountryService().all()));
     }
 
     public static Result country(String code) {
-    	return ok(Json.toJson(Country.findByCode(code)));
+    	
+    	return ok(Json.toJson(ServicesFactory.getCountryService().findByCode(code)));
     }
 
     /** Generates JSON with links to other resources 
@@ -33,14 +36,14 @@ public class API extends Controller {
     public static Result countriesHATEOAS() {
      JsonNodeFactory factory = JsonNodeFactory.instance;
      ArrayNode result = new ArrayNode(factory);
-     for (Country country : Country.all()) {
+     for (Country country : ServicesFactory.getCountryService().all()) {
        ObjectNode countryJson = Json.newObject();
-       countryJson.put("code", country.code);
-       countryJson.put("name", country.name);
+       countryJson.put("code", country.getCode());
+       countryJson.put("name", country.getName());
        ArrayNode links = new ArrayNode(factory);
        ObjectNode self = Json.newObject();
        self.put("rel", "self");
-       self.put("href", routes.API.countryHATEOAS(country.code).absoluteURL(request()));
+       self.put("href", routes.API.countryHATEOAS(country.getCode()).absoluteURL(request()));
        
        links.add(self);
        countryJson.put("links", links);
@@ -52,14 +55,14 @@ public class API extends Controller {
     public static Result countryHATEOAS(String code) {
     	JsonNodeFactory factory = JsonNodeFactory.instance;
     	
-    	Country country = Country.find.byId(code);
+    	Country country = ServicesFactory.getCountryService().findByCode(code);
         ObjectNode countryJson = Json.newObject();
-        countryJson.put("code", country.code);
-        countryJson.put("name", country.name);
+        countryJson.put("code", country.getCode());
+        countryJson.put("name", country.getName());
         ArrayNode links = new ArrayNode(factory);
         ObjectNode self = Json.newObject();
         self.put("rel", "self");
-        self.put("href", routes.API.countryHATEOAS(country.code).absoluteURL(request()));
+        self.put("href", routes.API.countryHATEOAS(country.getCode()).absoluteURL(request()));
         links.add(self);
          
         ObjectNode parent = Json.newObject();
@@ -72,9 +75,10 @@ public class API extends Controller {
     }
     
     public static Result updateCountry(String code) {
-    	Country previous 	= Country.findByCode(code);
+    	
+    	Country previous 	= ServicesFactory.getCountryService().findByCode(code);
     	Country newCountry 	= countryForm.bindFromRequest().get();
-    	previous.name = newCountry.name;
+    	previous.setName(newCountry.getName());
     	previous.save();
     	return redirect(routes.API.countries());
     }
@@ -86,22 +90,25 @@ public class API extends Controller {
     }
 
     public static Result delCountry(String code) {
-    	Country.remove(code);
+    	ServicesFactory.getCountryService().remove(code);
     	return redirect(routes.API.countries());
     }
 
     public static Result observations() {
-    	List<Observation> obsList = Observation.all();
+    	
+    	List<Observation> obsList = ServicesFactory.getObservationService().all();
     	return ok(Json.toJson(obsList));
     }
 
     public static Result observationsByIndicator(String indicator) {
-    	List<Observation> obsList = Observation.findByIndicatorName(indicator);
+    	
+    	List<Observation> obsList = ServicesFactory.getObservationService().findByIndicatorName(indicator);
     	return ok(Json.toJson(obsList));
     }
 
     public static Result observationsByCountry(String country) {
-    	List<Observation> obsList = Observation.findByCountryCode(country);
+    	
+    	List<Observation> obsList = ServicesFactory.getObservationService().findByCountryCode(country);
     	return ok(Json.toJson(obsList));
     }
 
@@ -142,10 +149,7 @@ public class API extends Controller {
         JSONReader reader = new JSONReader();
         File file = JSON.getFile();
         try {
-			List<Observation> obsList= reader.read(new FileInputStream(file));
-			  for (Observation obs: obsList) {
-	    	    	obs.save();
-	    	    }
+			List<Observation> aux= reader.read(new FileInputStream(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,30 +161,6 @@ public class API extends Controller {
         return redirect(routes.Application.index()); 
          
     }
-    
-    public static Result  uploadCSV(){
-    	MultipartFormData body = request().body().asMultipartFormData();
-        FilePart JSON = body.getFile("csv");
-        
-        CSVReader reader = new CSVReader();
-        File file = JSON.getFile();
-        try {
-			List<Observation> obsList= reader.read(new FileInputStream(file));
-			  for (Observation obs: obsList) {
-	    	    	obs.save();
-	    	    }
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        return redirect(routes.Application.index()); 
-         
-    }
-    
     static Form<Country>  	  countryForm     = Form.form(Country.class);
     static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
     static Form<Observation>  observationForm = Form.form(Observation.class);

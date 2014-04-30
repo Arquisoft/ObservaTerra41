@@ -12,7 +12,7 @@ public class IndicatorServiceImpl implements IndicatorSercive {
 			Indicator.class);
 
 	public void create(Indicator indicator) {
-		if (findByName(indicator.name) == null) {
+		if (findByName(indicator.getName()) == null) {
 			indicator.save();
 		}
 	}
@@ -30,6 +30,7 @@ public class IndicatorServiceImpl implements IndicatorSercive {
 	}
 
 	public Indicator findByCode(String code) {
+		
 		return find.byId(code);
 	}
 

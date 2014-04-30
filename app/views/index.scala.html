@@ -14,9 +14,9 @@
 </tr>
 @for(observation <- observations) {
 	<tr>
-	<td>@observation.country.name</td>
-	<td>@observation.indicator.name</td>
-	<td>@observation.obsValue</td>
+	<td>@observation.getCountry().getName()</td>
+	<td>@observation.getIndicator().getName()</td>
+	<td>@observation.getObsValue()</td>
 	</tr> 
 }
 </table>
@@ -25,7 +25,7 @@
 <ul>
 @for(indicator <- indicators) {
 
- <li><a href="@routes.Application.bars(indicator.code)">@indicator.name</a></li>
+ <li><a href="@routes.Application.bars(indicator.getCode())">@indicator.getName()</a></li>
 	
 }
 </ul>

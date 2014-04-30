@@ -8,9 +8,9 @@
 <h1>@Messages.get("countries")</h1>
 <table>
 @for(country <- countries) { 
-  <tr><td>@country.name</td>
+  <tr><td>@country.getName()</td>
       <td>
-      <td>@helper.form(routes.Admin.deleteCountry(country.code)) {
+      <td>@helper.form(routes.Admin.deleteCountry(country.getCode())) {
                <input type="image" 
                       src="@{routes.Assets.at("images/delete.gif")}" 
                       alt='@{Messages.get("delete.country")}'>

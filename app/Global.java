@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.avaje.ebean.*;
 
+import conf.ServicesFactory;
 import models.*;
 
 public class Global extends GlobalSettings {
@@ -15,13 +16,15 @@ public class Global extends GlobalSettings {
     
 	static class InitialData {
 		public static void insert(Application app) {
-			if (Country.all().isEmpty()) {
+			if (ServicesFactory.getCountryService().all().isEmpty()) {
 				
-				@SuppressWarnings("unchecked")
-				Map<String,List<Object>> all =
-						(Map<String,List<Object>>)Yaml.load("initial-data.yml");
- 				Ebean.save(all.get("countries")); 
-				Ebean.save(all.get("indicators"));
+				new Indicator("hdi", "Human Development Index").save();
+				new Indicator("wi", "WebIndex").save();
+				new Country("es", "España").save();
+				new Country("fr", "Francia").save();
+				new Country("it", "Italia").save();
+				
+				
 				
 				// Some observations
 				new Observation("es","hdi",2.3).save();

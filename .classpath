@@ -2,7 +2,7 @@
   <classpathentry kind="src" path="app" output=".target"/>
   <classpathentry kind="src" path="test" output=".target"/>
   <classpathentry kind="lib" path=".\lib\json-simple-1.1.1.jar"/>
-  <classpathentry path="C:\Users\Dani\git\ObservaTerra41\target\scala-2.10\classes_managed" kind="lib"></classpathentry>
+  <classpathentry path="C:\Users\Sergio\Documents\GitHub\ObservaTerra41\target\scala-2.10\classes_managed" kind="lib"></classpathentry>
   <classpathentry kind="lib" path="C:\play-2.2.2\repository\local\com.typesafe.play\play-java-jdbc_2.10\2.2.2\jars\play-java-jdbc_2.10.jar"/>
   <classpathentry kind="lib" path="C:\play-2.2.2\repository\local\com.typesafe.play\play-jdbc_2.10\2.2.2\jars\play-jdbc_2.10.jar"/>
   <classpathentry kind="lib" path="C:\play-2.2.2\repository\local\com.typesafe.play\play_2.10\2.2.2\jars\play_2.10.jar"/>

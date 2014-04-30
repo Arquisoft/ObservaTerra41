@@ -1,5 +1,8 @@
 package controllers;
 
+
+
+import conf.ServicesFactory;
 import models.*;
 import play.data.*;
 import play.mvc.Controller;
@@ -11,17 +14,17 @@ public class Admin extends Controller {
       Form<Country> form = countryForm.bindFromRequest();
   	  if(form.hasErrors()) {
   	    return badRequest(
-  	      views.html.country.render(Country.all(),countryForm)
+  	      views.html.country.render(ServicesFactory.getCountryService().all(),countryForm)
   	    );
   	  } else {
         Country countryToAdd = form.get();
-	    Country.create(countryToAdd);
+        ServicesFactory.getCountryService().create(countryToAdd);
   	    return redirect(routes.Application.showCountries());
   	  }    
     }
     
     public static Result deleteCountry(String code) {
-        Country.remove(code);
+    	ServicesFactory.getCountryService().remove(code);
         return redirect(routes.Application.showCountries());
     }
     
@@ -30,17 +33,17 @@ public class Admin extends Controller {
       Form<Indicator> form = indicatorForm.bindFromRequest();
   	  if(form.hasErrors()) {
   	    return badRequest(
-  	      views.html.indicator.render(Indicator.all(),indicatorForm)
+  	      views.html.indicator.render(ServicesFactory.getIndicatorService().all(),indicatorForm)
   	    );
   	  } else {
   		Indicator ind = form.get();
-  	    Indicator.create(ind);
+  		ServicesFactory.getIndicatorService().create(ind);
   	    return redirect(routes.Application.showIndicators());  
   	  }    
     }
     
     public static Result deleteIndicator(String code) {
-        Indicator.remove(code);
+        ServicesFactory.getIndicatorService().remove(code);
         return redirect(routes.Application.showIndicators());
     }
 
@@ -49,13 +52,19 @@ public class Admin extends Controller {
       String countryId = requestData.get("countryId");
       String indicatorId = requestData.get("indicatorId");
       Double value = Double.parseDouble(requestData.get("value"));
-      Observation obs = new Observation(countryId,indicatorId,value);
-	  obs.save();
+     // Observation obs = new Observation(countryId,indicatorId,value);
+     ServicesFactory.getObservationService().create(countryId, indicatorId, value);
+
   	  return redirect(routes.Application.showObservations());  
     }
 
+    /**
+     * No va funcionar aun
+     * @param id
+     * @return
+     */
     public static Result deleteObservation(Long id) {
-        Observation.delete(id);
+        ServicesFactory.getObservationService().delete(id);
         return redirect(routes.Application.showObservations());
     }
     

@@ -1,7 +1,5 @@
 package models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,42 +13,24 @@ public class Country extends Model {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	public String code;
-	public String name;
+	private String code;
+	private String name;
 
 	public Country(String code, String name) {
 		this.code = code;
 		this.name = name;
 	}
 
-	public static Finder<String, Country> find = new Finder(String.class,
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected static Finder<String, Country> find = new Finder(String.class,
 			Country.class);
 
-	public static List<Country> all() {
-		return find.all();
-	}
+	
+	
 
-	public static void create(Country country) {
-		if (Country.findByName(country.name) == null) {
-			country.save();
-		}
-	}
-
-	public static void remove(String code) {
-		find.ref(code).delete();
-	}
-
-	public static void deleteAll() {
-		for (Country c : all())
-			c.delete();
-	}
-
-	public static Country findByName(String name) {
-		return find.where().eq("name", name).findUnique();
-	}
-
-	public static Country findByCode(String code) {
-		return find.byId(code);
+	public Country() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {

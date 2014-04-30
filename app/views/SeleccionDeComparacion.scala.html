@@ -24,8 +24,8 @@
 		@for(country <- countries){
 		
 		<tr>
-			<td>@country.code</td>
-			<td>@country.name</td>
+			<td>@country.getCode()</td>
+			<td>@country.getName()</td>
 		</tr>
 		<br> 
 		}

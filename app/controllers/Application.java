@@ -2,39 +2,42 @@ package controllers;
 
 import java.util.List;
 
+import business.CountryService;
+import business.IndicatorSercive;
+import business.ObservationService;
 import conf.ServicesFactory;
 import models.*;
 import views.html.*;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.*;
-
 
 public class Application extends Controller {
 
-
 	public static Result index() {
-		return ok(index.render(Observation.all(), Country.all(),
-				Indicator.all()));
+		ObservationService ob = ServicesFactory.getObservationService();
+		CountryService cs = ServicesFactory.getCountryService();
+		IndicatorSercive is = ServicesFactory.getIndicatorService();
+		return ok(index.render(ob.all(), cs.all(),
+				is.all()));
 	}
-	//ESTA LINEA MIRA SI SE PUEDE ACCEDER O NO A LA VISTA
-	@Security.Authenticated(Secured.class)
+
 	public static Result showCountries() {
-		return ok(country.render(Country.all(), countryForm));
+		return ok(country.render(ServicesFactory.getCountryService().all(), countryForm));
 	}
 
 	public static Result showIndicators() {
-		return ok(indicator.render(Indicator.all(), indicatorForm));
+		return ok(indicator.render(ServicesFactory.getIndicatorService().all(), indicatorForm));
 	}
 
 	public static Result showObservations() {
-		return ok(observation.render(Observation.find.all(), Country.all(),
-				Indicator.all(), observationForm));
+		return ok(observation.render(ServicesFactory.getObservationService().all(),
+				ServicesFactory.getCountryService().all(),
+				ServicesFactory.getIndicatorService().all(), observationForm));
 	}
 
 	public static Result bars(String indicator) {
-		return ok(bars.render(Indicator.findByCode(indicator)));
+		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(indicator)));
 	}
 
 	public static Result showRegister() {
@@ -69,7 +72,7 @@ public class Application extends Controller {
 	public static Result seleccionPais() {
 
 		String mensaje="";
-		return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry,mensaje));
+		return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,mensaje));
 
 	}
 
@@ -86,7 +89,7 @@ public class Application extends Controller {
 		String pais1 = Form.form().bindFromRequest().get("primero");
 		String pais2 = Form.form().bindFromRequest().get("segundo");
 		
-		List<Country> paises= Country.all();
+		List<Country> paises= ServicesFactory.getCountryService().all();
 		
 		boolean encontrado1=false;
 		boolean encontrado2=false;
@@ -101,7 +104,7 @@ public class Application extends Controller {
 			}
 		}
 		if(encontrado1==false || encontrado2 ==false){
-			return ok(SeleccionDeComparacion.render(Country.all(), SelectedCountry,"Pais Invalido"));
+			return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,"Pais Invalido"));
 		}else{
 			System.out.println("EL pais numero 1 +" + Form.form().bindFromRequest("yhugbu"));
 			return ok(MostrarComparacion.render(pais1, pais2));
