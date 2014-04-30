@@ -1,8 +1,10 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -17,8 +19,10 @@ public class Observation extends Model {
 	 */
 	private static final long serialVersionUID = -960050308782230568L;
 
-	@Id
+	@Id@GeneratedValue
 	private Long id;
+	
+	private Date date;
 
 	@Required
 	private Double obsValue;

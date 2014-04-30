@@ -16,17 +16,14 @@ public class Country extends Model {
 	private String code;
 	private String name;
 
-	public Country(String code, String name) {
-		this.code = code;
-		this.name = name;
-	}
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected static Finder<String, Country> find = new Finder(String.class,
 			Country.class);
 
-	
-	
+	public Country(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
 
 	public Country() {
 		super();

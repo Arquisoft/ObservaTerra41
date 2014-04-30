@@ -53,7 +53,7 @@ public class Admin extends Controller {
       String indicatorId = requestData.get("indicatorId");
       Double value = Double.parseDouble(requestData.get("value"));
      // Observation obs = new Observation(countryId,indicatorId,value);
-     ServicesFactory.getObservationService().create(countryId, indicatorId, value);
+      ServicesFactory.getObservationService().create(countryId, indicatorId, value);
 
   	  return redirect(routes.Application.showObservations());  
     }
