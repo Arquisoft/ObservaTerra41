@@ -90,4 +90,12 @@ public class Observation extends Model {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "Observation [id=" + id + ", obsValue=" + obsValue
+				+ ", country=" + country + ", indicator=" + indicator + "]";
+	}
+	
+	
+
 }

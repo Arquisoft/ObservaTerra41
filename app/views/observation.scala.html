@@ -71,7 +71,9 @@
 }
 
 
-<h2>Subir otro archivo</h2>
+
+<h2>Subir archivo JSON</h2>
+
 
 @helper.form(action = routes.API.uploadJSON, 
 	  'enctype -> "multipart/form-data") {
@@ -83,5 +85,19 @@
     </p>
     
 }
+ 
+ <h2>Subir CSV</h2>
+
+@helper.form(action = routes.API.uploadCSV, 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="csv">
+    
+    <p>
+        <input type="submit">
+    </p>
+    
+}
+
     
 }
