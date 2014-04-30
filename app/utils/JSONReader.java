@@ -44,12 +44,11 @@ public class JSONReader {
 	            indicador = aux2.getJSONObject(i).getString("Indicador");
 	            String valueaux = aux2.getJSONObject(i).getString("valor");
 	            value= Double.parseDouble(valueaux);
-	           
 	            Observation ob= new Observation(pais, indicador, value);
 	            observaciones.add(ob);
 	        }
-			System.out.println(observaciones.get(1).toString());
-	        
+
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

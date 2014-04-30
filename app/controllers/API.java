@@ -150,6 +150,9 @@ public class API extends Controller {
         File file = JSON.getFile();
         try {
 			List<Observation> aux= reader.read(new FileInputStream(file));
+			  for (Observation obs: aux) {
+	    	    	obs.save();
+	    	    }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
