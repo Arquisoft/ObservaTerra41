@@ -31,9 +31,10 @@ public class Application extends Controller {
 	}
 
 	public static Result showObservations() {
+		String mensaje="";
 		return ok(observation.render(ServicesFactory.getObservationService().all(),
 				ServicesFactory.getCountryService().all(),
-				ServicesFactory.getIndicatorService().all(), observationForm));
+				ServicesFactory.getIndicatorService().all(), observationForm,mensaje));
 	}
 
 	public static Result bars(String indicator) {

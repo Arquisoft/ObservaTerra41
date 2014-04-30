@@ -6,6 +6,10 @@ a{
 }
 a:hover {color:#FF9900;}
 
+h3{
+	color:red;
+	
+}
 html,body {
 	margin:0;
 	padding:0;

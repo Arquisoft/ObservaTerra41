@@ -7,6 +7,7 @@ import models.*;
 import play.data.*;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.observation;
 
 public class Admin extends Controller {
 
@@ -51,7 +52,17 @@ public class Admin extends Controller {
       DynamicForm requestData = Form.form().bindFromRequest();
       String countryId = requestData.get("countryId");
       String indicatorId = requestData.get("indicatorId");
-      Double value = Double.parseDouble(requestData.get("value"));
+      Double value;
+      try{
+      value = Double.parseDouble(requestData.get("value"));
+      }catch(Exception e){
+    	  String mensaje="Campo no valido";
+    	  return ok(observation.render(ServicesFactory.getObservationService().all(),
+  				ServicesFactory.getCountryService().all(),
+  				ServicesFactory.getIndicatorService().all(), observationForm,mensaje));
+      }
+      
+      
      // Observation obs = new Observation(countryId,indicatorId,value);
       ServicesFactory.getObservationService().create(countryId, indicatorId, value);
 

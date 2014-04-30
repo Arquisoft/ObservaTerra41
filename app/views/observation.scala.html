@@ -1,7 +1,7 @@
 @(observations: List[Observation], 
   countries: List[Country], 
   indicators: List[Indicator],
-  form: Form[Observation])
+  form: Form[Observation],mensaje:String)
 
 @import play.i18n._
 @import helper.twitterBootstrap._
@@ -54,8 +54,11 @@
         </select> 
 
         <input type="submit" value="@{Messages.get("create")}">
+        <h3>@mensaje</h3>
         
     }    
+
+
     
 <h2>@Messages.get("upload.excel.file")</h2>
 
