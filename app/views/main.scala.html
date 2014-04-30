@@ -17,7 +17,7 @@
 		<div id="contenedor">
 			<header>
 				<a href="/" id="titulo">
-					<img src='@routes.Assets.at("images/ObservaTerra_Logo.png")' alt="ObservaTerraLogo"/>
+					<img class="buzz-out" src='@routes.Assets.at("images/ObservaTerra_Logo.png")' alt="ObservaTerraLogo"/>
 					<h1>ObservaTerra</h1>
 				</a>
 				
@@ -60,11 +60,12 @@
 					<li><a href="#">Subir a datos</a>
 					
 					<!-- Enlaces de administración -->
+					@if(Application.isAdmin()!=null){
 					<li><a href="#">Recolectar datos</a>
 					<li><a href="@routes.Application.showCountries">Countries</a>
 					<li><a href="@routes.Application.showIndicators">Indicators</a>
 					<li><a href="@routes.Application.showObservations">Observations</a>
-			
+					}
 				</ul>
 		    </nav>
 			
