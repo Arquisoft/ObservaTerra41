@@ -2,40 +2,88 @@
 
 @import play.i18n._
 
+<!-- PLANTILLA GENERAL -->
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bars.css")' >
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-    <header>
-        <a href="/"><img src="@routes.Assets.at("images/observaTerra.png")" alt="ObservaTerraLogo" />
-        <h1>ObservaTerra</h1></a>
-     </header>
-     <h1>@title</h1>    
-
-     @content
-
-    <footer>
-    <nav>
-    @Messages.get("Admin")
-    <ul>
-    <li><a href="@routes.Application.showCountries">Countries</a>
-	<li><a href="@routes.Application.showIndicators">Indicators</a>
-	<li><a href="@routes.Application.showObservations">Observations</a>
-	<li><a href="@routes.Application.seleccionPais">Comparar Paises</a>
-	</ul>
-    </nav>
-    @if(Application.getSessionUser() != null){
-    	<p>Logued as: <i>@Application.getSessionUser()</i> | <a href="@routes.Application.cerrarSesion">Logout</a></p>
-    } else {
-    	<a href="@routes.Application.login">Log in</a> | <a href="@routes.UserController.newUser">Registrarse</a> 
-    }
-    </footer>
-    </body>
+	
+	<head>
+		<title>@title</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bars.css")' >
+	</head>
+	
+	<body>
+		<div id="contenedor">
+			<header>
+				<a href="/" id="titulo">
+					<img src='@routes.Assets.at("images/ObservaTerra_Logo.png")' alt="ObservaTerraLogo"/>
+					<h1>ObservaTerra</h1>
+				</a>
+				
+				<div id="opciones">
+					<!-- Sección de login y gestión de usuarios -->
+					<div id="login">
+						@if(Application.getSessionUser() != null){
+					    	<p>
+						    	Logued as: <strong id="userName">@Application.getSessionUser()</strong> | 
+						    	<a href="@routes.Application.cerrarSesion">Logout</a>
+							</p>
+					    } else {
+					    	<a href="@routes.Application.login">Log in</a> | 
+					    	<a href="@routes.UserController.newUser">Registrarse</a> 
+					    }
+					</div>
+					
+					<!-- Sección de selección de idioma (I18N) -->
+					<div id="idiomas">
+						<form action="">
+							<label>Seleccione idioma:</label>
+							<select>
+								<option value="es">Español</option>
+								<option value="en">Inglés</option>
+								<option value="fr">Francés</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				
+			</header>
+			
+			<nav>
+				<ul>
+					<!-- Enlaces de acceso público -->
+					<li><a href="#">Acceder a datos</a>
+					<li><a href="@routes.Application.seleccionPais">Comparar Paises</a>
+					
+					<!-- Enlaces para usuarios registrados -->
+					<li><a href="#">Subir a datos</a>
+					
+					<!-- Enlaces de administración -->
+					<li><a href="#">Recolectar datos</a>
+					<li><a href="@routes.Application.showCountries">Countries</a>
+					<li><a href="@routes.Application.showIndicators">Indicators</a>
+					<li><a href="@routes.Application.showObservations">Observations</a>
+			
+				</ul>
+		    </nav>
+			
+			<main>
+				<!-- Contenido de la vista que implemente esta plantilla -->
+				@content
+			</main>
+			
+			<footer>
+			    <div id="authors">
+			    	<ul>
+			    		<li><p>Sergio Jiménez Jiménez UO226261</p>
+			    		<li><p>Carlos Miguel Narganes UO218695</p>
+			    		<li><p>Jorge Alonso Montes UO197637</p>
+			    		<li><p>Roque Carrizo Fernancdez UO217301</p>
+			    		<li><p>Daniel Tella González UO218105</p>
+			    	</ul>
+			    </div>
+			</footer>
+	    </div>
+	</body>
 </html>

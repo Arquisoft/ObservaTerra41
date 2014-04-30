@@ -1,55 +1,106 @@
-h1 { color: darkblue; 
+
+/* ESTILOS GENERALES */
+a{
+	text-decoration: none;
+	color: #0066CC;
+}
+a:hover {color:#FF9900;}
+
+html,body {
+	margin:0;
+	padding:0;
+	height:100%; /* needed for container min-height */
+	background: #0ca3d2;
 	
+	font-family:arial,sans-serif;
+	font-size: small;
+	color:#666;
 }
 
+div#contenedor {
+	position:relative; /* needed for footer positioning*/
+	margin:0 auto; /* center, not in IE5 */
+	width:1200px;
+	background:white;
+	
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+
+	min-height:100%; /* real browsers */
+	
+	border-left: 0.8em solid #0B8FB7;
+	border-right: 0.8em solid #0B8FB7;
+}
+
+
+/* ESTILOS HEADER */
 header {
-	font-size: 2em;
+	padding:1em;
+	background:#f3f3f3;
+	border-bottom:6px double gray;
+	height: 10em;
+}
+
+a#titulo{
+	position: relative;
+	float:left;
+	color: #212121
 }
 
 header img {
-	width: 2em; height: 2em;
-	float: left;
-	-webkit-transition: -webkit-transform 0.3s ease-out;
-	transition: transform 0.3s ease-out;
+	position: absolute;
+	top: -0.7em;
+	width: 180px; height: 180px;
 }
 
-header img:hover {
-	-webkit-transform: rotate(15deg);
-	transform: rotate(15deg);
+header h1{
+	font-size: 7em;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	position: absolute;
+	left: 200px;
+	top: -0.4em;
 }
 
-header a {
+div#opciones{
+	float:right;
+	width:180px;
+	text-align: right;
+}
+
+div#login{
+	margin-bottom: 2em;
+}
+
+
+/* ESTILOS NAVEGACION */
+nav {
+	clear:both;
+	padding:1em;
+	background:#ddd;
+	border-bottom:6px double gray;
+}
+
+nav li{
+	display: inline-block;
+	margin-right: 2em;
+}
+
+nav a{
 	text-decoration: none;
 }
 
+/* ESTILOS CONTENIDO */
+main {
+	background: white;
+	padding:1em 1em 14em; /* bottom padding for footer */
+}
 
+/* ESTILOS FOOTER */
 footer {
-	border-top: 1 solid;
-	background-color: DarkSeaGreen ;
-}
-
-footer nav ul { 
-	list-style-type: none;
-	overflow:hidden;
-}
-
-footer nav li {
-	float:left;
-	padding-left: 1em;
-}
-
-footer nav a {
-	display:block;
-}
-
-table {
- border: 1px solid;
- border-collapse: collapse;
- margin-left: auto;
- margin-right: auto;
- margin-bottom: 2em; 
-}
-
-td { border-top: 1px solid ; 
- padding: 0.5em;
+	position:absolute;
+	width:100%;
+	bottom:0; /* stick to bottom */
+	background:#ddd;
+	border-top:6px double gray;
+	height: 13em;
 }
