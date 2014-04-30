@@ -1,6 +1,7 @@
 package models;
 
 import play.db.ebean.*;
+import play.data.validation.Constraints.Required;
 import play.data.validation.Constraints.*;
 
 import javax.persistence.*;
@@ -16,6 +17,13 @@ public class Indicator extends Model {
 
 	@Id
 	private String code;
+
+	@Required
+	private String name;
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected static Finder<String, Indicator> find = new Finder(String.class,
+			Indicator.class);
 
 	public String getName() {
 		return name;
@@ -44,19 +52,10 @@ public class Indicator extends Model {
 
 
 
-	@Required
-	private String name;
-
 	public Indicator(String code, String name) {
 		this.code = code;
 		this.name = name;
 	}
-	
-	
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected static Finder<String, Indicator> find = new Finder(String.class,
-			Indicator.class);
 
 	
 

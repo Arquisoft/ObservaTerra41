@@ -9,7 +9,7 @@
 @for(ind <- indicators) { 
   <tr><td>@ind.getName()</td>
       <td>
-      <td>@helper.form(routes.Admin.deleteCountry(ind.getCode())) {
+      <td>@helper.form(routes.Admin.deleteIndicator(ind.getCode())) {
                <input type="image" 
                       src="@{routes.Assets.at("images/delete.gif")}" 
                       alt='@{Messages.get("delete.indicator")}'>
