@@ -53,9 +53,8 @@ public class Application extends Controller {
 	
 	public static Result fillRegister(String name){
 		User user = ServicesFactory.getUsersService().findByUserName(name);
-		user = new User("prueba","prueba","prueba","prueba","prueba");
 		if(user!=null)
-		userForm.fill(user);
+		userForm = userForm.fill(user);
 		return ok(register.render(userForm));
 	}
 

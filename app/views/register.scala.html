@@ -7,8 +7,7 @@
 
 <h2>Formulario de registro</h2>
 
-
-@form(action = routes.UserController.newUser()) {
+@helper.form(routes.UserController.newUser) {
 
 @inputText(userForm("user"),'required -> "true", 'size ->20) 
 @inputText(userForm("name"),'required -> "true", 'size ->20)
