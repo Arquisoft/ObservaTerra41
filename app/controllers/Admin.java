@@ -8,7 +8,9 @@ import play.data.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.observation;
+import play.mvc.*;
 
+@Security.Authenticated(SecuredAdmin.class)
 public class Admin extends Controller {
 
     public static Result newCountry() {
