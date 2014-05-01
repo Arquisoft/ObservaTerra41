@@ -1,27 +1,117 @@
-@(countries: List[Country], indicators: List[Indicator], selected: List[Country], form: Form[Application.CountryTemp])
+@(countries: List[Country], indicators: List[Indicator], indicatorSelected: Indicator, countriesSelected: List[Country], form: Form[Application.ComparationForm])
 @import play.i18n._
 
 @main(Messages.get("compare.countries")) {
 
-	<html>
-	
-	<form action="">
+	<!-- CSS específico de la vista -->
+	<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/paises.css")' >
+	<meta charset="UTF-8">
+
+	<!-- Formulario para seleccionar paises y el indicador -->
+	<div id="compareform">
+	@helper.form(routes.Application.comparar) {
 		
-		<select>
+		<label>Indicador:</label><br>
+		<select id="comboind" name="indicator" onchange="this.form.submit()">
 		@for(indicator <- indicators) {
-			<option value=@indicator.getCode()>@indicator.getName()</option>
+			<option value=@indicator.getCode() @(if(indicatorSelected != null && indicator.getCode().equals(indicatorSelected.getCode())) "selected" else "")>@indicator.getName()</option>
 		}
 		</select>
 		
-		<select>
+		<label>Países:</label><br>
+		<select class="combopais" name="country1" onchange="this.form.submit()">
+			<option value="none">-------</option>
 		@for(country <- countries) {
-			<option value=@country.getCode()>@country.getName()</option>
+			<option value=@country.getCode() @(if(countriesSelected.size() >= 1 && country.getCode().equals(countriesSelected.get(0).getCode())) "selected" else "")>@country.getName()</option>
 		}
 		</select>
 		
-		<input>
+		<canvas class="color" @(if(countriesSelected.size() >= 1) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(0))) else "")></canvas>
 		
-	</form>
+		<select class="combopais" name="country2" onchange="this.form.submit()">
+			<option value="none">-------</option>
+		@for(country <- countries) {
+			<option value=@country.getCode() @(if(countriesSelected.size() >= 2 && country.getCode().equals(countriesSelected.get(1).getCode())) "selected" else "")>@country.getName()</option>
+		}
+		</select>
+		
+		<canvas class="color" @(if(countriesSelected.size() >= 2) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(1))) else "")></canvas>
+		
+		<select class="combopais" name="country3" onchange="this.form.submit()">
+			<option value="none">-------</option>
+		@for(country <- countries) {
+			<option value=@country.getCode() @(if(countriesSelected.size() >= 3 && country.getCode().equals(countriesSelected.get(2).getCode())) "selected" else "")>@country.getName()</option>
+		}
+		</select>
+		
+		<canvas class="color" @(if(countriesSelected.size() >= 3) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(2))) else "")></canvas>
+		
+		<select class="combopais" name="country4" onchange="this.form.submit()">
+			<option value="none">-------</option>
+		@for(country <- countries) {
+			<option value=@country.getCode() @(if(countriesSelected.size() >= 4 && country.getCode().equals(countriesSelected.get(3).getCode())) "selected" else "")>@country.getName()</option>
+		}
+		</select>
+		
+		<canvas class="color" @(if(countriesSelected.size() >= 4) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(3))) else "")></canvas>
+	}
+	</div>
 	
-	</html>
+	<!-- DIBUJAR TABLA -->
+	@if(countriesSelected.size() > 0){
+	<table id="comparetable">
+		<tr>
+			<th>Country</th>
+			<th>Value</th> <!-- Fechas -->
+		</tr>
+		@for(country <- countriesSelected) {
+			<tr>
+				<td style="background:@(Application.getColor(countriesSelected.indexOf(country)))">@country.getName()</td>
+				
+				<!-- RecorrerFechas -->
+				<td>@(if(Application.findObs(country.getCode(), indicatorSelected.getCode()) == null) "-" else Application.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())</td>
+			</tr>
+		}
+	</table>
+	}
+	
+	
+	<div id="graphdiv">
+	@if(countriesSelected.size() > 1){
+	<!-- DIBUJAR GRAFICO -->
+	<script src="@routes.Assets.at("javascripts/Chart.min.js")"></script>
+	
+    <canvas id="graph" width="1150" height="500"></canvas>
+    
+    <script>
+    	// Datos
+	    var barData = {
+	        labels : ["Value"], //Fechas
+	        datasets : [ //Cada dataset es un país
+	            @for(country <- countriesSelected) {
+		            {
+		                fillColor : "@(Application.getColor(countriesSelected.indexOf(country)))",
+		                strokeColor : "rgba(0,0,0,.4)",
+		                data : [@(if(Application.findObs(country.getCode(), indicatorSelected.getCode()) == null) 0 else Application.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())]
+		            },
+	            }
+	        ]
+	    }
+    	
+    	var opciones = {
+	    		scaleLineColor : "rgba(0,0,0,.4)",
+	    		scaleGridLineColor : "rgba(0,0,0,.2)",
+	    		animationEasing : "easeOutElastic"
+    	}
+	    
+	    // Encontrando el canvas
+	    var income = document.getElementById("graph").getContext("2d");
+	    // Dibujar gráfica
+	    new Chart(income).Bar(barData, opciones);
+	</script>
+	}else{
+		<p>Se requieren al menos dos países para visualizar el gráfico </p>
+	}
+	</div>
+	
 }

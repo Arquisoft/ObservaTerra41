@@ -26,6 +26,8 @@ public interface ObservationService {
 
 	public  List<Observation> findByCountryCode(String countryCode);
 	
+	public Observation findByCountryIndicator(String countryCode, String indicatorCode);
+	
 	public Observation findById(Long id);
 
 }

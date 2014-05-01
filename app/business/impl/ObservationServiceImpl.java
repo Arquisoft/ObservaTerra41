@@ -3,6 +3,7 @@ package business.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.avaje.ebean.Expr;
 import business.ObservationService;
 import conf.ServicesFactory;
 import models.Country;
@@ -59,6 +60,13 @@ public class ObservationServiceImpl implements ObservationService{
 	public  List<Observation> findByCountryCode(String countryCode) {
 		Country c = ServicesFactory.getCountryService().findByCode(countryCode);
 		List<Observation> result = find.where().eq("country", c).findList();
+		return result;
+	}
+	
+	public  Observation findByCountryIndicator(String countryCode, String indicatorCode) {
+		Country c = ServicesFactory.getCountryService().findByCode(countryCode);
+		Indicator ind = ServicesFactory.getIndicatorService().findByCode(indicatorCode);
+		Observation result = find.where().and(Expr.eq("country", c), Expr.eq("indicator", ind)).findUnique();
 		return result;
 	}
 	

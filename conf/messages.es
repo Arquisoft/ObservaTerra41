@@ -25,4 +25,6 @@ file.uploaded		= Fichero subido con {0} observaciones
 read.excel.error	= Error al leer fichero Excel
 upload.excel.file	= Cargar fichero Excel
 upload				= Cargar
+
 compare.countries	= Comparar datos
+compare.title		= Compara datos de diferentes paises

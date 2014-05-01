@@ -18,7 +18,7 @@ html,body {
 	
 	font-family:arial,sans-serif;
 	font-size: small;
-	color:#666;
+	color:#555;
 }
 
 div#contenedor {
@@ -98,6 +98,7 @@ nav a{
 main {
 	background: white;
 	padding:1em 1em 14em; /* bottom padding for footer */
+	color: #333;
 }
 
 /* ESTILOS FOOTER */
