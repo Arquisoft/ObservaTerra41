@@ -30,11 +30,14 @@ public class Indicator extends Model {
 	}
 	
 
-
-
 	public Indicator() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Indicator [code=" + code + ", name=" + name + "]";
 	}
 
 
@@ -49,8 +52,6 @@ public class Indicator extends Model {
 	public String getCode() {
 		return code;
 	}
-
-
 
 	public Indicator(String code, String name) {
 		this.code = code;

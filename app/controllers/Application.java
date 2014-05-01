@@ -41,13 +41,21 @@ public class Application extends Controller {
 				ServicesFactory.getIndicatorService().all(), observationForm,
 				mensaje));
 	}
-
+	
 	public static Result bars(String indicator) {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
 
 	public static Result showRegister() {
+		return ok(register.render(userForm));
+	}
+	
+	public static Result fillRegister(String name){
+		User user = ServicesFactory.getUsersService().findByUserName(name);
+		user = new User("prueba","prueba","prueba","prueba","prueba");
+		if(user!=null)
+		userForm.fill(user);
 		return ok(register.render(userForm));
 	}
 
@@ -63,8 +71,9 @@ public class Application extends Controller {
 			session().clear();
 			session("user", loginForm.get().user);
 			/*
-			 * UsersService s = new UsersService();
-			 * if(s.findByUserName(loginForm.get().user).isAdmin())
+			 * String name = loginForm.get().user;
+			 * User user = ServicesFactory.getUsersService().findUserName(user);
+			 * if(user.isAdmin())
 			 * session("admin", "true");
 			 */
 			// QUITAR ESTA LINEA Y DESCOMENTAR LO DE ARRIBA CUANDO ESTE EL VER
@@ -84,24 +93,6 @@ public class Application extends Controller {
 
 	public static Result cerrarSesion() {
 		session().clear();
-		return redirect(routes.Application.index());
-	}
-
-	public static Result seleccionPais() {
-		/*
-		String mensaje="";
-		return ok(SeleccionDeComparacion.render(ServicesFactory.getCountryService().all(), SelectedCountry,mensaje));
-		*/
-		return redirect(routes.Application.index());
-	}
-
-	public static Result graficas() {
-		/*
-		String a = "a";
-		String b = "b";
-		return ok(GraficasPaises.render(a, b));
-		*/
-
 		return redirect(routes.Application.index());
 	}
 

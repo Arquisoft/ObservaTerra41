@@ -47,7 +47,8 @@ public class JSONReader {
 	            Observation ob= new Observation(pais, indicador, value);
 	            observaciones.add(ob);
 	        }
-	        obsList=observaciones;
+
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
