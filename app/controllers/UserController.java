@@ -1,10 +1,13 @@
 package controllers;
 
 import conf.ServicesFactory;
+import controllers.Application.Login;
 import models.User;
+import play.data.DynamicForm.Dynamic;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.*;
 
 public class UserController extends Controller {
 	static Form<User> userForm = Form.form(User.class);
@@ -24,5 +27,9 @@ public class UserController extends Controller {
 				+ " pass2: " + pass2;
 		ServicesFactory.getUsersService().createUser(new User(usuario, nombre, apellidos, pass, email));
 		return redirect(routes.Application.showRegister());
+	}
+	
+	public static Result showUsers(){
+		return ok(user.render(ServicesFactory.getUsersService().findAllUsers()));
 	}
 }

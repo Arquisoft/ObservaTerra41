@@ -12,7 +12,6 @@ import models.*;
 import views.html.*;
 import play.data.Form;
 import play.mvc.*;
-import models.*;
 
 public class Application extends Controller {
 
@@ -43,13 +42,21 @@ public class Application extends Controller {
 				ServicesFactory.getIndicatorService().all(), observationForm,
 				mensaje));
 	}
-
+	
 	public static Result bars(String indicator) {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
 
 	public static Result showRegister() {
+		return ok(register.render(userForm));
+	}
+	
+	public static Result fillRegister(String name){
+		User user = ServicesFactory.getUsersService().findByUserName(name);
+		user = new User("prueba","prueba","prueba","prueba","prueba");
+		if(user!=null)
+		userForm.fill(user);
 		return ok(register.render(userForm));
 	}
 
@@ -65,8 +72,9 @@ public class Application extends Controller {
 			session().clear();
 			session("user", loginForm.get().user);
 			/*
-			 * UsersService s = new UsersService();
-			 * if(s.findByUserName(loginForm.get().user).isAdmin())
+			 * String name = loginForm.get().user;
+			 * User user = ServicesFactory.getUsersService().findUserName(user);
+			 * if(user.isAdmin())
 			 * session("admin", "true");
 			 */
 			// QUITAR ESTA LINEA Y DESCOMENTAR LO DE ARRIBA CUANDO ESTE EL VER

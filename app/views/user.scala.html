@@ -1,0 +1,31 @@
+@(users: List[User]) 
+@import play.i18n._ 
+@import helper._
+
+@main(Messages.get("list.countries")) {
+
+
+<h1>Lista de Usuarios</h1>
+<table>
+	@for(user <- users) {
+	<tr>
+		<td>@user.getName()</td>
+		<td>
+		<td>@helper.form(routes.Admin.deleteUser(user.getName())) { <input
+			type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='Borrar User'>
+			}
+		</td>
+		<td>@helper.form(routes.Application.fillRegister(user.getName())) {<input 
+			type="image" src="@{routes.Assets.at("images/update.jpg")}" alt='Actualizar User'>
+			}
+		</td>
+	</tr>
+
+	}
+</table>
+
+@helper.form(routes.UserController.newUser) {
+<h2>Nuevo Usuario</h2>
+<input type="submit" value="Registrar" />
+} 
+}

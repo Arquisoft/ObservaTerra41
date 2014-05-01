@@ -5,12 +5,12 @@
 
 
 
-<h2>HELLO!!! + @UserController.name</h2>
+<h2>Formulario de registro</h2>
 
 
 @form(action = routes.UserController.newUser()) {
 
-@helper.inputText(userForm("user"),'required -> "true", 'size ->20) 
+@inputText(userForm("user"),'required -> "true", 'size ->20) 
 @inputText(userForm("name"),'required -> "true", 'size ->20)
 @inputText(userForm("surname"),'required -> "true", 'size ->20)
 @inputText(userForm("email"),'required -> "true", 'size ->20)   

@@ -12,12 +12,13 @@ POST	/comparacion				controllers.Application.comparar()
 POST 	/graficas					controllers.Application.graficas()
 
 POST	/country					controllers.Admin.newCountry()
-POST	/country/delete/:code         controllers.Admin.deleteCountry(code: String)
+POST	/country/delete/:code       controllers.Admin.deleteCountry(code: String)
 POST	/indicator					controllers.Admin.newIndicator()
-POST	/indicator/delete/:code       controllers.Admin.deleteIndicator(code: String)
-
+POST	/indicator/delete/:code     controllers.Admin.deleteIndicator(code: String)
 POST	/observation				controllers.Admin.newObservation()
-POST	/observation/delete/:code     controllers.Admin.deleteObservation(code: Long)
+POST	/observation/delete/:code   controllers.Admin.deleteObservation(code: Long)
+POST	/user/delete/:name			controllers.Admin.deleteUser(name: String)
+POST	/user/update/:name			controllers.Application.fillRegister(name: String)
 
 # API 
 
@@ -54,8 +55,10 @@ GET		/proxy						controllers.Pruebas.proxy(url: String)
 GET		/ajax						controllers.Pruebas.ajax()
 GET		/parallel					controllers.Pruebas.parallel()
 
+# User
+GET		/register			controllers.Application.showRegister()
+GET		/user				controllers.UserController.showUsers()
 
-GET	/register		controllers.Application.showRegister()
 POST	/register			controllers.UserController.newUser()
 
 # Login

@@ -81,6 +81,18 @@ public class Admin extends Controller {
         return redirect(routes.Application.showObservations());
     }
     
+    public static Result deleteUser(String name){
+    	ServicesFactory.getUsersService().removeUser(name);
+    	return redirect(routes.UserController.showUsers());
+    }
+    
+    public static Result updateUser(String name){
+    	User user = ServicesFactory.getUsersService().findByUserName(name);
+    	ServicesFactory.getUsersService().update(user);
+    	return redirect(routes.UserController.showUsers());	
+    }
+    
+    
     static Form<Country>  	  countryForm     = Form.form(Country.class);
     static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
     static Form<Observation>  observationForm = Form.form(Observation.class);
