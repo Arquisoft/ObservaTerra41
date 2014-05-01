@@ -106,8 +106,10 @@ public class Application extends Controller {
 	}
 
 	public static Result graficas() {
-		String a = "a";
-		String b = "b";
+		
+			String a="a";
+			String b="b";
+		
 		return ok(GraficasPaises.render(a, b));
 
 	}
@@ -122,14 +124,17 @@ public class Application extends Controller {
 
 		boolean encontrado1 = false;
 		boolean encontrado2 = false;
+		String nombrepais1="";
+		String nombrepais2="";
 
 		for (Country c : paises) {
 			if (c.getCode().compareToIgnoreCase(pais1) == 0) {
 				encontrado1 = true;
-
+				nombrepais1=c.getName();
 			}
 			if (c.getCode().compareToIgnoreCase(pais2) == 0) {
 				encontrado2 = true;
+				nombrepais2=c.getName();
 			}
 		}
 		if (encontrado1 == false || encontrado2 == false) {
@@ -143,7 +148,7 @@ public class Application extends Controller {
 			List<Observation>observaciones2= new ArrayList<Observation>();
 			observaciones1=os.findByCountryCode(pais1);
 			observaciones2=os.findByCountryCode(pais2);
-			return ok(MostrarComparacion.render(observaciones1, observaciones2,pais1,pais2));
+			return ok(MostrarComparacion.render(observaciones1, observaciones2,nombrepais1,nombrepais2));
 		}
 
 	}
