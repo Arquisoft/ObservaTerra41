@@ -12,7 +12,7 @@
    @for(obs <- pais1){
 		
 		<tr>
-			<td>@obs.getIndicator() </td>
+			<td>@obs.getIndicator().getName() </td>
 			<td>@obs.getObsValue()</td>
 		</tr>
 		<br> 
@@ -21,7 +21,7 @@
    @for(obs <- pais2){
 		
 		<tr>
-			<td>@obs.getIndicator() </td>
+			<td>@obs.getIndicator().getName() </td>
 			<td>@obs.getObsValue()</td>
 		</tr>
 		<br> 
