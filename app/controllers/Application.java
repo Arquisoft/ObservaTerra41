@@ -1,10 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import business.CountryService;
 import business.IndicatorSercive;
 import business.ObservationService;
+import business.impl.ObservationServiceImpl;
 import conf.ServicesFactory;
 import models.*;
 import views.html.*;
@@ -127,9 +129,13 @@ public class Application extends Controller {
 					.getCountryService().all(), SelectedCountry,
 					"Pais Invalido"));
 		} else {
-			System.out.println("EL pais numero 1 +"
-					+ Form.form().bindFromRequest("yhugbu"));
-			return ok(MostrarComparacion.render(pais1, pais2));
+			ObservationService os = new ObservationServiceImpl();
+			
+			List<Observation>observaciones1= new ArrayList<Observation>();
+			List<Observation>observaciones2= new ArrayList<Observation>();
+			observaciones1=os.findByCountryCode(pais1);
+			observaciones2=os.findByCountryCode(pais2);
+			return ok(MostrarComparacion.render(observaciones1, observaciones2,pais1,pais2));
 		}
 
 	}

@@ -1,4 +1,4 @@
-@(pais1:String, pais2:String)
+@(pais1:List[Observation], pais2:List[Observation],primero:String,segundo:String)
 
 @import play.i18n._
 @import helper._
@@ -6,14 +6,26 @@
 @main(Messages.get("list.countries")) {
 
    <head>
-   
-   
-   
    </head>
    <body>
-   <h1>El pais primero es @pais1</h1>
-   <h2>El pais segundo es @pais2</h2>
-   
+   <h1>Primer Pais @primero</h1>
+   @for(obs <- pais1){
+		
+		<tr>
+			<td>@obs.getIndicator() </td>
+			<td>@obs.getObsValue()</td>
+		</tr>
+		<br> 
+		}
+   <h1>Segundo Pais @segundo</h1>
+   @for(obs <- pais2){
+		
+		<tr>
+			<td>@obs.getIndicator() </td>
+			<td>@obs.getObsValue()</td>
+		</tr>
+		<br> 
+		}
    
    </body> 
 }
