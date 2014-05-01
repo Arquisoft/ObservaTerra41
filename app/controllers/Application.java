@@ -1,7 +1,10 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import business.CountryService;
 import business.IndicatorSercive;
@@ -148,7 +151,60 @@ public class Application extends Controller {
 			List<Observation>observaciones2= new ArrayList<Observation>();
 			observaciones1=os.findByCountryCode(pais1);
 			observaciones2=os.findByCountryCode(pais2);
-			return ok(MostrarComparacion.render(observaciones1, observaciones2,nombrepais1,nombrepais2));
+			
+			Map<String,Double>medicionpais1= new HashMap<String,Double>();
+			Map<String,Double>medicionpais2= new HashMap<String,Double>();
+			
+			//calculamos los valores medios de cada indicador que tenga el pais
+			for(Observation o:observaciones1){
+				String observacion=o.getIndicator().getName();
+				
+				if(medicionpais1.containsKey(observacion)){
+					double valorant=medicionpais1.get(observacion);
+					medicionpais1.put(observacion, valorant+o.getObsValue()/2);
+				}else{
+					medicionpais1.put(observacion, o.getObsValue());
+				}
+			}
+			
+			for(Observation o:observaciones2){
+				String observacion=o.getIndicator().getName();
+				
+				if(medicionpais2.containsKey(observacion)){
+					double valorant=medicionpais2.get(observacion);
+					medicionpais2.put(observacion, valorant+o.getObsValue()/2);
+				}else{
+					
+					medicionpais2.put(observacion,o.getObsValue());
+				}
+			}
+			
+			List<valoresMedios>lm1= new ArrayList<valoresMedios>();
+			List<valoresMedios>lm2= new ArrayList<valoresMedios>();
+			//creamos dos listas las cuales pasaremos a las vistas
+			Iterator it = medicionpais1.entrySet().iterator();
+			while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			
+			String indicador=(String) e.getKey();
+			Double valor=(Double) e.getValue();
+			valoresMedios vm= new valoresMedios(indicador,valor);
+			lm1.add(vm);
+			}
+			
+			//para el segundo pais
+			
+			Iterator it2 = medicionpais2.entrySet().iterator();
+			while (it2.hasNext()) {
+			Map.Entry e = (Map.Entry)it2.next();
+			
+			String indicador=(String) e.getKey();
+			Double valor=(Double) e.getValue();
+			valoresMedios vm= new valoresMedios(indicador,valor);
+			lm2.add(vm);
+			}
+			
+			return ok(MostrarComparacion.render(lm1, lm2,nombrepais1,nombrepais2));
 		}
 
 	}
@@ -178,7 +234,8 @@ public class Application extends Controller {
 		}
 
 	}
-
+	
+	
 	public static class CountryTemp {
 
 		private String primerPais;

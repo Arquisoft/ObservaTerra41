@@ -1,4 +1,4 @@
-@(pais1:List[Observation], pais2:List[Observation],primero:String,segundo:String)
+@(pais1:List[valoresMedios], pais2:List[valoresMedios],primero:String,segundo:String)
 
 @import play.i18n._
 @import helper._
@@ -9,20 +9,20 @@
    </head>
    <body>
    <h1>Primer Pais @primero</h1>
-   @for(obs <- pais1){
+   @for(vm <- pais1){
 		
 		<tr>
-			<td>@obs.getIndicator().getName() </td>
-			<td>@obs.getObsValue()</td>
+			<td>@vm.getIndicador()  </td>
+			<td>@vm.getValor()</td>
 		</tr>
 		<br> 
 		}
    <h1>Segundo Pais @segundo</h1>
-   @for(obs <- pais2){
+   @for(vm <- pais2){
 		
 		<tr>
-			<td>@obs.getIndicator().getName() </td>
-			<td>@obs.getObsValue()</td>
+			<td>@vm.getIndicador() </td>
+			<td>@vm.getValor()</td>
 		</tr>
 		<br> 
 		}
