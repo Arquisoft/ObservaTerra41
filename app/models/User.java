@@ -27,6 +27,9 @@ public class User extends Model {
 	private String surname;
 	private String password;
 	private String email;
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected static Finder<Long, User> find = new Finder(Long.class, User.class);
 
 	public User(String userName, String name, String surname, String password,
 			String email) {

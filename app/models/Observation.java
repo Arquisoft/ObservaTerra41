@@ -62,9 +62,7 @@ public class Observation extends Model {
 	}
 
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected static Finder<Long, Observation> find = new Finder(Long.class,
-			Observation.class);
+	
 
 	public Observation(Country country, Indicator indicator, Double value) {
 		this.country = country;

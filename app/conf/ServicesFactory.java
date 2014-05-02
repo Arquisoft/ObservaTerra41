@@ -1,11 +1,13 @@
 package conf;
 
+import models.UsersResources;
 import business.AdminService;
 import business.CountryService;
 import business.IndicatorSercive;
 import business.MiembroService;
 import business.ObservationService;
 import business.UrlRepositoryService;
+import business.UsersResourcesService;
 import business.UsersService;
 import business.impl.AdminServiceImpl;
 import business.impl.CountryServiceImpl;
@@ -13,6 +15,7 @@ import business.impl.IndicatorServiceImpl;
 import business.impl.MiembroServiceImpl;
 import business.impl.ObservationServiceImpl;
 import business.impl.UrlRepositoryServiceImpl;
+import business.impl.UsersResourcesServiceImpl;
 import business.impl.UsersServiceImpl;
 
 public class ServicesFactory {
@@ -42,5 +45,9 @@ public class ServicesFactory {
 
 	public static AdminService getAdminService() {
 		return new AdminServiceImpl();
+	}
+	
+	public static UsersResourcesService getUsersResourcesService(){
+		return new UsersResourcesServiceImpl();
 	}
 }
