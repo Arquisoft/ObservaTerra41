@@ -27,6 +27,10 @@ public class Global extends GlobalSettings {
 				ServicesFactory.getObservationService().addObservation(new Observation("FR","HumanDevelopmentIndex",3.4));
 				ServicesFactory.getObservationService().addObservation(new Observation("IT","HumanDevelopmentIndex",3.0));
 
+				ServicesFactory.getObservationService().addObservation(new Observation("ES","WebIndex",2.3));
+				ServicesFactory.getObservationService().addObservation(new Observation("FR","WebIndex",1.4));
+				ServicesFactory.getObservationService().addObservation(new Observation("IT","WebIndex",2.0));
+
 				
 				//url  repo 
 				ServicesFactory.getUrlRepositoryService().addURL(new UrlRepository("https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD"));
