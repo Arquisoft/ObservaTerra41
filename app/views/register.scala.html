@@ -17,9 +17,12 @@
     
 @helper.form(routes.UserController.newUser(update)) {
 
-
+@if(!update){
 @inputText(userForm("userName"), '_label->"User" , 'required -> "true", 'size ->20)
- 
+}else{
+	<input type="hidden" name="userName" value="@userForm.get().getUserName()">
+	Modificando el usuario <strong>@userForm.get().getUserName()</strong>
+}
 @inputText(userForm("name"), '_label->"Name",'required -> "true", 'size ->20)
 @inputText(userForm("surname"),'_label->"Surname",'required -> "true", 'size ->20)
 @inputText(userForm("email"),'_label->"Email",'required -> "true", 'size ->20)
