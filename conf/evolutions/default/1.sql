@@ -24,7 +24,14 @@ create table observation (
   constraint pk_observation primary key (id))
 ;
 
+create table url_repository (
+  id                        bigint not null,
+  url                       varchar(255),
+  constraint pk_url_repository primary key (id))
+;
+
 create table user (
+  dtype                     varchar(10) not null,
   id                        bigint not null,
   user_name                 varchar(255),
   name                      varchar(255),
@@ -39,6 +46,8 @@ create sequence country_seq;
 create sequence indicator_seq;
 
 create sequence observation_seq;
+
+create sequence url_repository_seq;
 
 create sequence user_seq;
 
@@ -59,6 +68,8 @@ drop table if exists indicator;
 
 drop table if exists observation;
 
+drop table if exists url_repository;
+
 drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
@@ -68,6 +79,8 @@ drop sequence if exists country_seq;
 drop sequence if exists indicator_seq;
 
 drop sequence if exists observation_seq;
+
+drop sequence if exists url_repository_seq;
 
 drop sequence if exists user_seq;
 

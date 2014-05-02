@@ -1,10 +1,4 @@
 import play.*;
-import play.libs.*;
-
-import java.util.*;
-
-import com.avaje.ebean.*;
-
 import conf.ServicesFactory;
 import models.*;
 
@@ -18,20 +12,28 @@ public class Global extends GlobalSettings {
 		public static void insert(Application app) {
 			if (ServicesFactory.getCountryService().all().isEmpty()) {
 				
-				new Indicator("hdi", "Human Development Index").save();
-				new Indicator("wi", "WebIndex").save();
-				new Country("es", "España").save();
-				new Country("fr", "Francia").save();
-				new Country("it", "Italia").save();
-				
+				//some indicators
+				ServicesFactory.getIndicatorService().create(new Indicator("hdi", "Human Development Index"));
+				ServicesFactory.getIndicatorService().create(new Indicator("wi", "WebIndex"));
+
+				//some countrys
+				ServicesFactory.getCountryService().create(new Country("es", "España"));
+				ServicesFactory.getCountryService().create(new Country("fr", "Francia"));
+				ServicesFactory.getCountryService().create(new Country("it", "Italia"));				
 				
 				
 				// Some observations
-				new Observation("es","hdi",2.3).save();
-				new Observation("fr","hdi",3.4).save(); 
-				new Observation("it","hdi",3.0).save();
+				ServicesFactory.getObservationService().addObservation(new Observation("es","hdi",2.3));
+				ServicesFactory.getObservationService().addObservation(new Observation("fr","hdi",3.4));
+				ServicesFactory.getObservationService().addObservation(new Observation("it","hdi",3.0));
+
 				
-				new User("roque", "Alberto Roque", "Carrizo Fernandez", "123456", "roque@roque.roque").save();
+				//url  repo 
+				ServicesFactory.getUrlRepositoryService().addURL(new UrlRepository("https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD"));
+				
+				//an admin
+				ServicesFactory.getAdminService().createAdmin(new Admin("roque", "Alberto Roque", "Carrizo Fernandez", "123456", "roque@roque.roque"));
+
 				DataRequester.request();
 			}
 		}

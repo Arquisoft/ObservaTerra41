@@ -2,8 +2,6 @@ package models;
 
 import play.db.ebean.*;
 import play.data.validation.Constraints.Required;
-import play.data.validation.Constraints.*;
-
 import javax.persistence.*;
 
 @Entity
@@ -32,7 +30,6 @@ public class Indicator extends Model {
 
 	public Indicator() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

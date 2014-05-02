@@ -66,7 +66,7 @@ public class Admin extends Controller {
       
       
      // Observation obs = new Observation(countryId,indicatorId,value);
-      ServicesFactory.getObservationService().create(countryId, indicatorId, value);
+      ServicesFactory.getObservationService().addObservation(new Observation(countryId, indicatorId, value));
 
   	  return redirect(routes.Application.showObservations());  
     }

@@ -93,6 +93,14 @@ public class Observation extends Model {
 		return "Observation [id=" + id + ", obsValue=" + obsValue
 				+ ", country=" + country + ", indicator=" + indicator + "]";
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	
 	
 
