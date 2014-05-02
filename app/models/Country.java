@@ -43,7 +43,14 @@ public class Country extends Model {
 	}
 	
 	private String generateId(String nombre){
-		return nombre.toUpperCase();
+		char[] code = name.toCharArray();
+		String co ="";
+		for(char c : code){
+			if(c != ' '){
+				co+=c;
+			}
+		}
+		return co.toUpperCase();
 	}
 
 	public static JsonNode toJson(Country country) {
