@@ -42,6 +42,10 @@ public class User extends Model {
 
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", name=" + name + ", surname="

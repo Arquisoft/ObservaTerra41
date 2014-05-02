@@ -9,7 +9,7 @@ public interface UsersService {
 
 	public User findByUserName(String userName);
 
-	public void removeUser(String userName);
+	public void removeUser(Long id);
 
 	public void createUser(User user);
 

@@ -81,8 +81,8 @@ public class Admin extends Controller {
         return redirect(routes.Application.showObservations());
     }
     
-    public static Result deleteUser(String name){
-    	ServicesFactory.getUsersService().removeUser(name);
+    public static Result deleteUser(Long id){
+    	ServicesFactory.getUsersService().removeUser(id);
     	return redirect(routes.UserController.showUsers());
     }
     
