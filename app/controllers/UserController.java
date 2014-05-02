@@ -36,7 +36,7 @@ public class UserController extends Controller {
 	}
 
 	public static Result showUsers() {
-		return ok(user.render(ServicesFactory.getUsersService().findAllUsers()));
+		return ok(user.render(ServicesFactory.getMiembroService().findAllMiembros()));
 	}
 
 	public static String failPassword() {

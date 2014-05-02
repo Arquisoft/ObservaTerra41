@@ -33,6 +33,7 @@ public class Global extends GlobalSettings {
 				
 				//an admin
 				ServicesFactory.getAdminService().createAdmin(new Admin("roque", "Alberto Roque", "Carrizo Fernandez", "123456", "roque@roque.roque"));
+				ServicesFactory.getMiembroService().createMiembro(new Miembro("sergio", "Sergio", "Sergio Jimenez", "123456", "sergio@sergio.sergio"));
 
 				DataRequester.request();
 			}

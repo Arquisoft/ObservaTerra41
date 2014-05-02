@@ -54,7 +54,7 @@ public class Application extends Controller {
 	public static Result fillRegister(String name){
 		User user = ServicesFactory.getUsersService().findByUserName(name);
 		if(user!=null)
-		userForm = userForm.fill(user);
+			userForm = userForm.fill(user);
 		return ok(register.render(userForm));
 	}
 
