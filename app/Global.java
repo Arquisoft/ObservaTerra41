@@ -23,9 +23,9 @@ public class Global extends GlobalSettings {
 				
 				
 				// Some observations
-				ServicesFactory.getObservationService().addObservation(new Observation("ES","HumanDevelopmentIndex",2.3));
-				ServicesFactory.getObservationService().addObservation(new Observation("FR","HumanDevelopmentIndex",3.4));
-				ServicesFactory.getObservationService().addObservation(new Observation("IT","HumanDevelopmentIndex",3.0));
+				ServicesFactory.getObservationService().addObservation(new Observation("ESP","HumanDevelopmentIndex",2.3));
+				ServicesFactory.getObservationService().addObservation(new Observation("FRA","HumanDevelopmentIndex",3.4));
+				ServicesFactory.getObservationService().addObservation(new Observation("ITA","HumanDevelopmentIndex",3.0));
 
 				
 				//url  repo 
