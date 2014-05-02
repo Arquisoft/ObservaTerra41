@@ -57,7 +57,7 @@ POST	/user/delete/:id			controllers.Admin.deleteUser(id: Long)
 GET		/user/update/:name			controllers.Application.fillRegister(name: String)
 
 
-POST	/register			controllers.UserController.newUser()
+POST	/register:update			controllers.UserController.newUser(update: Boolean)
 
 # Login
 GET     /login                  controllers.Application.login()

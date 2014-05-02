@@ -1,20 +1,35 @@
-@(userForm: Form[User]) 
+@(userForm: Form[UserController.UserForm], update: Boolean)
+
 @import play.i18n._ 
 @import helper._
+
 @main("Registrar") {
 
 
 
 <h2>Formulario de registro</h2>
 
-@helper.form(routes.UserController.newUser) {
+	@if(userForm.hasGlobalErrors) {
+    <p class="error">
+        @userForm.globalError.message
+    </p>
+    }
+    
+@helper.form(routes.UserController.newUser(update)) {
 
-@inputText(userForm("user"),'required -> "true", 'size ->20) 
-@inputText(userForm("name"),'required -> "true", 'size ->20)
-@inputText(userForm("surname"),'required -> "true", 'size ->20)
-@inputText(userForm("email"),'required -> "true", 'size ->20)   
-@inputPassword(userForm("pass"),'required -> "true", 'size ->20)
-@inputPassword(userForm("pass2"),'required -> "true", 'size ->20)
+
+@inputText(userForm("userName"), '_label->"User" , 'required -> "true", 'size ->20)
+ 
+@inputText(userForm("name"), '_label->"Name",'required -> "true", 'size ->20)
+@inputText(userForm("surname"),'_label->"Surname",'required -> "true", 'size ->20)
+@inputText(userForm("email"),'_label->"Email",'required -> "true", 'size ->20)
+@if(update){
+@inputPassword(userForm("pass"),'_label->"Tu Password",'required -> "true", 'size ->20)  
+}else{
+	<input type="hidden" name="pass" value="">
+}
+@inputPassword(userForm("pass2"),'_label->"New Password",'required -> "true", 'size ->20)
+@inputPassword(userForm("pass3"),'_label->"New Password Again",'required -> "true", 'size ->20)
 
 <input type="submit" value="Registrar">
 
