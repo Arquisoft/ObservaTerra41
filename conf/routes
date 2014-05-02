@@ -34,6 +34,7 @@ DELETE	/api/observation/:country/:indicator	controllers.API.delObservation(count
 
 POST	/api/excel/upload			controllers.API.uploadExcel()
 POST	/api/json/upload			controllers.API.uploadJSON()
+POST	/api/csv/upload				controllers.API.uploadCSV()
 
 
 # API2 showing the concept of HATEOAS
