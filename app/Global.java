@@ -23,13 +23,13 @@ public class Global extends GlobalSettings {
 				
 				
 				// Some observations
-				ServicesFactory.getObservationService().addObservation(new Observation("ES","HumanDevelopmentIndex",2.3));
-				ServicesFactory.getObservationService().addObservation(new Observation("FR","HumanDevelopmentIndex",3.4));
-				ServicesFactory.getObservationService().addObservation(new Observation("IT","HumanDevelopmentIndex",3.0));
+				ServicesFactory.getObservationService().addObservation(new Observation("ESPAÑA","HumanDevelopmentIndex",2.3));
+				ServicesFactory.getObservationService().addObservation(new Observation("FRANCIA","HumanDevelopmentIndex",3.4));
+				ServicesFactory.getObservationService().addObservation(new Observation("ITALIA","HumanDevelopmentIndex",3.0));
 
-				ServicesFactory.getObservationService().addObservation(new Observation("ES","WebIndex",2.3));
-				ServicesFactory.getObservationService().addObservation(new Observation("FR","WebIndex",1.4));
-				ServicesFactory.getObservationService().addObservation(new Observation("IT","WebIndex",2.0));
+				ServicesFactory.getObservationService().addObservation(new Observation("ESPAÑA","WebIndex",2.3));
+				ServicesFactory.getObservationService().addObservation(new Observation("FRANCIA","WebIndex",1.4));
+				ServicesFactory.getObservationService().addObservation(new Observation("ITALIA","WebIndex",2.0));
 
 				
 				//url  repo 
