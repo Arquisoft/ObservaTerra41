@@ -48,10 +48,7 @@ DELETE	/api2/country/:code				controllers.API.delCountry(code: String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-# Ejemplos 
-GET		/proxy						controllers.Pruebas.proxy(url: String)
-GET		/ajax						controllers.Pruebas.ajax()
-GET		/parallel					controllers.Pruebas.parallel()
+
 
 # User
 GET		/register					controllers.Application.showRegister()
