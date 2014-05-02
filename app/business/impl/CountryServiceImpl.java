@@ -17,7 +17,7 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	public  void create(Country country) {
-		if (findByName(country.getName()) == null) {
+		if (findByName(country.getName()) == null && country.getName().length()>1) {
 			country.save();
 		}
 	}
