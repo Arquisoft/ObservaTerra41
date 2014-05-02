@@ -14,7 +14,7 @@ public class Indicator extends Model {
 
 
 	@Id
-	private String code;
+	private Long code;
 
 	@Required
 	private String name;

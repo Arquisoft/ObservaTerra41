@@ -87,5 +87,8 @@ public class User extends Model {
 	public String getUserName() {
 		return userName;
 	}
+	public boolean isAdmin(){
+		return false;
+	}
 
 }
