@@ -44,7 +44,14 @@ public class Country extends Model {
 	
 	private String generateId(String nombre){
 
-		return nombre.toUpperCase();
+		char[] code = nombre.toCharArray();
+		String co ="";
+		for(char c : code){
+			if(c != ' '){
+				co+=c;
+			}
+		}
+		return co.toUpperCase();
 
 	}
 

@@ -23,8 +23,7 @@
 <h2>@{Messages.get("add.indicator")}</h2>
     
 	@helper.form(action = routes.Admin.newIndicator()) {
-	
-	    @helper.inputText(form("code")) 
+	 
 	    @helper.inputText(form("name")) 
         
         <input type="submit" value="@{Messages.get("create")}">
