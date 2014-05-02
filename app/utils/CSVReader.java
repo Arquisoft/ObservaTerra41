@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import business.CountryService;
+import business.IndicatorSercive;
+import business.ObservationService;
+import business.impl.CountryServiceImpl;
+import business.impl.IndicatorServiceImpl;
+import business.impl.ObservationServiceImpl;
+
+import models.Country;
+import models.Indicator;
 import models.Observation;
 
 public class CSVReader {
@@ -16,36 +25,103 @@ public class CSVReader {
 		List<Observation> obsList = new ArrayList<Observation>();
 		BufferedReader streamReader = new BufferedReader(new InputStreamReader(
 				file, "UTF-8"));
+		
 		StringBuilder responseStrBuilder = new StringBuilder();
 
 		String inputStr;
-		while ((inputStr = streamReader.readLine()) != null) {
-			inputStr = "--" + inputStr;
-			responseStrBuilder.append(inputStr);
+		
+		
+		
+		String cabeceras="";
+		
+		cabeceras=streamReader.readLine();
+		
+		String [] aux;
+		aux= cabeceras.split(",");
+		
+		
+		for(int i =4;i<aux.length;i++){
+			String st=aux[i].substring(5,aux[i].length());
+			aux[i]=st;
 		}
-
-		String texto = responseStrBuilder.toString();
-		String[] cadenas = texto.split("--");
-		int i = 1;
-		while (i < cadenas.length) {
-
-			String[] filas = cadenas[i].split(";");
-			for (int k = 0; k < filas.length; k += 3) {
-				System.out.println(filas[k] + filas[k + 1] + filas[k + 2]);
-				String country = filas[k];
-				String indicator = filas[k + 1];
-				String valueString = filas[k + 2];
-				Double value = Double.valueOf(valueString);
-				Observation observation = new Observation(country, indicator,
-						value);
-				obsList.add(observation);
-				System.out.println(observation);
+		
+		for(int i =0;i<aux.length;i++){
+			System.out.println(aux[i]);
+		}
+		
+		
+		IndicatorSercive is = new IndicatorServiceImpl();
+		//List<Indicator>lst= is.all();
+		
+		for(int i=0;i<aux.length;i++){
+			if(is.findByName(aux[i])==null){
+				String pais=aux[i];
+				//campo string vacio queda a espensas
+				Indicator in= new Indicator(pais);
+				is.create(in);
 			}
-			i++;
-
 		}
+		
+		
+		CountryService cs= new CountryServiceImpl();
+		ObservationService os= new ObservationServiceImpl();
+		
+		while ((inputStr = streamReader.readLine()) != null) {
+			String []linea= inputStr.split(",");
+			String pais=linea[1];
+			String codepais=linea[3];
+			
+			
+			
+			if(cs.findByCode(codepais)==null){
+				Country c= new Country(pais);
+				cs.create(c);
+			}
+			
+			for(int i =4;i<13;i++){
+				if(isNumeric(linea[i])==true){
+				Observation o= new Observation(cs.findByName(pais),is.findByName(aux[i]),Double.parseDouble(linea[i]));
+				os.addObservation(o);
+				}
+				
+				
+			}
+			
+			
+		}
+
+//		String texto = responseStrBuilder.toString();
+//		String[] cadenas = texto.split("--");
+//		int i = 1;
+//		while (i < cadenas.length) {
+//
+//			String[] filas = cadenas[i].split(";");
+//			for (int k = 0; k < filas.length; k += 3) {
+//				System.out.println(filas[k] + filas[k + 1] + filas[k + 2]);
+//				String country = filas[k];
+//				String indicator = filas[k + 1];
+//				String valueString = filas[k + 2];
+//				Double value = Double.valueOf(valueString);
+//				Observation observation = new Observation(country, indicator,
+//						value);
+//				obsList.add(observation);
+//				System.out.println(observation);
+//			}
+//			i++;
+//
+//		}
 
 		return obsList;
+	}
+	
+	public static boolean isNumeric( String s ){
+	    try{
+	        double y = Double.parseDouble( s );
+	        return true;
+	    }
+	    catch( NumberFormatException err ){
+	        return false;
+	    }
 	}
 
 }

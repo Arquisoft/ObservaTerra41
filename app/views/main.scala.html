@@ -61,7 +61,7 @@
 					<li><a href="#">Subir datos</a>
 					
 					<!-- Enlaces de administración -->
-					@if(Application.isAdmin()!=null){
+					@if(Application.isAdmin()=="true"){
 					<li><a href="#">Recolectar datos</a>
 					<li><a href="@routes.Application.showCountries">Countries</a>
 					<li><a href="@routes.Application.showIndicators">Indicators</a>

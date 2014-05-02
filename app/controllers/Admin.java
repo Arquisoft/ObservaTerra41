@@ -66,7 +66,7 @@ public class Admin extends Controller {
       
       
      // Observation obs = new Observation(countryId,indicatorId,value);
-      ServicesFactory.getObservationService().create(countryId, indicatorId, value);
+      ServicesFactory.getObservationService().addObservation(new Observation(countryId, indicatorId, value));
 
   	  return redirect(routes.Application.showObservations());  
     }
@@ -81,8 +81,8 @@ public class Admin extends Controller {
         return redirect(routes.Application.showObservations());
     }
     
-    public static Result deleteUser(String name){
-    	ServicesFactory.getUsersService().removeUser(name);
+    public static Result deleteUser(Long id){
+    	ServicesFactory.getUsersService().removeUser(id);
     	return redirect(routes.UserController.showUsers());
     }
     

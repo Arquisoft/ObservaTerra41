@@ -22,14 +22,6 @@ public class ObservationServiceImpl implements ObservationService{
 	}
 
 	
-	public  void create(String countrycode, String indicatorkey, Double value) {
-		Indicator indicator = ServicesFactory.getIndicatorService().findByCode(indicatorkey);
-		Country country = ServicesFactory.getCountryService().findByCode(countrycode);
-		Observation observation = new Observation(country, indicator, value);
-		observation.save();
-	
-	}
-
 	public  void delete(Long id) {
 		find.ref(id).delete();
 	}
@@ -72,6 +64,13 @@ public class ObservationServiceImpl implements ObservationService{
 	
 	public Observation findById(Long id){
 		return find.byId(id);
+	}
+
+
+	@Override
+	public void addObservation(Observation ob) {
+		ob.save();
+		
 	}
 
 

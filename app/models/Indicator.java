@@ -2,8 +2,6 @@ package models;
 
 import play.db.ebean.*;
 import play.data.validation.Constraints.Required;
-import play.data.validation.Constraints.*;
-
 import javax.persistence.*;
 
 @Entity
@@ -32,7 +30,6 @@ public class Indicator extends Model {
 
 	public Indicator() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -53,9 +50,20 @@ public class Indicator extends Model {
 		return code;
 	}
 
-	public Indicator(String code, String name) {
-		this.code = code;
+	public Indicator(String name) {
 		this.name = name;
+		this.code = generatedId(name);
+	}
+	
+	private String generatedId(String name){
+		char[] code = name.toCharArray();
+		String co ="";
+		for(char c : code){
+			if(c != ' '){
+				co+=c;
+			}
+		}
+		return co;
 	}
 
 	
