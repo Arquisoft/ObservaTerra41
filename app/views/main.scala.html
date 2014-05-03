@@ -61,20 +61,16 @@
 					
 					<!-- Enlaces de administración -->
 					@if(Application.isAdmin()=="true"){
-<<<<<<< HEAD
-					<li><a href="#">Recolectar datos</a>
-					<li><a href="@routes.Application.showCountries">Countries</a>
-					<li><a href="@routes.Application.showIndicators">Indicators</a>
-					<li><a href="@routes.Application.showObservations">Observations</a>
-					<li><a href="@routes.UserController.showUsers">Usuarios</a>
+
 					<li><a href="@routes.Admin.showUrls">Direcciones de descarga</a>
-=======
-					<li><a href="#">@Messages.get("collect.data")</a>
+
+					
 					<li><a href="@routes.Application.showCountries">@Messages.get("countries")</a>
 					<li><a href="@routes.Application.showIndicators">@Messages.get("indicators")</a>
 					<li><a href="@routes.Application.showObservations">@Messages.get("observations")</a>
 					<li><a href="@routes.UserController.showUsers">@Messages.get("users")</a>
->>>>>>> ab7069176c9749ddb5b190b1bad4a9d2749bfa04
+					<li><a href="#">@Messages.get("collect.data")</a>
+
 					}
 				</ul>
 		    </nav>
