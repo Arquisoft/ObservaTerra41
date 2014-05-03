@@ -1,7 +1,10 @@
 package models;
 
+import java.util.Date;
+
 import play.db.ebean.*;
 import play.data.validation.Constraints.Required;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +18,8 @@ public class Indicator extends Model {
 
 	@Id
 	private String code;
+	
+	private  int year;
 
 	@Required
 	private String name;
@@ -28,13 +33,10 @@ public class Indicator extends Model {
 	}
 	
 
-	public Indicator() {
-		super();
-	}
-
 	@Override
 	public String toString() {
-		return "Indicator [code=" + code + ", name=" + name + "]";
+		return "Indicator [code=" + code + ", year=" + year + ", name=" + name
+				+ "]";
 	}
 
 
@@ -44,6 +46,10 @@ public class Indicator extends Model {
 		this.name = name;
 	}
 
+	public void setName(String name,int year) {
+		this.name = name;
+		this.year = year;
+	}
 
 
 	public String getCode() {
@@ -55,6 +61,15 @@ public class Indicator extends Model {
 		this.code = generatedId(name);
 	}
 	
+	public Indicator(String name, int year) {
+		this.name = name;
+		this.year = year;
+		this.code = generatedId(name);
+	}
+	
+
+
+
 	private String generatedId(String name){
 		char[] code = name.toCharArray();
 		String co ="";
@@ -63,7 +78,17 @@ public class Indicator extends Model {
 				co+=c;
 			}
 		}
-		return co;
+		return year+co;
+	}
+
+
+	public int getYear() {
+		return year;
+	}
+
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	

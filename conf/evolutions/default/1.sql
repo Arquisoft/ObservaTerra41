@@ -11,13 +11,13 @@ create table country (
 
 create table indicator (
   code                      varchar(255) not null,
+  year                      integer,
   name                      varchar(255),
   constraint pk_indicator primary key (code))
 ;
 
 create table observation (
   id                        bigint not null,
-  date                      timestamp,
   obs_value                 double,
   country_code              varchar(255),
   indicator_code            varchar(255),

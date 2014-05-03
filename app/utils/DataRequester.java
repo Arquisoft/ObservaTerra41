@@ -30,5 +30,11 @@ public class DataRequester {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void persistsCsvData(String filepath){
+		CSV.persistCSV(filepath);
+		
+	}
+	
 
 }

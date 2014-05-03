@@ -12,7 +12,7 @@ public class Global extends GlobalSettings {
 	static class InitialData {
 		public static void insert(Application app) {
 			if (ServicesFactory.getCountryService().all().isEmpty()) {
-				
+				/*
 				//some indicators
 				ServicesFactory.getIndicatorService().create(new Indicator("Human Development Index"));
 				ServicesFactory.getIndicatorService().create(new Indicator("Web Index"));
@@ -32,8 +32,8 @@ public class Global extends GlobalSettings {
 				ServicesFactory.getObservationService().addObservation(new Observation("ESPAÑA","WebIndex",2.3));
 				ServicesFactory.getObservationService().addObservation(new Observation("FRANCIA","WebIndex",1.4));
 				ServicesFactory.getObservationService().addObservation(new Observation("ITALIA","WebIndex",2.0));
-
-
+				*/
+			
 				
 				//url  repo 
 				ServicesFactory.getUrlRepositoryService().addURL(new UrlRepository("https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD"));
@@ -43,6 +43,7 @@ public class Global extends GlobalSettings {
 				ServicesFactory.getMiembroService().createMiembro(new Miembro("sergio", "sergio", "Sergio Jimenez", "e10adc3949ba59abbe56e057f20f883e", "sergio@sergio.sergio"));
 
 				DataRequester.request();
+				DataRequester.persistsCsvData("data/1");
 			}
 		}
 	}

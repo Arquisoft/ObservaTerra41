@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -54,7 +53,6 @@ public class Observation extends Model {
 	@Id@GeneratedValue
 	private Long id;
 	
-	private Date date;
 
 	@Required
 	private Double obsValue;
@@ -120,16 +118,8 @@ public class Observation extends Model {
 	
 	@Override
 	public String toString() {
-		return "Observation [id=" + id + ", obsValue=" + obsValue
-				+ ", country=" + country + ", indicator=" + indicator + "]";
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
+		return "Observation [obsValue=" + obsValue + ", country=" + country
+				+ ", indicator=" + indicator + "]";
 	}
 	
 	

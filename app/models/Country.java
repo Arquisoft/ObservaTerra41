@@ -11,6 +11,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 @Entity
 public class Country extends Model {
 
+	@Override
+	public String toString() {
+		return "Country [code=" + code + ", name=" + name + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String code;
@@ -36,6 +41,31 @@ public class Country extends Model {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Country other = (Country) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		return true;
 	}
 
 	public String getCode() {
