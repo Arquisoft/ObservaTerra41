@@ -1,0 +1,22 @@
+@(urls: List[UrlRepository]) 
+@import play.i18n._ 
+@import helper._ 
+@main("Lista de Urls") {
+
+	<h1>Lista de Urls</h1>
+		<table>
+			@for(url <- urls) {
+			<tr>
+				<td>@url.getUrl()</td>			
+				<td>@helper.form(routes.Admin.deleteUrl(url.getId())) { 
+					<input type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='Borrar Url'> 
+				}
+				</td>
+			</tr>
+		</table>  
+	}
+ 
+	
+	
+	
+}

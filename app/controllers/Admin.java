@@ -7,7 +7,7 @@ import models.*;
 import play.data.*;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.observation;
+import views.html.*;
 import play.mvc.*;
 
 @Security.Authenticated(SecuredAdmin.class)
@@ -92,7 +92,20 @@ public class Admin extends Controller {
     	return redirect(routes.UserController.showUsers());	
     }
     
+    public static Result showUrls() {
+		return ok(url.render(ServicesFactory.getUrlRepositoryService().all()));
+	}
+
+	public static Result deleteUrl(Long id) {
+		ServicesFactory.getUrlRepositoryService().deleteUrl(id);
+		return redirect(routes.Admin.showUrls());
+	}
+	
+
+	
+	
     
+    static Form<UrlRepository>urlForm     = Form.form(UrlRepository.class);
     static Form<Country>  	  countryForm     = Form.form(Country.class);
     static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
     static Form<Observation>  observationForm = Form.form(Observation.class);

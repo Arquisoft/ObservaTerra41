@@ -56,9 +56,13 @@ GET		/register					controllers.Application.showRegister()
 GET		/user						controllers.UserController.showUsers()
 POST	/user/delete/:id			controllers.Admin.deleteUser(id: Long)
 GET		/user/update/:name			controllers.Application.fillRegister(name: String)
-
-
 POST	/register:update			controllers.UserController.newUser(update: Boolean)
+
+#Url
+GET     /url						controllers.Admin.showUrls()
+POST	/url/delete/:id				controllers.Admin.deleteUrl(id: Long)
+
+
 
 # Login
 GET     /login                  controllers.Application.login()
