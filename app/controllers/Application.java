@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import business.CountryService;
 import business.IndicatorSercive;
 import business.ObservationService;
@@ -51,7 +52,7 @@ public class Application extends Controller {
 			ObservationService ob = ServicesFactory.getObservationService();
 			CountryService cs = ServicesFactory.getCountryService();
 			IndicatorSercive is = ServicesFactory.getIndicatorService();
-			session("language","en");
+			//session("language","en");
 			return ok(index.render(ob.all(), cs.all(), is.all()));
 		}
 
@@ -60,16 +61,11 @@ public class Application extends Controller {
 	}
 	
 	public static Result changeLanguage(){
-		
+		String url = request().getHeader("referer");
+		System.out.println(url);
 		String code = Form.form().bindFromRequest().get("language");
-		System.out.println(code);
 		changeLang(code);
-		session("language", code);
-		return redirect(routes.Application.index());
-	}
-	
-	public static String getLanguage(){
-		return session("language");
+		return redirect(url);
 	}
 
 	public static Result authenticate() {

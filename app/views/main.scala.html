@@ -42,8 +42,8 @@
 						@helper.form(routes.Application.changeLanguage){
 							<label>@Messages.get("chooselanguage"):</label>
 							<select onchange="this.form.submit()" name="language" >	
-								<option value="es">@Messages.get("spanish")</option>
-								<option value="en">@Messages.get("english")</option>
+								<option value="es" @(if(Util.language().equals("es")) "selected" else "")>@Messages.get("spanish")</option>
+								<option value="en" @(if(Util.language().equals("en")) "selected" else "")>@Messages.get("english")</option>
 							</select>
 						}
 					</div>

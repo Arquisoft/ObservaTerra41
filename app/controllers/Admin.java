@@ -12,7 +12,6 @@ import views.html.indicator;
 import views.html.observation;
 import views.html.user;
 import views.html.*;
-import play.mvc.*;
 
 @Security.Authenticated(SecuredAdmin.class)
 public class Admin extends Controller {

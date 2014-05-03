@@ -3,9 +3,7 @@ package business.impl;
 import java.util.List;
 
 import play.db.ebean.Model.Finder;
-import models.Country;
 import models.UrlRepository;
-import models.User;
 import business.UrlRepositoryService;
 
 public class UrlRepositoryServiceImpl implements UrlRepositoryService{

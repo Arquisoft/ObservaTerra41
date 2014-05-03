@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import models.Observation;
 import models.User;
 import conf.ServicesFactory;
+import play.api.i18n.Lang;
 import play.mvc.Controller;
 
 public class Util extends Controller{
@@ -52,5 +53,9 @@ public class Util extends Controller{
 		Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(email);
 		return m.matches();
+	}
+	
+	public static String language(){
+		return lang().code();
 	}
 }

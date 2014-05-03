@@ -3,7 +3,6 @@ package business;
 import java.util.List;
 
 import models.UrlRepository;
-import models.User;
 
 public interface UrlRepositoryService {
 	public List<UrlRepository> all();
