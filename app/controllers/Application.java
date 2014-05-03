@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +13,13 @@ import business.ObservationService;
 import conf.ServicesFactory;
 import controllers.UserController.UserForm;
 import models.*;
+import utils.JSONReader;
+import utils.SaveFile;
 import views.html.*;
 import play.data.Form;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 
 public class Application extends Controller {
 
@@ -47,6 +55,26 @@ public class Application extends Controller {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
+	
+	   public static Result saveFile(){
+	    	MultipartFormData body = request().body().asMultipartFormData();
+	        FilePart JSON = body.getFile("fichero");
+	        
+	        SaveFile write = new SaveFile();
+	        File file = JSON.getFile();
+	        try {
+			write.save(new FileInputStream(file));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        return redirect(routes.Application.index()); 
+	         
+	    }
 
 	public static Result showRegister() {
 		userForm = Form.form(UserForm.class);

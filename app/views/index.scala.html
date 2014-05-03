@@ -31,4 +31,18 @@
 }
 </ul>
 
+<h2>Subir archivo </h2>
+
+
+@helper.form(action = routes.Application.saveFile(), 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="fichero">
+    
+    <p>
+        <input type="submit">
+    </p>
+    
+}
+
 }
