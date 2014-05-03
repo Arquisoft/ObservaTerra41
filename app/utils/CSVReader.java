@@ -53,7 +53,7 @@ public class CSVReader {
 		IndicatorSercive is = new IndicatorServiceImpl();
 		//List<Indicator>lst= is.all();
 		
-		for(int i=0;i<aux.length;i++){
+		for(int i=4;i<aux.length;i++){
 			if(is.findByName(aux[i])==null){
 				String pais=aux[i];
 				//campo string vacio queda a espensas
