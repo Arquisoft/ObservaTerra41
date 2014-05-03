@@ -64,3 +64,5 @@ POST	/register:update			controllers.UserController.newUser(update: Boolean)
 GET     /login                  controllers.Application.login()
 POST    /login                  controllers.Application.authenticate()
 GET 	/logout					controllers.Application.cerrarSesion()
+
+GET		/language				controllers.Application.changeLanguage()

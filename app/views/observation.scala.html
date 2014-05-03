@@ -12,11 +12,11 @@
 
 <table>
 <tr>
-<th>Id</th>
-<th>Country</th>
-<th>Indicator</th>
-<th>Value</th>
-<th>Remove</th>
+<th>@Messages.get("id")</th>
+<th>@Messages.get("country")</th>
+<th>@Messages.get("indicator")</th>
+<th>@Messages.get("value")</th>
+<th>@Messages.get("remove")</th>
 </tr>
 @for(obs <- observations) { 
   <tr>
@@ -75,7 +75,7 @@
 
 
 
-<h2>Subir archivo JSON</h2>
+<h2>@Messages.get("upload.json.file")</h2>
 
 
 @helper.form(action = routes.API.uploadJSON, 
@@ -89,7 +89,7 @@
     
 }
 
-<h2>Subir archivo CSV</h2>
+<h2>@Messages.get("upload.csv.file")</h2>
 
 
 @helper.form(action = routes.API.uploadCSV, 
