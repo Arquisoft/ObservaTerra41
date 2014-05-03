@@ -21,7 +21,6 @@ public class UserController extends Controller {
 		String nombre = datos.get("name");
 		String apellidos = datos.get("surname");
 		String email = datos.get("email");
-		String pass = datos.get("pass");
 		String pass2 = datos.get("pass2");
 		
 		if (userForm.hasErrors()) {

@@ -6,14 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import business.CountryService;
 import business.IndicatorSercive;
 import business.ObservationService;
 import conf.ServicesFactory;
 import controllers.UserController.UserForm;
 import models.*;
-import utils.JSONReader;
 import utils.SaveFile;
 import views.html.*;
 import play.data.Form;
@@ -27,6 +25,7 @@ public class Application extends Controller {
 		ObservationService ob = ServicesFactory.getObservationService();
 		CountryService cs = ServicesFactory.getCountryService();
 		IndicatorSercive is = ServicesFactory.getIndicatorService();
+		session("language","en");
 		return ok(index.render(ob.all(), cs.all(), is.all()));
 	}
 
@@ -91,6 +90,19 @@ public class Application extends Controller {
 
 	public static Result login() {
 		return ok(login.render(Form.form(Login.class)));
+	}
+	
+	public static Result changeLanguage(){
+		
+		String code = Form.form().bindFromRequest().get("language");
+		System.out.println(code);
+		changeLang(code);
+		session("language", code);
+		return redirect(routes.Application.index());
+	}
+	
+	public static String getLanguage(){
+		return session("language");
 	}
 
 	public static Result authenticate() {
