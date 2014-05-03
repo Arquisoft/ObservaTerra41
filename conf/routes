@@ -61,7 +61,7 @@ POST	/register:update			controllers.UserController.newUser(update: Boolean)
 #Url
 GET     /url						controllers.Admin.showUrls()
 POST	/url/delete/:id				controllers.Admin.deleteUrl(id: Long)
-
+POST	/url/add					controllers.Admin.addUrl()
 
 
 # Login
@@ -70,3 +70,4 @@ POST    /login                  controllers.Application.authenticate()
 GET 	/logout					controllers.Application.cerrarSesion()
 
 GET		/language				controllers.Application.changeLanguage()
+

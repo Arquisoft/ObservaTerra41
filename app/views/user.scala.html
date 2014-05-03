@@ -8,7 +8,6 @@
 		@for(user <- users) {
 		<tr>
 			<td>@user.getName()</td>
-			<td>
 			<td>@helper.form(routes.Admin.deleteUser(user.getId())) { 
 				<input type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='@Messages.get("user.delete")'> 
 				}

@@ -14,13 +14,12 @@ public class UrlRepository extends Model {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private String url;
 
 	public UrlRepository(String url) {
 		super();
 		this.url = url;
 	}
-
-	private String url;
 
 	@Override
 	public int hashCode() {

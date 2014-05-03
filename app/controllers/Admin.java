@@ -101,13 +101,21 @@ public class Admin extends Controller {
 		return redirect(routes.Admin.showUrls());
 	}
 	
+	public static Result addUrl(){
+		newUrlForm = Form.form(UrlRepository.class).bindFromRequest();
+		UrlRepository url = newUrlForm.get();
+		ServicesFactory.getUrlRepositoryService().addURL(url);
+		return redirect(routes.Admin.showUrls());
+	}
+	
+	
 
 	
 	
-    
-    static Form<UrlRepository>urlForm     = Form.form(UrlRepository.class);
-    static Form<Country>  	  countryForm     = Form.form(Country.class);
-    static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
-    static Form<Observation>  observationForm = Form.form(Observation.class);
+    static Form<UrlRepository> newUrlForm		= Form.form(UrlRepository.class);
+    static Form<UrlRepository>urlForm			= Form.form(UrlRepository.class);
+    static Form<Country>  	  countryForm		= Form.form(Country.class);
+    static Form<Indicator>    indicatorForm		= Form.form(Indicator.class);
+    static Form<Observation>  observationForm	= Form.form(Observation.class);
 
 }

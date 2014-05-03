@@ -69,3 +69,7 @@ id					= Id
 remove				= Remove
 user.delete			= Delete User
 user.update			= Update User
+
+url.list			= List of Urls
+url.add				= Add Url
+url.address			= Url Address

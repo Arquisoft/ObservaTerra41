@@ -70,3 +70,7 @@ remove				= Borrar
 user.delete			= Borrar Usuario
 user.update			= Actualizar Usuario
 
+url.list			= Lista de Urls
+url.add				= Añadir Url
+url.address			= Dirección url
+

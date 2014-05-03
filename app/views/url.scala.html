@@ -3,7 +3,7 @@
 @import helper._ 
 @main("Lista de Urls") {
 
-	<h1>Lista de Urls</h1>
+	<h1>@Messages.get("url.list")</h1>
 		<table>
 			@for(url <- urls) {
 			<tr>
@@ -13,10 +13,16 @@
 				}
 				</td>
 			</tr>
-		</table>  
-	}
- 
-	
+			}
+		</table>
+		
+		<h1>@Messages.get("url.add")</h1> 
+		@helper.form(routes.Admin.addUrl()){
+		<input type="text" name="url" placeholder="@Messages.get("url.address")">
+		<input type="submit" value="@Messages.get("url.add")">
+		
+		}
+		<br>
 	
 	
 }
