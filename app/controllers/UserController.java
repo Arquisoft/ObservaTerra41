@@ -1,158 +1,161 @@
 package controllers;
 
-import java.util.HashMap;
 import conf.ServicesFactory;
-import models.Miembro;
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+import utils.MD5Hash;
 import views.html.*;
+import controllers.security.SecuredUser;
 
+@Security.Authenticated(SecuredUser.class)
 public class UserController extends Controller {
-	static Form<UserForm> userForm = Form.form(UserForm.class);
+	
+	public static Result cerrarSesion() {
+		session().clear();
+		return redirect(routes.Application.index());
+	}
 
-	public static Result newUser(boolean update) {
-
-		userForm = Form.form(UserForm.class).bindFromRequest();
-		HashMap<String, String> datos = (HashMap<String, String>) userForm
-				.data();
-		String usuario = datos.get("userName");
-		String nombre = datos.get("name");
-		String apellidos = datos.get("surname");
-		String email = datos.get("email");
-		String pass = datos.get("pass");
-		String pass2 = datos.get("pass2");
+	public static Result fillRegister(String name) {
 		
-		if (userForm.hasErrors()) {
-			return badRequest(register.render(userForm, update));
-		}
+		Form<UserInfoForm> infoForm = fillForm(name);
+		Form<UserPassForm> passForm = Form.form(UserPassForm.class);
 
-		if (update) {
-
-			User user = ServicesFactory.getUsersService().findByUserName(
-					usuario);
-
-			user.setName(nombre);
-			user.setSurname(apellidos);
-			user.setEmail(email);
-			user.setPassword(pass2);
-
-			ServicesFactory.getUsersService().update(user);
-			return redirect(routes.UserController.showUsers());
-
-		} else {
-			ServicesFactory.getMiembroService().createMiembro(
-					new Miembro(usuario, nombre, apellidos, pass2, email));
-			return redirect(routes.UserController.showUsers());
-
-		}
+		return ok(modify.render(infoForm, passForm, name));
 	}
 
-	public static Result showUsers() {
-		return ok(user.render(ServicesFactory.getMiembroService()
-				.findAllMiembros()));
+	public static Result modifyInfo(String name) {
+
+		Form<UserInfoForm> infoForm = Form.form(UserInfoForm.class).bindFromRequest();
+		
+		if (infoForm.hasErrors()) {
+			Form<UserPassForm> passForm = Form.form(UserPassForm.class);
+			return badRequest(modify.render(infoForm, passForm, name));
+		}
+
+		User user = ServicesFactory.getUsersService().findByUserName(name);
+
+		user.setName(infoForm.get().getName());
+		user.setSurname(infoForm.get().getSurname());
+		user.setEmail(infoForm.get().getEmail());
+
+		ServicesFactory.getUsersService().update(user);
+		
+		return redirect(routes.UserController.fillRegister(name));
+	}
+	
+	public static Result modifyPass(String name) {
+		
+		Form<UserPassForm> passForm = Form.form(UserPassForm.class).bindFromRequest();
+		
+		if (passForm.hasErrors()) {
+			Form<UserInfoForm> infoForm = fillForm(name);
+			return badRequest(modify.render(infoForm, passForm, name));
+		}
+		
+		User user = ServicesFactory.getUsersService().findByUserName(name);
+
+		user.setPassword(passForm.get().getPass2());
+
+		ServicesFactory.getUsersService().update(user);
+		
+		return redirect(routes.UserController.fillRegister(name));
+	}
+	
+	private static Form<UserInfoForm> fillForm(String name){
+		UserInfoForm info = new UserInfoForm(ServicesFactory.getUsersService().findByUserName(name));
+		return Form.form(UserInfoForm.class).fill(info);
 	}
 
-	public static String failPassword() {
-		return session("error");
-	}
-
-	public static class UserForm {
-
-		String userName;
-		String name;
-		String surname;
-		String email;
-		String pass;
-		String pass2;
-		String pass3;
-
-		public UserForm() {
-
+	public static class UserInfoForm{
+		private String name;
+		private String surname;
+		private String email;
+		
+		public UserInfoForm() {}
+		
+		public UserInfoForm(User usuario){
+			this.name = usuario.getName();
+			this.surname = usuario.getSurname();
+			this.email = usuario.getEmail();
 		}
-
-		public UserForm(User user) {
-			this.userName = user.getUserName();
-			name = user.getName();
-			surname = user.getSurname();
-			email = user.getEmail();
-			pass = user.getPassword();
-
-		}
-
-		public String getUserName() {
-			return userName;
-		}
-
-		public void setUserName(String usuario) {
-			this.userName = usuario;
-		}
-
+		
 		public String getName() {
 			return name;
 		}
-
-		public void setName(String nombre) {
-			this.name = nombre;
+		public void setName(String name) {
+			this.name = name;
 		}
-
 		public String getSurname() {
 			return surname;
 		}
-
-		public void setSurname(String apellidos) {
-			this.surname = apellidos;
+		public void setSurname(String surname) {
+			this.surname = surname;
 		}
-
 		public String getEmail() {
 			return email;
 		}
-
 		public void setEmail(String email) {
 			this.email = email;
 		}
-
+		
+		public String validate() {
+			if(name.equals("") || name == null || surname.equals("") || surname == null || email.equals("") || email == null)
+				return "Deben rellenarse todos los campos obligatorios";
+			
+			if(!Util.validateEmail(email))
+				return "Formato de email incorrecto";
+			
+			return null;
+		}
+		
+	}
+	
+	public static class UserPassForm{
+		private String pass;
+		private String pass2;
+		private String pass3;
+		private String name;
+		
 		public String getPass() {
 			return pass;
 		}
-
 		public void setPass(String pass) {
-			this.pass = pass;
+			this.pass = MD5Hash.codeToMD5(pass);
 		}
-
 		public String getPass2() {
 			return pass2;
 		}
-
 		public void setPass2(String pass2) {
-			this.pass2 = pass2;
+			this.pass2 = MD5Hash.codeToMD5(pass2);
 		}
-
 		public String getPass3() {
 			return pass3;
 		}
-
 		public void setPass3(String pass3) {
-			this.pass3 = pass3;
+			this.pass3 = MD5Hash.codeToMD5(pass3);
 		}
-
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		
 		public String validate() {
-
-			if(!pass.equals("")){
-				User user = ServicesFactory.getUsersService().findByUserName(
-						session("user"));
-	
-				if (!pass.equals(user.getPassword())) {
-					return "Tu password no coincide";
-				}
+			
+			if(!this.pass2.equals(this.pass3))
+				return "Las contraseñas no coinciden";
+			
+			if(!Util.updateByAdmin(this.name)){
+				String userPass = ServicesFactory.getUsersService().findByUserName(Util.getSessionUser()).getPassword();
+				if(!userPass.equals(this.pass))
+					return "Contraseña errónea";
 			}
-			if (!pass2.equals(pass3)) {
-
-				return "La nueva password no coincide en ambos campos";
-			}
+			
 			return null;
 		}
-
 	}
 }

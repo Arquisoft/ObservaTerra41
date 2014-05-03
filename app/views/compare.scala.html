@@ -26,7 +26,7 @@
 		}
 		</select>
 		
-		<canvas class="color" @(if(countriesSelected.size() >= 1) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(0))) else "")></canvas>
+		<canvas class="color" @(if(countriesSelected.size() >= 1) "style=background:"  + Util.getColor(countriesSelected.indexOf(countriesSelected.get(0))) else "")></canvas>
 		
 		<select class="combopais" name="country2" onchange="this.form.submit()">
 			<option value="none">-------</option>
@@ -35,7 +35,7 @@
 		}
 		</select>
 		
-		<canvas class="color" @(if(countriesSelected.size() >= 2) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(1))) else "")></canvas>
+		<canvas class="color" @(if(countriesSelected.size() >= 2) "style=background:"  + Util.getColor(countriesSelected.indexOf(countriesSelected.get(1))) else "")></canvas>
 		
 		<select class="combopais" name="country3" onchange="this.form.submit()">
 			<option value="none">-------</option>
@@ -44,7 +44,7 @@
 		}
 		</select>
 		
-		<canvas class="color" @(if(countriesSelected.size() >= 3) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(2))) else "")></canvas>
+		<canvas class="color" @(if(countriesSelected.size() >= 3) "style=background:"  + Util.getColor(countriesSelected.indexOf(countriesSelected.get(2))) else "")></canvas>
 		
 		<select class="combopais" name="country4" onchange="this.form.submit()">
 			<option value="none">-------</option>
@@ -53,7 +53,7 @@
 		}
 		</select>
 		
-		<canvas class="color" @(if(countriesSelected.size() >= 4) "style=background:"  + Application.getColor(countriesSelected.indexOf(countriesSelected.get(3))) else "")></canvas>
+		<canvas class="color" @(if(countriesSelected.size() >= 4) "style=background:"  + Util.getColor(countriesSelected.indexOf(countriesSelected.get(3))) else "")></canvas>
 	}
 	</div>
 	
@@ -66,10 +66,10 @@
 		</tr>
 		@for(country <- countriesSelected) {
 			<tr>
-				<td style="background:@(Application.getColor(countriesSelected.indexOf(country)))">@country.getName()</td>
+				<td style="background:@(Util.getColor(countriesSelected.indexOf(country)))">@country.getName()</td>
 				
 				<!-- RecorrerFechas -->
-				<td>@(if(Application.findObs(country.getCode(), indicatorSelected.getCode()) == null) "-" else Application.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())</td>
+				<td>@(if(Util.findObs(country.getCode(), indicatorSelected.getCode()) == null) "-" else Util.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())</td>
 			</tr>
 		}
 	</table>
@@ -90,9 +90,9 @@
 	        datasets : [ //Cada dataset es un país
 	            @for(country <- countriesSelected) {
 		            {
-		                fillColor : "@(Application.getColor(countriesSelected.indexOf(country)))",
+		                fillColor : "@(Util.getColor(countriesSelected.indexOf(country)))",
 		                strokeColor : "rgba(0,0,0,.4)",
-		                data : [@(if(Application.findObs(country.getCode(), indicatorSelected.getCode()) == null) 0 else Application.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())]
+		                data : [@(if(Util.findObs(country.getCode(), indicatorSelected.getCode()) == null) 0 else Util.findObs(country.getCode(), indicatorSelected.getCode()).getObsValue())]
 		            },
 	            }
 	        ]

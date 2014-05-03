@@ -12,7 +12,7 @@ public class MD5Hash {
 	
 
 	/**
-	 * Método que convierte una contraseña a MD5, necesario en los métodos al registrar y login
+	 * Método que convierte una contraseña a MD5, necesario cuando se recibe una contraseña en una vista, puesto en los setter de los formularios
 	 * 
 	 * @param password Contraseña que se va codificar a MD5
 	 * @return

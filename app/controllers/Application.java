@@ -7,58 +7,26 @@ import business.CountryService;
 import business.IndicatorSercive;
 import business.ObservationService;
 import conf.ServicesFactory;
-import controllers.UserController.UserForm;
 import models.*;
+import utils.MD5Hash;
 import views.html.*;
 import play.data.Form;
 import play.mvc.*;
 
 public class Application extends Controller {
 
-	public static Result index() {
-		ObservationService ob = ServicesFactory.getObservationService();
-		CountryService cs = ServicesFactory.getCountryService();
-		IndicatorSercive is = ServicesFactory.getIndicatorService();
-		return ok(index.render(ob.all(), cs.all(), is.all()));
-	}
-
-	@Security.Authenticated(SecuredAdmin.class)
-	public static Result showCountries() {
-		return ok(country.render(ServicesFactory.getCountryService().all(),
-				countryForm));
-	}
-
-	@Security.Authenticated(SecuredAdmin.class)
-	public static Result showIndicators() {
-		return ok(indicator.render(ServicesFactory.getIndicatorService().all(),
-				indicatorForm));
-	}
-
-	@Security.Authenticated(SecuredAdmin.class)
-	public static Result showObservations() {
-		String mensaje = "";
-		return ok(observation.render(ServicesFactory.getObservationService()
-				.all(), ServicesFactory.getCountryService().all(),
-				ServicesFactory.getIndicatorService().all(), observationForm,
-				mensaje));
-	}
-
+	// COSAS DE LABRA
 	public static Result bars(String indicator) {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
 
-	public static Result showRegister() {
-		userForm = Form.form(UserForm.class);
-		return ok(register.render(userForm, false));
-	}
-
-	public static Result fillRegister(String name) {
-		session("update","true");
-		UserForm user = new UserForm(ServicesFactory.getUsersService().findByUserName(name));
-		if (user != null)
-			userForm = userForm.fill(user);
-		return ok(register.render(userForm, true));
+	// Muesta la vista de la página principal
+	public static Result index() {
+		ObservationService ob = ServicesFactory.getObservationService();
+		CountryService cs = ServicesFactory.getCountryService();
+		IndicatorSercive is = ServicesFactory.getIndicatorService();
+		return ok(index.render(ob.all(), cs.all(), is.all()));
 	}
 
 	public static Result login() {
@@ -72,33 +40,31 @@ public class Application extends Controller {
 		} else {
 			session().clear();
 			session("user", loginForm.get().user);
-
-			String name = loginForm.get().user;
-			User user = ServicesFactory.getUsersService().findByUserName(name);
-			if (user.isAdmin())
-				session("admin", "true");
-
 			return redirect(routes.Application.index());
 		}
 	}
 
-	public static String getSessionUser() {
-		return session("user");
-	}
+	public static Result newUser() {
+		Form<UserForm> userForm = Form.form(UserForm.class).bindFromRequest();
+		
+		if (userForm.hasErrors()) {
+			return badRequest(register.render(userForm));
+		}
 
-	public static String isAdmin() {
-		return session("admin");
-	}
-	
-	public static String update(){
-		return session("update");
-	}
+		ServicesFactory.getMiembroService().createMiembro(
+				new Miembro(userForm.get().getUserName(), userForm.get()
+						.getName(), userForm.get().getSurname(), userForm.get()
+						.getPass(), userForm.get().getEmail()));
 
-	public static Result cerrarSesion() {
-		session().clear();
 		return redirect(routes.Application.index());
 	}
 
+	public static Result showRegister() {
+		Form<UserForm> userForm = Form.form(UserForm.class);
+		return ok(register.render(userForm));
+	}
+
+	// Muesta la vista de comparar países
 	public static Result comparar() {
 
 		Form<ComparationForm> comparationForm = Form
@@ -134,35 +100,12 @@ public class Application extends Controller {
 				selected, comparationForm));
 	}
 
-	public static Observation findObs(String country, String indicator) {
-		return ServicesFactory.getObservationService().findByCountryIndicator(
-				country, indicator);
-	}
-
-	public static String getColor(int index) {
-		switch (index) {
-		case 0:
-			return "#FF7070";
-		case 1:
-			return "#7081FF";
-		case 2:
-			return "#70FF70";
-		case 3:
-			return "#DEF200";
-		default:
-			return "#000000";
-		}
-	}
-
-	static Form<Country> countryForm = Form.form(Country.class);
-	static Form<Indicator> indicatorForm = Form.form(Indicator.class);
-	static Form<Observation> observationForm = Form.form(Observation.class);
-	static Form<UserForm> userForm = Form.form(UserForm.class);
-
+	
+	//Formulario para el login
 	public static class Login {
 
-		public String user;
-		public String password;
+		private String user;
+		private String password;
 
 		public String validate() {
 			// Llamada a método que checkee si existen
@@ -177,8 +120,25 @@ public class Application extends Controller {
 			return null;
 		}
 
+		public String getUser() {
+			return user;
+		}
+
+		public void setUser(String user) {
+			this.user = user;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = MD5Hash.codeToMD5(password);
+		}
+
 	}
 
+	//Formulario para la vista de comparacion de paises
 	public static class ComparationForm {
 
 		private String indicator;
@@ -228,5 +188,75 @@ public class Application extends Controller {
 		}
 
 	}
+	
+	//Formulario para el registro de usuarios
+	public static class UserForm {
 
+		private String userName;
+		private String name;
+		private String surname;
+		private String email;
+		private String pass;
+		private String pass2;
+
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String usuario) {
+			this.userName = usuario;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String nombre) {
+			this.name = nombre;
+		}
+
+		public String getSurname() {
+			return surname;
+		}
+
+		public void setSurname(String apellidos) {
+			this.surname = apellidos;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getPass() {
+			return pass;
+		}
+
+		public void setPass(String pass) {
+			this.pass = MD5Hash.codeToMD5(pass);
+		}
+
+		public String getPass2() {
+			return pass2;
+		}
+
+		public void setPass2(String pass2) {
+			this.pass2 = MD5Hash.codeToMD5(pass2);
+		}
+
+		public String validate() {
+			
+			if (!pass.equals(pass2))
+				return "La nueva password no coincide en ambos campos";
+			
+			if(!Util.validateEmail(email))
+				return "Formato de email incorrecto";
+			
+			return null;
+		}
+
+	}
 }

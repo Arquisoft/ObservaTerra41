@@ -3,9 +3,9 @@
 # ~~~~
 
 GET     /              				controllers.Application.index()
-GET		/country					controllers.Application.showCountries()
-GET		/indicator					controllers.Application.showIndicators()
-GET		/observation				controllers.Application.showObservations()
+GET		/country					controllers.Admin.showCountries()
+GET		/indicator					controllers.Admin.showIndicators()
+GET		/observation				controllers.Admin.showObservations()
 GET     /bars/:indicator   			controllers.Application.bars(indicator:String)
 POST	/comparacion				controllers.Application.comparar()
 GET		/comparacion				controllers.Application.comparar()
@@ -52,14 +52,16 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # User
 GET		/register					controllers.Application.showRegister()
-GET		/user						controllers.UserController.showUsers()
+GET		/user						controllers.Admin.showUsers()
 POST	/user/delete/:id			controllers.Admin.deleteUser(id: Long)
-GET		/user/update/:name			controllers.Application.fillRegister(name: String)
+GET		/user/update/:name			controllers.UserController.fillRegister(name: String)
+POST	/user/update/info/:name			controllers.UserController.modifyInfo(name: String)
+POST	/user/update/pass/:name			controllers.UserController.modifyPass(name: String)
 
 
-POST	/register:update			controllers.UserController.newUser(update: Boolean)
+POST	/register			controllers.Application.newUser()
 
 # Login
 GET     /login                  controllers.Application.login()
 POST    /login                  controllers.Application.authenticate()
-GET 	/logout					controllers.Application.cerrarSesion()
+GET 	/logout					controllers.UserController.cerrarSesion()

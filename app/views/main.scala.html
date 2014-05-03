@@ -25,10 +25,10 @@
 				<div id="opciones">
 					<!-- Sección de login y gestión de usuarios -->
 					<div id="login">
-						@if(Application.getSessionUser() != null){
+						@if(Util.getSessionUser() != null){
 					    	<p>
-						    	Logued as: <strong id="userName">@Application.getSessionUser()</strong> | 
-						    	<a href="@routes.Application.cerrarSesion">Logout</a>
+						    	Logued as: <a href="@routes.UserController.fillRegister(Util.getSessionUser())"><strong id="userName">@Util.getSessionUser()</strong></a> | 
+						    	<a href="@routes.UserController.cerrarSesion">Logout</a>
 							</p>
 					    } else {
 					    	<a href="@routes.Application.login">Log in</a> | 
@@ -56,17 +56,19 @@
 					<!-- Enlaces de acceso público -->
 					<li><a href="#">Acceder a datos</a>
 					<li><a href="@routes.Application.comparar">Comparar Paises</a>
-					
+
 					<!-- Enlaces para usuarios registrados -->
-					<li><a href="#">Subir datos</a>
-					
-					<!-- Enlaces de administración -->
-					@if(Application.isAdmin()=="true"){
-					<li><a href="#">Recolectar datos</a>
-					<li><a href="@routes.Application.showCountries">Countries</a>
-					<li><a href="@routes.Application.showIndicators">Indicators</a>
-					<li><a href="@routes.Application.showObservations">Observations</a>
-					<li><a href="@routes.UserController.showUsers">Usuarios</a>
+					@if(Util.getSessionUser() != null){
+						<li><a href="#">Subir datos</a>
+						
+						<!-- Enlaces de administración -->
+						@if(Util.isAdmin()){
+							<li><a href="#">Recolectar datos</a>
+							<li><a href="@routes.Admin.showCountries">Countries</a>
+							<li><a href="@routes.Admin.showIndicators">Indicators</a>
+							<li><a href="@routes.Admin.showObservations">Observations</a>
+							<li><a href="@routes.Admin.showUsers">Usuarios</a>
+						}
 					}
 				</ul>
 		    </nav>

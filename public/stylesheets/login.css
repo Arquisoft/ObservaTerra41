@@ -4,6 +4,10 @@ body {
   background: #0ca3d2;
 }
 
+.error{
+	color: red;
+}
+
 .login {
   position: relative;
   margin: 50px auto;

@@ -2,6 +2,7 @@
 @import play.i18n._ 
 @import helper._ 
 @main("Lista de Usuarios") {
+<meta charset="UTF-8">
 
 	<h1>Lista de Usuarios</h1>
 	<table>
@@ -13,7 +14,7 @@
 				<input type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='Borrar User'> 
 				}
 			</td>
-			<td>@helper.form(routes.Application.fillRegister(user.getUserName())){
+			<td>@helper.form(routes.UserController.fillRegister(user.getUserName())){
 				<input type="image" src="@{routes.Assets.at("images/update.jpg")}" alt='Actualizar User'> 
 				}
 			</td>

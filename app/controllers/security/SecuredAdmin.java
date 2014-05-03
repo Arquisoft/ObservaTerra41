@@ -1,16 +1,18 @@
-package controllers;
+package controllers.security;
 
-import play.*;
+import controllers.Util;
+import controllers.routes;
 import play.mvc.*;
 import play.mvc.Http.*;
-
-import models.*;
 
 public class SecuredAdmin extends Security.Authenticator {
 
 	@Override
 	public String getUsername(Context ctx) {
-		return ctx.session().get("admin");
+		if(!Util.isAdmin())
+			return null;
+		else
+			return Util.isAdmin() + "";
 	}
 
 	@Override

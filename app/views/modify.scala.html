@@ -1,0 +1,46 @@
+@(modifyInfoForm: Form[UserController.UserInfoForm], modifyPassForm: Form[UserController.UserPassForm], userName: String)
+
+@import play.i18n._ 
+@import helper._
+
+@main("Modficando usuario") {
+
+	<meta charset="UTF-8">
+
+	<h2>Modificando usuario <i>@userName</i></h2>
+	
+	@if(modifyInfoForm.hasGlobalErrors) {
+	<p class="error">
+		@modifyInfoForm.globalError.message
+	</p>
+	}
+	    
+	@helper.form(routes.UserController.modifyInfo(userName)) {
+	
+		@inputText(modifyInfoForm("name"), '_label->"Name",'required -> "true", 'size ->20)
+		@inputText(modifyInfoForm("surname"),'_label->"Surname",'required -> "true", 'size ->20)
+		@inputText(modifyInfoForm("email"),'_label->"Email",'required -> "true", 'size ->20)
+		
+		<input type="submit" value="Guardar">
+	}
+	
+	<h2>Modifcar contraseña</h2>
+	
+	@if(modifyPassForm.hasGlobalErrors) {
+	<p class="error">
+		@modifyPassForm.globalError.message
+	</p>
+	}
+	
+	@helper.form(routes.UserController.modifyPass(userName)) {
+	
+		@if(!Util.updateByAdmin(userName)){
+			@inputPassword(modifyPassForm("pass"),'_label->"Contraseña actual",'required -> "true", 'size ->20)
+		}
+		@inputPassword(modifyPassForm("pass2"),'_label->"Nueva contraseña",'required -> "true", 'size ->20)
+		@inputPassword(modifyPassForm("pass3"),'_label->"Repita nueva contraseña",'required -> "true", 'size ->20)
+		<input type="hidden" name="name" value="@userName">
+		<input type="submit" value="Guardar">
+	}
+} 
+

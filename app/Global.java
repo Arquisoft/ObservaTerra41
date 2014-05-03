@@ -38,8 +38,8 @@ public class Global extends GlobalSettings {
 				ServicesFactory.getUrlRepositoryService().addURL(new UrlRepository("https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD"));
 				
 				//an admin
-				ServicesFactory.getAdminService().createAdmin(new Admin("roque", "Alberto Roque", "Carrizo Fernandez", "123456", "roque@roque.roque"));
-				ServicesFactory.getMiembroService().createMiembro(new Miembro("sergio", "sergio", "Sergio Jimenez", "123456", "sergio@sergio.sergio"));
+				ServicesFactory.getAdminService().createAdmin(new Admin("roque", "Alberto Roque", "Carrizo Fernandez", "e10adc3949ba59abbe56e057f20f883e", "roque@roque.roque"));
+				ServicesFactory.getMiembroService().createMiembro(new Miembro("sergio", "sergio", "Sergio Jimenez", "e10adc3949ba59abbe56e057f20f883e", "sergio@sergio.sergio"));
 
 				DataRequester.request();
 			}
