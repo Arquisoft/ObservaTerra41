@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 import models.Observation;
 import models.User;
 import conf.ServicesFactory;
-import play.api.i18n.Lang;
 import play.mvc.Controller;
 
 public class Util extends Controller{

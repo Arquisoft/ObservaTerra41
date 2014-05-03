@@ -6,7 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import play.db.ebean.Model;
+import play.libs.Json;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -126,5 +129,8 @@ public class User extends Model {
 	}
 	
 
+	public JsonNode toJson() {
+		return Json.toJson(this);
+	}
 
 }

@@ -3,7 +3,11 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 import play.db.ebean.Model;
+import play.libs.Json;
 
 @Entity
 public class UrlRepository extends Model {
@@ -60,6 +64,10 @@ public class UrlRepository extends Model {
 
 	public boolean isAdmin() {
 		return false;
+	}
+	
+	public JsonNode toJson() {
+		return Json.toJson(this);
 	}
 
 }

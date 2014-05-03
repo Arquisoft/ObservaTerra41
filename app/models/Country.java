@@ -85,7 +85,7 @@ public class Country extends Model {
 
 	}
 
-	public static JsonNode toJson(Country country) {
-		return Json.toJson(country);
+	public JsonNode toJson() {
+		return Json.toJson(this);
 	}
 }

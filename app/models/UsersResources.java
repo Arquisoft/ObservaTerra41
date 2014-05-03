@@ -3,8 +3,11 @@ package models;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import conf.ServicesFactory;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 public class UsersResources extends Model {
 	/**
@@ -52,5 +55,8 @@ public class UsersResources extends Model {
 		return owner.getUserName()+filename;
 	}
 	
+	public JsonNode toJson() {
+		return Json.toJson(this);
+	}
 	
 }

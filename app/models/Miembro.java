@@ -3,6 +3,10 @@ package models;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import play.libs.Json;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 
 
 
@@ -27,6 +31,10 @@ public class Miembro extends User{
 			String password, String email) {
 		super(userName, name, surname, password, email);
 	
+	}
+	
+	public JsonNode toJson() {
+		return Json.toJson(this);
 	}
 	
 }

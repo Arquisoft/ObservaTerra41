@@ -1,11 +1,12 @@
 package models;
 
-import java.util.Date;
-
 import play.db.ebean.*;
 import play.data.validation.Constraints.Required;
+import play.libs.Json;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Entity
 public class Indicator extends Model {
@@ -91,6 +92,10 @@ public class Indicator extends Model {
 		this.year = year;
 	}
 
+	
+	public JsonNode toJson() {
+		return Json.toJson(this);
+	}
 	
 
 }

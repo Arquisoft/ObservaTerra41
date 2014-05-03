@@ -5,6 +5,10 @@ package models;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import play.libs.Json;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 
 
 
@@ -31,6 +35,10 @@ public class Admin extends User {
 
 	public boolean isAdmin(){
 		return true;
+	}
+	
+	public JsonNode toJson() {
+		return Json.toJson(this);
 	}
 
 	

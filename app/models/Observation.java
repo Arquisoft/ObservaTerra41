@@ -7,8 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 @Entity
 public class Observation extends Model {
@@ -120,6 +123,10 @@ public class Observation extends Model {
 	public String toString() {
 		return "Observation [obsValue=" + obsValue + ", country=" + country
 				+ ", indicator=" + indicator + "]";
+	}
+	
+	public JsonNode toJson() {
+		return Json.toJson(this);
 	}
 	
 	
