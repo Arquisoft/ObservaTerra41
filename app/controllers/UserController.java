@@ -19,7 +19,6 @@ public class UserController extends Controller {
 	}
 
 	public static Result fillRegister(String name) {
-		
 		Form<UserInfoForm> infoForm = fillForm(name);
 		Form<UserPassForm> passForm = Form.form(UserPassForm.class);
 

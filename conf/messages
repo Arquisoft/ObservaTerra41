@@ -2,7 +2,7 @@ name = name
 create = Create
 Wellcome			= Wellcome to ObservaTerra
 countries 			= Countries
-Country				= Country
+country				= Country
 Indicator			= Indicator
 Value				= Value
 Bar.chart			= Bar chart
@@ -11,6 +11,7 @@ list.countries		= List of Countries
 add.country 		= Add Country
 delete.country 		= Delete Country
 
+indicator			= Indicator
 indicators			= Indicators
 list.indicators		= List of Indicators
 add.indicator 		= Add Indicator
@@ -24,7 +25,51 @@ delete.observation  = Delete Observation
 file.uploaded		= Uploaded file with {0} observations
 read.excel.error	= Error reading excel file
 upload.excel.file	= Upload Excel File
+upload.json.file	= Upload Json File
+upload.csv.file		= Upload Csv File
 upload				= Upload
+upload.file			= Upload file
+upload.data			= Upload data
 
 compare.countries   = Compare data
 compare.title		= Compare data from different countries
+compare.countries	= Compare countries
+
+value				= Value
+2countriesforgraphic= It's necessary at least two countries to visualize the graphic
+
+login2web			= Login to Web App
+login				= Login
+signin				= Sign in
+loguedas			= Logued as
+logout				= Logout
+register			= Register
+register.form		= Register Form
+
+chooselanguage		= Language
+
+spanish				= Spanish
+english				= English
+
+accessdata			= Access to data
+collect.data		= Collect data
+
+user				= User
+users				= Users
+user.list			= List of Users
+modifying.user		= Modifying user
+name				= Name
+surname				= Surname
+email				= Email
+password			= Password
+password.admin		= Admin Password
+password.new		= New Password
+password.new2		= New Password Again
+id					= Id
+remove				= Remove
+user.delete			= Delete User
+user.update			= Update User
+
+url.list			= List of Urls
+url.add				= Add Url
+url.address			= Url Address

@@ -1,36 +1,75 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import business.CountryService;
 import business.IndicatorSercive;
 import business.ObservationService;
 import conf.ServicesFactory;
 import models.*;
 import utils.MD5Hash;
+import utils.SaveFile;
 import views.html.*;
 import play.data.Form;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 
 public class Application extends Controller {
 
-	// COSAS DE LABRA
 	public static Result bars(String indicator) {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
+	
+	   public static Result saveFile(){
+	    	MultipartFormData body = request().body().asMultipartFormData();
+	        FilePart JSON = body.getFile("fichero");
+	        
+	        SaveFile write = new SaveFile();
+	        File file = JSON.getFile();
+	        try {
+			write.save(new FileInputStream(file));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        return redirect(routes.Application.index()); 
+	         
+	    }
 
 	// Muesta la vista de la página principal
-	public static Result index() {
-		ObservationService ob = ServicesFactory.getObservationService();
-		CountryService cs = ServicesFactory.getCountryService();
-		IndicatorSercive is = ServicesFactory.getIndicatorService();
-		return ok(index.render(ob.all(), cs.all(), is.all()));
-	}
+	   public static Result index() {
+			ObservationService ob = ServicesFactory.getObservationService();
+			CountryService cs = ServicesFactory.getCountryService();
+			IndicatorSercive is = ServicesFactory.getIndicatorService();
+			session("language","en");
+			return ok(index.render(ob.all(), cs.all(), is.all()));
+		}
 
 	public static Result login() {
 		return ok(login.render(Form.form(Login.class)));
+	}
+	
+	public static Result changeLanguage(){
+		
+		String code = Form.form().bindFromRequest().get("language");
+		System.out.println(code);
+		changeLang(code);
+		session("language", code);
+		return redirect(routes.Application.index());
+	}
+	
+	public static String getLanguage(){
+		return session("language");
 	}
 
 	public static Result authenticate() {

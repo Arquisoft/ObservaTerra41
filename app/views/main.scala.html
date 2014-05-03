@@ -1,6 +1,7 @@
 @(title: String)(content: Html)
 
 @import play.i18n._
+@import helper._ 
 
 <!-- PLANTILLA GENERAL -->
 <!DOCTYPE html>
@@ -27,25 +28,24 @@
 					<div id="login">
 						@if(Util.getSessionUser() != null){
 					    	<p>
-						    	Logued as: <a href="@routes.UserController.fillRegister(Util.getSessionUser())"><strong id="userName">@Util.getSessionUser()</strong></a> | 
-						    	<a href="@routes.UserController.cerrarSesion">Logout</a>
+						    	@Messages.get("loguedas"): <a href="@routes.UserController.fillRegister(Util.getSessionUser())"><strong id="userName">@Util.getSessionUser()</strong></a> | 
+						    	<a href="@routes.UserController.cerrarSesion">@Messages.get("logout")</a>
 							</p>
 					    } else {
-					    	<a href="@routes.Application.login">Log in</a> | 
-					    	<a href="@routes.Application.showRegister">Registrarse</a> 
+					    	<a href="@routes.Application.login">@Messages.get("login")</a> | 
+					    	<a href="@routes.Application.showRegister">@Messages.get("register")</a> 
 					    }
 					</div>
 					
 					<!-- Sección de selección de idioma (I18N) -->
 					<div id="idiomas">
-						<form action="">
-							<label>Seleccione idioma:</label>
-							<select>
-								<option value="es">Español</option>
-								<option value="en">Inglés</option>
-								<option value="fr">Francés</option>
+						@helper.form(routes.Application.changeLanguage){
+							<label>@Messages.get("chooselanguage"):</label>
+							<select onchange="this.form.submit()" name="language" >	
+								<option value="es">@Messages.get("spanish")</option>
+								<option value="en">@Messages.get("english")</option>
 							</select>
-						</form>
+						}
 					</div>
 				</div>
 				
@@ -54,20 +54,21 @@
 			<nav>
 				<ul>
 					<!-- Enlaces de acceso público -->
-					<li><a href="#">Acceder a datos</a>
-					<li><a href="@routes.Application.comparar">Comparar Paises</a>
+					<li><a href="#">@Messages.get("accessdata")</a>
+					<li><a href="@routes.Application.comparar">@Messages.get("compare.countries")</a>
 
 					<!-- Enlaces para usuarios registrados -->
 					@if(Util.getSessionUser() != null){
-						<li><a href="#">Subir datos</a>
+						<li><a href="#">@Messages.get("upload.data")</a>
 						
 						<!-- Enlaces de administración -->
 						@if(Util.isAdmin()){
-							<li><a href="#">Recolectar datos</a>
-							<li><a href="@routes.Admin.showCountries">Countries</a>
-							<li><a href="@routes.Admin.showIndicators">Indicators</a>
-							<li><a href="@routes.Admin.showObservations">Observations</a>
-							<li><a href="@routes.Admin.showUsers">Usuarios</a>
+							<li><a href="@routes.Admin.showUrls">Direcciones de descarga</a>
+							<li><a href="@routes.Admin.showCountries">@Messages.get("countries")</a>
+							<li><a href="@routes.Admin.showIndicators">@Messages.get("indicators")</a>
+							<li><a href="@routes.Admin.showObservations">@Messages.get("observations")</a>
+							<li><a href="@routes.Admin.showUsers">@Messages.get("users")</a>
+							<li><a href="#">@Messages.get("collect.data")</a>
 						}
 					}
 				</ul>

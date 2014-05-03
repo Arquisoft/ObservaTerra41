@@ -11,14 +11,14 @@
 	<div id="compareform">
 	@helper.form(routes.Application.comparar) {
 		
-		<label>Indicador:</label><br>
+		<label>@Messages.get("indicator"):</label><br>
 		<select id="comboind" name="indicator" onchange="this.form.submit()">
 		@for(indicator <- indicators) {
 			<option value=@indicator.getCode() @(if(indicatorSelected != null && indicator.getCode().equals(indicatorSelected.getCode())) "selected" else "")>@indicator.getName()</option>
 		}
 		</select>
 		
-		<label>Países:</label><br>
+		<label>@Messages.get("countries"):</label><br>
 		<select class="combopais" name="country1" onchange="this.form.submit()">
 			<option value="none">-------</option>
 		@for(country <- countries) {
@@ -61,8 +61,8 @@
 	@if(countriesSelected.size() > 0){
 	<table id="comparetable">
 		<tr>
-			<th>Country</th>
-			<th>Value</th> <!-- Fechas -->
+			<th>@Messages.get("country")</th>
+			<th>@Messages.get("value")</th> <!-- Fechas -->
 		</tr>
 		@for(country <- countriesSelected) {
 			<tr>
@@ -110,7 +110,7 @@
 	    new Chart(income).Bar(barData, opciones);
 	</script>
 	}else{
-		<p>Se requieren al menos dos países para visualizar el gráfico </p>
+		<p>@Messages.get("2countriesforgraphic")</p>
 	}
 	</div>
 	

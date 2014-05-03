@@ -35,6 +35,7 @@ DELETE	/api/observation/:country/:indicator	controllers.API.delObservation(count
 POST	/api/excel/upload			controllers.API.uploadExcel()
 POST	/api/json/upload			controllers.API.uploadJSON()
 POST	/api/csv/upload				controllers.API.uploadCSV()
+POST	/otherFile/upload				controllers.Application.saveFile()
 
 
 # API2 showing the concept of HATEOAS
@@ -58,10 +59,16 @@ GET		/user/update/:name			controllers.UserController.fillRegister(name: String)
 POST	/user/update/info/:name			controllers.UserController.modifyInfo(name: String)
 POST	/user/update/pass/:name			controllers.UserController.modifyPass(name: String)
 
+#Url
+GET     /url						controllers.Admin.showUrls()
+POST	/url/delete/:id				controllers.Admin.deleteUrl(id: Long)
+POST	/url/add					controllers.Admin.addUrl()
 
-POST	/register			controllers.Application.newUser()
+POST	/register				controllers.Application.newUser()
 
 # Login
 GET     /login                  controllers.Application.login()
 POST    /login                  controllers.Application.authenticate()
 GET 	/logout					controllers.UserController.cerrarSesion()
+
+GET		/language				controllers.Application.changeLanguage()

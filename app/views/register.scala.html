@@ -3,10 +3,10 @@
 @import play.i18n._ 
 @import helper._
 
-@main("Registrar") {
+@main(Messages.get("register")) {
 <meta charset="UTF-8">
 
-	<h2>Formulario de registro</h2>
+	<h2>@Messages.get("register.form")</h2>
 
 	@if(userForm.hasGlobalErrors) {
 	<p class="error">
@@ -16,14 +16,14 @@
 	    
 	@helper.form(routes.Application.newUser) {
 	
-		@inputText(userForm("userName"), '_label->"Usuario:" , 'required -> "true", 'size ->20)
-		@inputText(userForm("name"), '_label->"Nombre:",'required -> "true", 'size ->20)
-		@inputText(userForm("surname"),'_label->"Apellidos:",'required -> "true", 'size ->20)
-		@inputText(userForm("email"),'_label->"Email:",'required -> "true", 'size ->20)
-		@inputPassword(userForm("pass"),'_label->"Contraseña",'required -> "true", 'size ->20)
-		@inputPassword(userForm("pass2"),'_label->"Repita contrseña",'required -> "true", 'size ->20)
+		@inputText(userForm("userName"), '_label->Messages.get("user") , 'required -> "true", 'size ->20)
+		@inputText(userForm("name"), '_label->Messages.get("name"),'required -> "true", 'size ->20)
+		@inputText(userForm("surname"),'_label->Messages.get("surname"),'required -> "true", 'size ->20)
+		@inputText(userForm("email"),'_label->Messages.get("email"),'required -> "true", 'size ->20)
+		@inputPassword(userForm("pass"),'_label->Messages.get("password.new"),'required -> "true", 'size ->20)
+		@inputPassword(userForm("pass2"),'_label->Messages.get("password.new2"),'required -> "true", 'size ->20)
 	
-	<input type="submit" value="Registrar">
+	<input type="submit" value=@Messages.get("register")>
 
 	}
 }

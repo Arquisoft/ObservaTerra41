@@ -11,6 +11,8 @@ import views.html.country;
 import views.html.indicator;
 import views.html.observation;
 import views.html.user;
+import views.html.*;
+import play.mvc.*;
 
 @Security.Authenticated(SecuredAdmin.class)
 public class Admin extends Controller {
@@ -122,10 +124,28 @@ public class Admin extends Controller {
     	return redirect(routes.Admin.showUsers());	
     }
     
-    
-    //FORMULARIOS
-    static Form<Country>  	  countryForm     = Form.form(Country.class);
-    static Form<Indicator>    indicatorForm   = Form.form(Indicator.class);
-    static Form<Observation>  observationForm = Form.form(Observation.class);
+    public static Result showUrls() {
+		return ok(url.render(ServicesFactory.getUrlRepositoryService().all()));
+	}
+
+	public static Result deleteUrl(Long id) {
+		ServicesFactory.getUrlRepositoryService().deleteUrl(id);
+		return redirect(routes.Admin.showUrls());
+	}
+	
+	public static Result addUrl(){
+		newUrlForm = Form.form(UrlRepository.class).bindFromRequest();
+		UrlRepository url = newUrlForm.get();
+		ServicesFactory.getUrlRepositoryService().addURL(url);
+		return redirect(routes.Admin.showUrls());
+	}
+	
+	
+
+    static Form<UrlRepository> newUrlForm		= Form.form(UrlRepository.class);
+    static Form<UrlRepository>urlForm			= Form.form(UrlRepository.class);
+    static Form<Country>  	  countryForm		= Form.form(Country.class);
+    static Form<Indicator>    indicatorForm		= Form.form(Indicator.class);
+    static Form<Observation>  observationForm	= Form.form(Observation.class);
 
 }

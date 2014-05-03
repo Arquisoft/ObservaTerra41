@@ -7,7 +7,7 @@
 
 	<meta charset="UTF-8">
 
-	<h2>Modificando usuario <i>@userName</i></h2>
+	<h2>@Messages.get("modifying.user"): <i>@userName</i></h2>
 	
 	@if(modifyInfoForm.hasGlobalErrors) {
 	<p class="error">
@@ -17,9 +17,9 @@
 	    
 	@helper.form(routes.UserController.modifyInfo(userName)) {
 	
-		@inputText(modifyInfoForm("name"), '_label->"Name",'required -> "true", 'size ->20)
-		@inputText(modifyInfoForm("surname"),'_label->"Surname",'required -> "true", 'size ->20)
-		@inputText(modifyInfoForm("email"),'_label->"Email",'required -> "true", 'size ->20)
+		@inputText(modifyInfoForm("name"), '_label->Messages.get("name"),'required -> "true", 'size ->20)
+		@inputText(modifyInfoForm("surname"),'_label->Messages.get("surname"),'required -> "true", 'size ->20)
+		@inputText(modifyInfoForm("email"),'_label->Messages.get("email"),'required -> "true", 'size ->20)
 		
 		<input type="submit" value="Guardar">
 	}
@@ -35,10 +35,10 @@
 	@helper.form(routes.UserController.modifyPass(userName)) {
 	
 		@if(!Util.updateByAdmin(userName)){
-			@inputPassword(modifyPassForm("pass"),'_label->"Contraseña actual",'required -> "true", 'size ->20)
+			@inputPassword(modifyPassForm("pass"),'_label->Messages.get("password.admin"),'required -> "true", 'size ->20)
 		}
-		@inputPassword(modifyPassForm("pass2"),'_label->"Nueva contraseña",'required -> "true", 'size ->20)
-		@inputPassword(modifyPassForm("pass3"),'_label->"Repita nueva contraseña",'required -> "true", 'size ->20)
+		@inputPassword(modifyPassForm("pass2"),'_label->Messages.get("password.new"),'required -> "true", 'size ->20)
+		@inputPassword(modifyPassForm("pass3"),'_label->Messages.get("password.new2"),'required -> "true", 'size ->20)
 		<input type="hidden" name="name" value="@userName">
 		<input type="submit" value="Guardar">
 	}
