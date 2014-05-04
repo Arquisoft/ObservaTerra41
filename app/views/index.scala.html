@@ -4,21 +4,20 @@
 
 @main("ObservaTerra") {
 	<meta charset="UTF-8">
-	
+		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/index.css")' >
 	<h1>@Messages.get("Wellcome")</h1>
 
-	<p>
-		@Messages.get("index.message1")
-		<br>
-		@Messages.get("index.message2")
-		<a href="@routes.Application.data">@Messages.get("index.message3")</a>
-		@Messages.get("index.message4")
-		<a href="@routes.Application.comparar">@Messages.get("index.message3")</a>.
-		<br>
-		@Messages.get("index.message5")
-		<a href="@routes.Application.showRegister">@Messages.get("index.message6")</a> 
+		<h2>@Messages.get("question1")</h2>
+		<p>@Messages.get("index.message1")</p>
+		<h2>@Messages.get("question2")</h2>
+		<p>@Messages.get("index.message2")
+		<a href="@routes.Application.data">@Messages.get("index.message3")</a></p>
+		<p>@Messages.get("index.message4")
+		<a href="@routes.Application.comparar">@Messages.get("index.message3")</a></p>
+		<h2>@Messages.get("question3")</h2>
+		<p>@Messages.get("index.message5")
+		<a href="@routes.Application.showRegister">@Messages.get("index.message6")</a>
 		@Messages.get("index.message7")
-		<a href="@routes.Application.login">@Messages.get("index.message8")</a>.
-	</p>
+		<a href="@routes.Application.login">@Messages.get("index.message8")</a></p>
 	
 }

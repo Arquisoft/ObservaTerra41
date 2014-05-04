@@ -1,6 +1,6 @@
 name = name
 create = Create
-Wellcome			= Wellcome to ObservaTerra
+Wellcome			= Welcome to ObservaTerra
 countries 			= Countries
 country				= Country
 Indicator			= Indicator
@@ -71,6 +71,7 @@ password.new		= Password
 password.new2		= Password Again
 id					= Id
 remove				= Remove
+user.new			= New User
 user.delete			= Delete User
 user.update			= Update User
 user.form.err1		= Invalid user or password
@@ -113,3 +114,7 @@ data.msg2			= File name
 data.msg3			= File type
 data.download		= Download
 
+
+question1			= What is Observaterra?
+question2			= How can I start to see data?
+question3			= Can I upload my own data?

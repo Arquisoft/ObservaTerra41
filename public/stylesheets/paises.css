@@ -1,5 +1,6 @@
 main{
 	font-size: 120%;
+	
 }
 
 h2{
@@ -9,13 +10,13 @@ h2{
 
 #compareform{
 	padding-top: 5px;
-	margin-left:10px;
+	margin-left:15px;
 	float:left;
 	width: 180px;
 }
 
 label{
-	padding-left: 5px;	
+	padding-left: 5px;
 }
 
 #comboind{

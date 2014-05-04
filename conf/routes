@@ -77,4 +77,7 @@ GET		/language				controllers.Application.changeLanguage()
 
 GET		/upload					controllers.UserController.showUpload()
 
-GET		/download/:id			controllers.Application.download(id: Long)				
+GET		/download/:id			controllers.Application.download(id: Long)
+
+#data request
+GET		/collect						controllers.Admin.collectData()

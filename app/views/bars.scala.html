@@ -2,7 +2,9 @@
 
 @import play.i18n._
 
-@main("ObservaTerra") {
+@main("ObservaTerra") {s
+<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>	
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/font.css")' >
 <h2>@Messages.get("Bar.chart") - @indicator.getName()</h2>
 <svg class="chart"></svg>
 

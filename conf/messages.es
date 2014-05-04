@@ -71,6 +71,7 @@ password.new		= Contraseña
 password.new2		= Repita la contraseña
 id					= Identificador
 remove				= Borrar
+user.new			= Nuevo Usuario
 user.delete			= Borrar Usuario
 user.update			= Actualizar Usuario
 user.form.err1		= Usuario o contraseña inválidos
@@ -112,3 +113,7 @@ data.msg1			= Subido por
 data.msg2			= Nombre de archivo
 data.msg3			= Tipo de archivo
 data.download		= Descargar
+
+question1			= ¿Qué es Observaterra?
+question2			= ¿Cómo puedo empezar a ver datos?
+question3			= ¿Puedo subir mis propios datos?
