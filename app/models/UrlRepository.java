@@ -19,10 +19,12 @@ public class UrlRepository extends Model {
 	@GeneratedValue
 	private Long id;
 	private String url;
+	private String provider;
 
-	public UrlRepository(String url) {
+	public UrlRepository(String url,String provider) {
 		super();
 		this.url = url;
+		this.provider = provider;
 	}
 
 	@Override
@@ -68,6 +70,14 @@ public class UrlRepository extends Model {
 	
 	public JsonNode toJson() {
 		return Json.toJson(this);
+	}
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
 	}
 
 }
