@@ -9,23 +9,26 @@
 
 	<h1>@Messages.get("data.title")</h1>
 
-	@for(res <- resources) { 
-		<div class="download">
-			<div class="info"> <p>@Messages.get("data.msg1"): <strong class="username">@res.getOwner().getUserName()</strong> - <i class="date">@res.getUploadDate()</i></p></div>
-			 
-			<div class="fileinfo">
-				<p>@Messages.get("data.msg2"): <strong class="filename">@res.getName()</strong></p>
-				<p>@Messages.get("data.msg3"): <strong class="filetype">@res.getContentType()</strong></p>
+	@if(!resources.isEmpty()){
+		@for(res <- resources) { 
+			<div class="download">
+				<div class="info"> <p>@Messages.get("data.msg1"): <strong class="username">@res.getOwner().getUserName()</strong> - <i class="date">@res.getUploadDate()</i></p></div>
+				 
+				<div class="fileinfo">
+					<p>@Messages.get("data.msg2"): <strong class="filename">@res.getName()</strong></p>
+					<p>@Messages.get("data.msg3"): <strong class="filetype">@res.getContentType()</strong></p>
+					
+					<a href="@routes.Application.download(res.getId())">
+						<h3>@Messages.get("data.download")</h3>
+						<img class="button" src='@routes.Assets.at("images/download.png")' alt="Download"/>
+					</a>
+				</div>
+				 
+				<embed class="embed" src="@routes.Assets.at(res.getFilePath())" @(if(res.isAudioVideo()) "autostart=false" else "") type="@res.getContentType()"/>
 				
-				<a href="@routes.Application.download(res.getId())">
-					<h3>@Messages.get("data.download")</h3>
-					<img class="button" src='@routes.Assets.at("images/download.png")' alt="Download"/>
-				</a>
 			</div>
-			 
-			<embed class="embed" src="@routes.Assets.at(res.getFilePath())" @(if(res.isAudioVideo()) "autostart=false" else "") type="@res.getContentType()"/>
-			
-		</div>
+		}
+	}else{
+		<p>@Messages.get("data.empty") <a href="@routes.UserController.showUpload">@Messages.get("data.empty2")</a></p>
 	}
-
 }

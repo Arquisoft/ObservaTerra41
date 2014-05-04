@@ -55,7 +55,6 @@
 		
 		<canvas class="color" @(if(countriesSelected.size() >= 4) "style=background:"  + Util.getColor(countriesSelected.indexOf(countriesSelected.get(3))) else "")></canvas>
 	}
-	</div>
 	
 	<!-- DIBUJAR TABLA -->
 	@if(countriesSelected.size() > 0){
@@ -75,18 +74,19 @@
 	</table>
 	}
 	
+	</div>
 	
 	<div id="graphdiv">
 	@if(countriesSelected.size() > 1){
 	<!-- DIBUJAR GRAFICO -->
 	<script src="@routes.Assets.at("javascripts/Chart.min.js")"></script>
 	
-    <canvas id="graph" width="1150" height="500"></canvas>
+    <canvas id="graph" width="900px" height="550px"></canvas>
     
     <script>
     	// Datos
 	    var barData = {
-	        labels : ["Value"], //Fechas
+	        labels : [""], //Fechas
 	        datasets : [ //Cada dataset es un país
 	            @for(country <- countriesSelected) {
 		            {
@@ -113,5 +113,5 @@
 		<p>@Messages.get("2countriesforgraphic")</p>
 	}
 	</div>
-	
+
 }

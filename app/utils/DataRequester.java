@@ -8,6 +8,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.HashSet;
 import java.util.Set;
 
+import play.Logger;
 import conf.ServicesFactory;
 import models.UrlRepository;
 
@@ -34,7 +35,7 @@ public class DataRequester {
 				fos.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error("Fallo al intentar recuperar datos: " + e);
 		}
 		
 		if(paths.size()>0){

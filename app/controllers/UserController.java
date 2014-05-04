@@ -3,6 +3,8 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 
+import com.google.common.io.Files;
+
 import conf.ServicesFactory;
 import models.User;
 import models.UsersResources;
@@ -14,7 +16,6 @@ import play.mvc.Security;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import utils.MD5Hash;
-import utils.SaveFile;
 import views.html.*;
 import controllers.security.SecuredUser;
 
@@ -29,26 +30,24 @@ public class UserController extends Controller {
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart filePart = body.getFile("fichero");
 		
-		String[] s = filePart.getFilename().split("\\.");
-		String type = s[s.length - 1];
+		String filename = filePart.getFilename();
+		int index = filename.lastIndexOf(".");
 		
-		int index = filePart.getFilename().lastIndexOf(".");
-		
-		String name = filePart.getFilename();
+		String type = filename.substring(index + 1, filename.length());
 		
 		if(index != -1)
-			name = filePart.getFilename().substring(0,index);
+			filename = filename.substring(0,index);
 		
 		String mime = filePart.getContentType();
 		
-		UsersResources ur = new UsersResources(Util.getSessionUser(), type, name, mime);
+		UsersResources ur = new UsersResources(Util.getSessionUser(), type, filename, mime);
 		ServicesFactory.getUsersResourcesService().addResource(ur);
 		
 		File file = filePart.getFile();
-		File newfile = new File("public/data/user/" + ur.getId() + "." + type);
+		File newfile = new File("public/data/user/" + ur.getFilename());
 		
 		try {
-			SaveFile.save(file, newfile);
+			Files.copy(file, newfile);
 		} catch (IOException e) {
 			ServicesFactory.getUsersResourcesService().deleteResource(ur.getId());
 			return ok(upload.render("fail"));

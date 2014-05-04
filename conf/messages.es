@@ -113,6 +113,8 @@ data.msg1			= Subido por
 data.msg2			= Nombre de archivo
 data.msg3			= Tipo de archivo
 data.download		= Descargar
+data.empty			= Todavía no hay ningún archivo en la aplicación,
+data.empty2			= sé el primero en subir uno.
 
 question1			= ¿Qué es Observaterra?
 question2			= ¿Cómo puedo empezar a ver datos?

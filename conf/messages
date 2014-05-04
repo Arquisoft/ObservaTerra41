@@ -113,7 +113,8 @@ data.msg1			= Upload by
 data.msg2			= File name
 data.msg3			= File type
 data.download		= Download
-
+data.empty			= There is no files uploaded yet,
+data.empty2			= be the first to upload one.
 
 question1			= What is Observaterra?
 question2			= How can I start to see data?

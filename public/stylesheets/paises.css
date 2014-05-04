@@ -12,7 +12,7 @@ h2{
 	padding-top: 5px;
 	margin-left:15px;
 	float:left;
-	width: 180px;
+	width: 220px;
 }
 
 label{
@@ -21,7 +21,7 @@ label{
 
 #comboind{
 	font-size: 110%;
-	width: 180px;
+	width: 220px;
 	height: 28px;
 	margin-top: 5px;
 	margin-bottom: 20px;
@@ -29,7 +29,7 @@ label{
 
 .combopais{
 	font-size: 110%;
-	width: 105px;
+	width: 145px;
 	height: 28px;
 }
 
@@ -42,12 +42,11 @@ label{
 }
 
 #comparetable {
-	float: left;
-	margin-left: 50px;
-	position: relative;
-	top:72px;
+	margin-top: 50px;
 	border-collapse:collapse;
+	width: 220px;
 }
+
 
 th{
 	background-color:#444;
@@ -78,9 +77,14 @@ td{
 }
 
 #graphdiv{
+	width: 900px;
+	height: 550px;
 	text-align: center;
-	position: relative;
-  	top: 30px;
-	clear:both;
+	margin-top: 10px;
+	float: right;
 }
 
+#graphdiv p{
+	position: relative;
+	top: 100px;	
+}
