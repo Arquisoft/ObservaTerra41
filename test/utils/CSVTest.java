@@ -30,7 +30,7 @@ public class CSVTest {
 	 */
 	@Test
 	public void testPaises() {
-		CSV.read("data/1");
+		CSV.read("data/3");
 		Country[] paises = CSV.paises.toArray(new Country[0]);
 		Country evaluated = null;
 		for (int i = 0; i < paises.length; i++) {

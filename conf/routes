@@ -74,3 +74,7 @@ POST    /login                  controllers.Application.authenticate()
 GET 	/logout					controllers.UserController.cerrarSesion()
 
 GET		/language				controllers.Application.changeLanguage()
+
+
+#data request
+GET		/data						controllers.Admin.collectData()
