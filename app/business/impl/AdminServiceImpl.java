@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void createAdmin(Admin user) {
-		if (ServicesFactory.getUsersService().findByUserName(user.getName()) == null) {
+		if (ServicesFactory.getUsersService().findByUserName(user.getUserName()) == null) {
 			user.save();
 		}
 

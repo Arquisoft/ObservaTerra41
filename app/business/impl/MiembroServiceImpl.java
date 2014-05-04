@@ -24,7 +24,7 @@ public class MiembroServiceImpl implements MiembroService {
 	@Override
 	public void createMiembro(Miembro user) {
 
-		if (ServicesFactory.getUsersService().findByUserName(user.getName()) == null) {
+		if (ServicesFactory.getUsersService().findByUserName(user.getUserName()) == null) {  
 			user.save();
 		}
 

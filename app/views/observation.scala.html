@@ -11,7 +11,9 @@
 
 <h1>@Messages.get("observations")</h1>
 
-<table>
+<input type="text" id="searchObs" placeholder="Buscar" onkeyup="filter('searchObs', 'obsTable', [1,2]);"/>
+<div style="height:200px;overflow:scroll;">
+<table class="obsTable">
 <tr>
 <th>@Messages.get("id")</th>
 <th>@Messages.get("country")</th>
@@ -35,6 +37,7 @@
    
 }
 </table>
+</div>
 
 <h2>@{Messages.get("add.observation")}</h2>
     

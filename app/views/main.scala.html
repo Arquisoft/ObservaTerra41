@@ -13,6 +13,23 @@
 		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
 		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bars.css")' >
 		<link rel="shortcut icon" href='@routes.Assets.at("images/favicon.png")'>
+		<script type="text/javascript">
+				function filter(inputId, tableId, cols) {
+					var input = document.getElementById(inputId).value;
+					var table = document.getElementsByClassName(tableId)[0];
+					
+					for (var i = 1, row; row = table.rows[i]; i++) {
+						for (var j = 0, cell; cell = row.cells[j]; j++) {
+							if(cols.indexOf(j) !== -1){
+								var text = cell.innerHTML.toLowerCase(), val = input.toLowerCase();
+								row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+								if(text.indexOf(val) !== -1)break;
+							}
+						}  
+						
+					}
+				}
+		</script>
 	</head>
 	
 	<body>

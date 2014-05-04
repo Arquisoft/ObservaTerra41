@@ -62,7 +62,6 @@ public class Application extends Controller {
 	
 	public static Result changeLanguage(){
 		String url = request().getHeader("referer");
-		System.out.println(url);
 		String code = Form.form().bindFromRequest().get("language");
 		changeLang(code);
 		return redirect(url);
