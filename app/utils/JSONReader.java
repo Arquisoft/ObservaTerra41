@@ -39,8 +39,6 @@ public class JSONReader {
 			JSONObject aux= (JSONObject) jsonObj.get("lectura");
 			JSONArray aux2= (JSONArray) aux.get("valores");
 			
-			List<Observation>observaciones= new ArrayList<Observation>();
-			
 			String pais;
 			String indicador;
 			double value;

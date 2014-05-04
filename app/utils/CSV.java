@@ -25,6 +25,7 @@ public class CSV {
 	protected static void read(String filepath) {
 		FileReader filereader = null;
 		BufferedReader bufferedReader = null;
+		
 		try {
 			filereader = new FileReader(filepath);
 			bufferedReader = new BufferedReader(filereader);
@@ -92,9 +93,11 @@ public class CSV {
 		if (paisEvaluado != null) {
 			for (int i = 0; i < columnas.length; i++) {
 				if (hasObservations[i]) {
-					observaciones.add(new Observation(paisEvaluado,
-							indicadores[i], getValor(columnas[i])));
-
+					
+					Double valor = getValor(columnas[i]);
+					
+					if(valor!=null)
+						observaciones.add(new Observation(paisEvaluado, indicadores[i], getValor(columnas[i])));
 				}
 			}
 		}
@@ -154,7 +157,7 @@ public class CSV {
 			}
 		}
 		indicador = StripString.Strip(indicador);
-		if (!indicador.equals("")) {
+		if (!indicador.equals("") && !indicador.contains("Note")) {
 			indicadores[index] = new Indicator(indicador,
 					Integer.parseInt(fecha));
 			return true;
@@ -169,6 +172,9 @@ public class CSV {
 	 * @return
 	 */
 	private static Double getValor(String data) {
+		
+		data = data.replace("%", "");
+		
 		try {
 
 			return Double.parseDouble(data);
@@ -176,7 +182,7 @@ public class CSV {
 			try {
 				return Integer.parseInt(data) + 0.0;
 			} catch (Exception e1) {
-				return 0.0;
+				return null;
 			}
 		}
 	}

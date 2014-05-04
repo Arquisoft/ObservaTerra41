@@ -3,7 +3,8 @@
 	margin-bottom: 50px;
 	background-color: #DEDEDE;
 	padding: 10px;
-	border: 1px solid #474747
+	border: 1px solid #474747;
+	height: 480px;
 }
 
 .info{
@@ -23,13 +24,14 @@
 }
 
 .embed{
-	width:600px;
+	width:750px;
 	height:400px;
 }
 
 .fileinfo{
 	font-size: 120%;
 	float: left;
+	width: 220px;
 	margin-right: 100px;
 	margin-left: 30px;
 }

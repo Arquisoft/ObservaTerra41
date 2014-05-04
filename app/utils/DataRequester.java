@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
@@ -23,7 +24,7 @@ public class DataRequester {
 	public static void request() {
 		try {
 			for (UrlRepository repo : ServicesFactory.getUrlRepositoryService()
-					.all()) {
+					.all()) { 
 				URL url = new URL(repo.getUrl());
 				ReadableByteChannel rbc = Channels.newChannel(url.openStream());
 				FileOutputStream fos = new FileOutputStream("data/"
@@ -38,6 +39,12 @@ public class DataRequester {
 		
 		if(paths.size()>0){
 			autopersists();
+		}
+		
+		//No hace falta guardarlas
+		for(String path : paths){
+			File file = new File(path);
+			file.delete();
 		}
 	}
 	private static void autopersists(){

@@ -3,7 +3,6 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Indicator;
 import models.Observation;
 
 import org.junit.Assert;

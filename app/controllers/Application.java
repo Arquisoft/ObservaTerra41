@@ -21,11 +21,6 @@ public class Application extends Controller {
 		return ok(new File("public/" + ur.getFilePath()));
 	}
 
-	public static Result bars(String indicator) {
-		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
-				indicator)));
-	}
-
 	// Muesta la vista de la página principal
 	public static Result index() {
 		return ok(index.render());

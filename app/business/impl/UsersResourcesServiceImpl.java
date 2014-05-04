@@ -28,7 +28,7 @@ public class UsersResourcesServiceImpl implements UsersResourcesService{
 	
 	@Override
 	public List<UsersResources> all() {
-		return find.all();
+		return find.order().desc("uploadDate").findList();
 	}
 
 }

@@ -25,8 +25,6 @@ public class CSVReader {
 		List<Observation> obsList = new ArrayList<Observation>();
 		BufferedReader streamReader = new BufferedReader(new InputStreamReader(
 				file, "UTF-8"));
-		
-		StringBuilder responseStrBuilder = new StringBuilder();
 
 		String inputStr;
 		
@@ -96,7 +94,7 @@ public class CSVReader {
 	
 	public static boolean isNumeric( String s ){
 	    try{
-	        double y = Double.parseDouble( s );
+	        Double.parseDouble( s );
 	        return true;
 	    }
 	    catch( NumberFormatException err ){

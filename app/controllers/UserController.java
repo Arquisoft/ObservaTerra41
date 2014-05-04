@@ -33,7 +33,11 @@ public class UserController extends Controller {
 		String type = s[s.length - 1];
 		
 		int index = filePart.getFilename().lastIndexOf(".");
-		String name = filePart.getFilename().substring(0,index);
+		
+		String name = filePart.getFilename();
+		
+		if(index != -1)
+			name = filePart.getFilename().substring(0,index);
 		
 		String mime = filePart.getContentType();
 		
