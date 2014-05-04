@@ -11,5 +11,8 @@
   font: 10px sans-serif;
   text-anchor: end;
 }
-
+a{
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+		font-size: 15px;
+}
 

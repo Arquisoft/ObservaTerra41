@@ -71,6 +71,7 @@ password.new		= Contraseña
 password.new2		= Repita la contraseña
 id					= Identificador
 remove				= Borrar
+user.new			= Nuevo Usuario
 user.delete			= Borrar Usuario
 user.update			= Actualizar Usuario
 user.form.err1		= Usuario o contraseña inválidos
@@ -99,3 +100,6 @@ developer.title		= Desarrolladores de la applicacion
 
 footer.message		= Aplicación desarrollada para la asignatura de Arquitectura del Software 2013/2014 - Uniovi - 
 footer.authors		= Desarrolladores
+question1			= ¿Qué es Observaterra?
+question2			= ¿Cómo puedo empezar a ver datos?
+question3			= ¿Puedo subir mis propios datos?
