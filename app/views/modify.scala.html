@@ -3,7 +3,7 @@
 @import play.i18n._ 
 @import helper._
 
-@main("Modficando usuario") {
+@main(Messages.get("modifying.user")) {
 
 	<meta charset="UTF-8">
 
@@ -21,10 +21,10 @@
 		@inputText(modifyInfoForm("surname"),'_label->Messages.get("surname"),'required -> "true", 'size ->20)
 		@inputText(modifyInfoForm("email"),'_label->Messages.get("email"),'required -> "true", 'size ->20)
 		
-		<input type="submit" value="Guardar">
+		<input type="submit" value="@Messages.get("save")">
 	}
 	
-	<h2>Modifcar contraseña</h2>
+	<h2>@Messages.get("modifying.password")</h2>
 	
 	@if(modifyPassForm.hasGlobalErrors) {
 	<p class="error">
@@ -40,7 +40,7 @@
 		@inputPassword(modifyPassForm("pass2"),'_label->Messages.get("password.new"),'required -> "true", 'size ->20)
 		@inputPassword(modifyPassForm("pass3"),'_label->Messages.get("password.new2"),'required -> "true", 'size ->20)
 		<input type="hidden" name="name" value="@userName">
-		<input type="submit" value="Guardar">
+		<input type="submit" value="@Messages.get("save")">
 	}
 } 
 

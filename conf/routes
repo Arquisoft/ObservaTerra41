@@ -9,6 +9,8 @@ GET		/observation				controllers.Admin.showObservations()
 GET     /bars/:indicator   			controllers.Application.bars(indicator:String)
 POST	/comparacion				controllers.Application.comparar()
 GET		/comparacion				controllers.Application.comparar()
+GET 	/data						controllers.Application.data()
+GET		/developers					controllers.Application.authors()
 
 POST	/country					controllers.Admin.newCountry()
 POST	/country/delete/:code       controllers.Admin.deleteCountry(code: String)

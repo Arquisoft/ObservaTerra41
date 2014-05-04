@@ -49,7 +49,7 @@ public class Util extends Controller{
 	}
 	
 	public static boolean validateEmail(String email){
-		Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]$", Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(email);
 		return m.matches();
 	}

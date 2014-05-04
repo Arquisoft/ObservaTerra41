@@ -2,6 +2,7 @@ package business.impl;
 
 import java.util.List;
 
+import conf.ServicesFactory;
 import play.db.ebean.Model.Finder;
 import models.UrlRepository;
 import business.UrlRepositoryService;
@@ -19,8 +20,9 @@ public class UrlRepositoryServiceImpl implements UrlRepositoryService{
 
 	@Override
 	public void addURL(UrlRepository toPersists) {
-		toPersists.save();
-		
+		UrlRepository rep = ServicesFactory.getUrlRepositoryService().findByUrl(toPersists.getUrl());
+		if(rep == null)
+			toPersists.save();
 	}
 
 	@Override

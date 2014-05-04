@@ -71,7 +71,7 @@
 			<nav>
 				<ul>
 					<!-- Enlaces de acceso público -->
-					<li><a href="#">@Messages.get("accessdata")</a>
+					<li><a href="@routes.Application.data">@Messages.get("accessdata")</a>
 					<li><a href="@routes.Application.comparar">@Messages.get("compare.countries")</a>
 
 					<!-- Enlaces para usuarios registrados -->
@@ -97,15 +97,8 @@
 			</main>
 			
 			<footer>
-			    <div id="authors">
-			    	<ul>
-			    		<li><p>Sergio Jiménez Jiménez UO226261</p>
-			    		<li><p>Carlos Miguel Narganes UO218695</p>
-			    		<li><p>Jorge Alonso Montes UO197637</p>
-			    		<li><p>Roque Carrizo Fernancdez UO217301</p>
-			    		<li><p>Daniel Tella González UO218105</p>
-			    	</ul>
-			    </div>
+			    @Messages.get("footer.message")
+			    <a href="@routes.Application.authors">@Messages.get("footer.authors")</a>
 			</footer>
 	    </div>
 	</body>

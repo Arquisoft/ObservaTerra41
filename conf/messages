@@ -21,6 +21,9 @@ observations		= Observations
 list.observations	= List of Observations
 add.observation 	= Add Observation
 delete.observation  = Delete Observation
+obs.form.err		= Invalid input
+
+filter				= Filter
 
 file.uploaded		= Uploaded file with {0} observations
 read.excel.error	= Error reading excel file
@@ -58,18 +61,41 @@ user				= User
 users				= Users
 user.list			= List of Users
 modifying.user		= Modifying user
+modifying.password	= Change password
 name				= Name
 surname				= Surname
 email				= Email
 password			= Password
-password.admin		= Admin Password
-password.new		= New Password
-password.new2		= New Password Again
+password.admin		= Current Password
+password.new		= Password
+password.new2		= Password Again
 id					= Id
 remove				= Remove
 user.delete			= Delete User
 user.update			= Update User
+user.form.err1		= Invalid user or password
+user.form.err2		= The passwords do not match
+user.form.err3		= Invalid email
+user.form.err4		= Incorrect password
+user.form.err5		= Fill all required fields
+
+save				= Save
 
 url.list			= List of Urls
 url.add				= Add Url
 url.address			= Url Address
+
+index.message1		= ObservaTerra is a web application for processing and visualizing data from different countries.
+index.message2		= To access the information you can click 
+index.message3		= here
+index.message4		= or if you want to compare data from different countries click 
+index.message5		= You can also upload your own data to ObservaTerra but first you have to be 
+index.message6		= registered
+index.message7		= in the application, if already are go ahead and
+index.message8		= log in
+
+developer			= Developers
+developer.title		= Developers of this web application
+
+footer.message		= Aplication developed for the Software Arquitecture course 2013/2014 - Uniovi - 
+footer.authors		= Developers

@@ -3,6 +3,7 @@ package controllers;
 import conf.ServicesFactory;
 import models.User;
 import play.data.Form;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -102,10 +103,10 @@ public class UserController extends Controller {
 		
 		public String validate() {
 			if(name.equals("") || name == null || surname.equals("") || surname == null || email.equals("") || email == null)
-				return "Deben rellenarse todos los campos obligatorios";
+				return Messages.get("user.form.err5");
 			
 			if(!Util.validateEmail(email))
-				return "Formato de email incorrecto";
+				return Messages.get("user.form.err3");
 			
 			return null;
 		}
@@ -146,12 +147,12 @@ public class UserController extends Controller {
 		public String validate() {
 			
 			if(!this.pass2.equals(this.pass3))
-				return "Las contraseñas no coinciden";
+				return Messages.get("user.form.err2");
 			
 			if(!Util.updateByAdmin(this.name)){
 				String userPass = ServicesFactory.getUsersService().findByUserName(Util.getSessionUser()).getPassword();
 				if(!userPass.equals(this.pass))
-					return "Contraseña errónea";
+					return Messages.get("user.form.err4");
 			}
 			
 			return null;

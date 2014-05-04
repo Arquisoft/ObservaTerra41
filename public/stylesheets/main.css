@@ -72,7 +72,7 @@ header h1{
 
 div#opciones{
 	float:right;
-	width:180px;
+	width:280px;
 	text-align: right;
 }
 
@@ -113,7 +113,10 @@ footer {
 	bottom:0; /* stick to bottom */
 	background:#ddd;
 	border-top:6px double gray;
-	height: 13em;
+	height: 2em;
+	text-align: center;
+	padding-top:0.9em;
+	font-size: 115%;
 }
 
 /*Efecto Bola*/

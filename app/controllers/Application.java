@@ -16,6 +16,7 @@ import utils.MD5Hash;
 import utils.SaveFile;
 import views.html.*;
 import play.data.Form;
+import play.i18n.Messages;
 import play.mvc.*;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -26,41 +27,49 @@ public class Application extends Controller {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
 	}
-	
-	   public static Result saveFile(){
-	    	MultipartFormData body = request().body().asMultipartFormData();
-	        FilePart JSON = body.getFile("fichero");
-	        
-	        SaveFile write = new SaveFile();
-	        File file = JSON.getFile();
-	        try {
+
+	public static Result saveFile() {
+		MultipartFormData body = request().body().asMultipartFormData();
+		FilePart JSON = body.getFile("fichero");
+
+		SaveFile write = new SaveFile();
+		File file = JSON.getFile();
+		try {
 			write.save(new FileInputStream(file));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
-	        return redirect(routes.Application.index()); 
-	         
-	    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return redirect(routes.Application.index());
+
+	}
 
 	// Muesta la vista de la página principal
-	   public static Result index() {
-			ObservationService ob = ServicesFactory.getObservationService();
-			CountryService cs = ServicesFactory.getCountryService();
-			IndicatorSercive is = ServicesFactory.getIndicatorService();
-			//session("language","en");
-			return ok(index.render(ob.all(), cs.all(), is.all()));
-		}
+	public static Result index() {
+		return ok(index.render());
+	}
+	
+	// Muesta la vista de la página principal
+	public static Result authors() {
+		return ok(developer.render());
+	}
+	
+	public static Result data(){
+		ObservationService ob = ServicesFactory.getObservationService();
+		CountryService cs = ServicesFactory.getCountryService();
+		IndicatorSercive is = ServicesFactory.getIndicatorService();
+		return ok(data.render(ob.all(), cs.all(), is.all()));
+	}
 
 	public static Result login() {
 		return ok(login.render(Form.form(Login.class)));
 	}
-	
-	public static Result changeLanguage(){
+
+	public static Result changeLanguage() {
 		String url = request().getHeader("referer");
 		String code = Form.form().bindFromRequest().get("language");
 		changeLang(code);
@@ -80,7 +89,7 @@ public class Application extends Controller {
 
 	public static Result newUser() {
 		Form<UserForm> userForm = Form.form(UserForm.class).bindFromRequest();
-		
+
 		if (userForm.hasErrors()) {
 			return badRequest(register.render(userForm));
 		}
@@ -134,8 +143,7 @@ public class Application extends Controller {
 				selected, comparationForm));
 	}
 
-	
-	//Formulario para el login
+	// Formulario para el login
 	public static class Login {
 
 		private String user;
@@ -147,9 +155,9 @@ public class Application extends Controller {
 					user);
 
 			if (usuario == null)
-				return "Invalid user or password";
+				return Messages.get("user.form.err1");
 			if (!usuario.getPassword().equals(password))
-				return "Invalid user or password";
+				return Messages.get("user.form.err1");
 
 			return null;
 		}
@@ -172,7 +180,7 @@ public class Application extends Controller {
 
 	}
 
-	//Formulario para la vista de comparacion de paises
+	// Formulario para la vista de comparacion de paises
 	public static class ComparationForm {
 
 		private String indicator;
@@ -222,8 +230,8 @@ public class Application extends Controller {
 		}
 
 	}
-	
-	//Formulario para el registro de usuarios
+
+	// Formulario para el registro de usuarios
 	public static class UserForm {
 
 		private String userName;
@@ -282,13 +290,13 @@ public class Application extends Controller {
 		}
 
 		public String validate() {
-			
+
 			if (!pass.equals(pass2))
-				return "La nueva password no coincide en ambos campos";
-			
-			if(!Util.validateEmail(email))
-				return "Formato de email incorrecto";
-			
+				return Messages.get("user.form.err2");
+
+			if (!Util.validateEmail(email))
+				return Messages.get("user.form.err3");
+
 			return null;
 		}
 

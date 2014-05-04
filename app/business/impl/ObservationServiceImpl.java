@@ -69,8 +69,9 @@ public class ObservationServiceImpl implements ObservationService{
 
 	@Override
 	public void addObservation(Observation ob) {
-		ob.save();
-		
+		Observation observation = ServicesFactory.getObservationService().findByCountryIndicator(ob.getCountry().getCode(), ob.getIndicator().getCode());
+		if(observation == null)
+			ob.save();
 	}
 
 

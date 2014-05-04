@@ -4,13 +4,10 @@ import conf.ServicesFactory;
 import controllers.security.SecuredAdmin;
 import models.*;
 import play.data.*;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.country;
-import views.html.indicator;
-import views.html.observation;
-import views.html.user;
 import views.html.*;
 
 @Security.Authenticated(SecuredAdmin.class)
@@ -89,7 +86,7 @@ public class Admin extends Controller {
       try{
       value = Double.parseDouble(requestData.get("value"));
       }catch(Exception e){
-    	  String mensaje="Campo no valido";
+    	  String mensaje= Messages.get("obs.form.err");
     	  return ok(observation.render(ServicesFactory.getObservationService().all(),
   				ServicesFactory.getCountryService().all(),
   				ServicesFactory.getIndicatorService().all(), observationForm,mensaje));

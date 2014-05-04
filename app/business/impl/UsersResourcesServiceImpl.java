@@ -10,7 +10,9 @@ public class UsersResourcesServiceImpl implements UsersResourcesService{
 
 	@Override
 	public void addResource(UsersResources resource) {
-		resource.save();
+		UsersResources ur = findResourceByCode(resource.getCode());
+		if(ur == null)
+			resource.save();
 	}
 
 	@Override

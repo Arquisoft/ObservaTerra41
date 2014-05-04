@@ -181,3 +181,9 @@ input[type=submit]:active {
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
 }
+
+#back{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}

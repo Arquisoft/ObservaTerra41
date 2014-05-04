@@ -1,50 +1,24 @@
-@(observations: List[Observation], countries: List[Country], indicators: List[Indicator])
+@()
 
 @import play.i18n._
 
 @main("ObservaTerra") {
-<meta charset="UTF-8">
-
-<h1>@Messages.get("Wellcome")</h1>
-<h2>@Messages.get("list.observations")</h2>
-
-<table>
-<tr>	
-<th>@Messages.get("Country")</th>
-<th>@Messages.get("Indicator")</th>
-<th>@Messages.get("Value")Value</th>
-</tr>
-@for(observation <- observations) {
-	<tr>
-
-	<td>@observation.getCountry().getName()</td>
-	<td>@observation.getIndicator().getName()</td>
-	<td>@observation.getObsValue()</td>
-	</tr> 
-}
-</table>
-
-<h2>@Messages.get("Bar.chart")</h2>
-<ul>
-@for(indicator <- indicators) {
-
- <li><a href="@routes.Application.bars(indicator.getCode())">@indicator.getName()</a></li>
+	<meta charset="UTF-8">
 	
-}
-</ul>
+	<h1>@Messages.get("Wellcome")</h1>
 
-<h2>@Messages.get("upload.file")</h2>
-
-
-@helper.form(action = routes.Application.saveFile(), 
-	  'enctype -> "multipart/form-data") {
-    
-    <input type="file" name="fichero">
-    
-    <p>
-        <input type="submit">
-    </p>
-    
-}
-
+	<p>
+		@Messages.get("index.message1")
+		<br>
+		@Messages.get("index.message2")
+		<a href="@routes.Application.data">@Messages.get("index.message3")</a>
+		@Messages.get("index.message4")
+		<a href="@routes.Application.comparar">@Messages.get("index.message3")</a>.
+		<br>
+		@Messages.get("index.message5")
+		<a href="@routes.Application.showRegister">@Messages.get("index.message6")</a> 
+		@Messages.get("index.message7")
+		<a href="@routes.Application.login">@Messages.get("index.message8")</a>.
+	</p>
+	
 }
