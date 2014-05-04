@@ -1,9 +1,9 @@
-
-{"lectura": {
+{
+"lectura": {
      "valores": [
-       {"pais": "es","Indicador": "hdi","valor":"12.4"},
-       {"pais": "it","Indicador": "hdi","valor":"11"},
-       {"pais": "fr","Indicador": "hdi","valor": "13.5"}
+       {"pais": "España","Indicador": "hdi","valor":"12.4"},
+       {"pais": "Francia","Indicador": "hdi","valor":"11"},
+       {"pais": "Italia","Indicador": "hdi","valor": "13.5"}
      ]
    }
 }
