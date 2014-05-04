@@ -1,0 +1,6 @@
+c:\users\dani\documents\visual studio 2013\Projects\PruebaAPI\PruebaAPI\bin\Debug\PruebaAPI.exe.config
+c:\users\dani\documents\visual studio 2013\Projects\PruebaAPI\PruebaAPI\bin\Debug\PruebaAPI.exe
+c:\users\dani\documents\visual studio 2013\Projects\PruebaAPI\PruebaAPI\obj\Debug\PruebaAPI.exe
+c:\users\dani\documents\visual studio 2013\Projects\PruebaAPI\PruebaAPI\obj\Debug\PruebaAPI.pdb
+C:\Users\Dani\Documents\Visual Studio 2013\Projects\PruebaAPI\PruebaAPI\bin\Debug\PruebaAPI.pdb
+C:\Users\Dani\Documents\Visual Studio 2013\Projects\PruebaAPI\PruebaAPI\obj\Debug\PruebaAPI.csprojResolveAssemblyReference.cache
