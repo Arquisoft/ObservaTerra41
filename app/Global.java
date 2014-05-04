@@ -17,12 +17,14 @@ public class Global extends GlobalSettings {
 			//table3: https://data.undp.org/api/views/9jnv-7hyp/rows.csv?accessType=DOWNLOAD
 			//table 4: https://data.undp.org/api/views/pq34-nwq7/rows.csv?accessType=DOWNLOAD
 			//table 5: no compaible
-			//table 6: https://data.undp.org/dataset/Table-6-Command-over-resources/ti85-2nvi
-			//table 7: https://data.undp.org/api/views/iv8b-7gbj/rows.csv?accessType=DOWNLOAD
+			//table 6: https://data.undp.org/api/views/ti85-2nvi/rows.csv?accessType=DOWNLOAD
+			//table 7: no compaible
 			//table 8: no compaible
 			//table 9: no compaible
-			//table 10:https://data.undp.org/api/views/itri-v7qr/rows.csv?accessType=DOWNLOAD
+			//table 10:no compaible
 			// url repo
+			
+			
 			ServicesFactory
 					.getUrlRepositoryService()
 					.addURL(new UrlRepository(
@@ -36,21 +38,13 @@ public class Global extends GlobalSettings {
 			.getUrlRepositoryService()
 			.addURL(new UrlRepository(
 					"https://data.undp.org/api/views/pq34-nwq7/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
-			
+			/*problemas de integridad... revisar, el fichero es valido
 			ServicesFactory
 			.getUrlRepositoryService()
 			.addURL(new UrlRepository(
-					"https://data.undp.org/dataset/Table-6-Command-over-resources/ti85-2nvi","Naciones Unidas"));
+					"https://data.undp.org/api/views/ti85-2nvi/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));*/
 			
-			ServicesFactory
-			.getUrlRepositoryService()
-			.addURL(new UrlRepository(
-					"https://data.undp.org/api/views/iv8b-7gbj/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
-			
-			ServicesFactory
-			.getUrlRepositoryService()
-			.addURL(new UrlRepository(
-					"https://data.undp.org/api/views/itri-v7qr/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
+
 			
 			
 			
