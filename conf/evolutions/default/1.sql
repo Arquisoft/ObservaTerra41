@@ -27,6 +27,7 @@ create table observation (
 create table url_repository (
   id                        bigint not null,
   url                       varchar(255),
+  provider                  varchar(255),
   constraint pk_url_repository primary key (id))
 ;
 

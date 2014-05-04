@@ -5,8 +5,14 @@
 
 	<h1>@Messages.get("url.list")</h1>
 		<table>
-			@for(url <- urls) {
 			<tr>
+				<td>proveedor:</td>
+				<td>Url</td>
+			</tr>
+			@for(url <- urls) {
+			
+			<tr>
+				<td>@url.getProvider()</td>
 				<td>@url.getUrl()</td>			
 				<td>@helper.form(routes.Admin.deleteUrl(url.getId())) { 
 					<input type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='Borrar Url'> 
@@ -18,7 +24,9 @@
 		
 		<h1>@Messages.get("url.add")</h1> 
 		@helper.form(routes.Admin.addUrl()){
+		<input type="text" name="provider" required = 'true' placeholder="proveedor">
 		<input type="text" name="url" placeholder="@Messages.get("url.address")">
+		
 		<input type="submit" value="@Messages.get("url.add")">
 		
 		}

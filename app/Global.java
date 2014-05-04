@@ -16,7 +16,7 @@ public class Global extends GlobalSettings {
 			ServicesFactory
 					.getUrlRepositoryService()
 					.addURL(new UrlRepository(
-							"https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD"));
+							"https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
 
 			// an admin
 			ServicesFactory.getAdminService().createAdmin(
