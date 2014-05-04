@@ -84,6 +84,7 @@ save				= Save
 url.list			= List of Urls
 url.add				= Add Url
 url.address			= Url Address
+url.provider		= Provider
 
 index.message1		= ObservaTerra is a web application for processing and visualizing data from different countries.
 index.message2		= To access the information you can click 
@@ -99,3 +100,16 @@ developer.title		= Developers of this web application
 
 footer.message		= Aplication developed for the Software Arquitecture course 2013/2014 - Uniovi - 
 footer.authors		= Developers
+
+upload				= Upload data
+upload.button		= Upload
+upload.success		= Success uploading file
+upload.fail			= Failed to upload file
+upload.carga		= Load data from file
+
+data.title			= Files uploaded by users
+data.msg1			= Upload by
+data.msg2			= File name
+data.msg3			= File type
+data.download		= Download
+

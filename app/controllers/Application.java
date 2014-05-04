@@ -1,51 +1,29 @@
 package controllers;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import business.CountryService;
-import business.IndicatorSercive;
-import business.ObservationService;
 import conf.ServicesFactory;
 import models.*;
 import utils.MD5Hash;
-import utils.SaveFile;
 import views.html.*;
 import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.*;
-import play.mvc.Http.MultipartFormData;
-import play.mvc.Http.MultipartFormData.FilePart;
 
 public class Application extends Controller {
+	
+	public static Result download(Long id){
+		UsersResources ur = ServicesFactory.getUsersResourcesService().findResourceByCode(id);
+		response().setContentType("application/x-download");  
+		response().setHeader("Content-disposition","attachment; filename=" + ur.getFilename()); 
+		return ok(new File("public/" + ur.getFilePath()));
+	}
 
 	public static Result bars(String indicator) {
 		return ok(bars.render(ServicesFactory.getIndicatorService().findByCode(
 				indicator)));
-	}
-
-	public static Result saveFile() {
-		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart JSON = body.getFile("fichero");
-
-		SaveFile write = new SaveFile();
-		File file = JSON.getFile();
-		try {
-			write.save(new FileInputStream(file));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return redirect(routes.Application.index());
-
 	}
 
 	// Muesta la vista de la página principal
@@ -59,10 +37,7 @@ public class Application extends Controller {
 	}
 	
 	public static Result data(){
-		ObservationService ob = ServicesFactory.getObservationService();
-		CountryService cs = ServicesFactory.getCountryService();
-		IndicatorSercive is = ServicesFactory.getIndicatorService();
-		return ok(data.render(ob.all(), cs.all(), is.all()));
+		return ok(data.render(ServicesFactory.getUsersResourcesService().all()));
 	}
 
 	public static Result login() {

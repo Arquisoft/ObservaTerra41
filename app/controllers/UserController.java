@@ -1,18 +1,56 @@
 package controllers;
 
+import java.io.File;
+import java.io.IOException;
+
 import conf.ServicesFactory;
 import models.User;
+import models.UsersResources;
 import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import utils.MD5Hash;
+import utils.SaveFile;
 import views.html.*;
 import controllers.security.SecuredUser;
 
 @Security.Authenticated(SecuredUser.class)
 public class UserController extends Controller {
+	
+	public static Result showUpload(){
+		return ok(upload.render("none"));
+	}
+	
+	public static Result saveFile() {
+		MultipartFormData body = request().body().asMultipartFormData();
+		FilePart filePart = body.getFile("fichero");
+		
+		String[] s = filePart.getFilename().split("\\.");
+		String type = s[s.length - 1];
+		
+		int index = filePart.getFilename().lastIndexOf(".");
+		String name = filePart.getFilename().substring(0,index);
+		
+		String mime = filePart.getContentType();
+		
+		UsersResources ur = new UsersResources(Util.getSessionUser(), type, name, mime);
+		ServicesFactory.getUsersResourcesService().addResource(ur);
+		
+		File file = filePart.getFile();
+		File newfile = new File("public/data/user/" + ur.getId() + "." + type);
+		
+		try {
+			SaveFile.save(file, newfile);
+		} catch (IOException e) {
+			ServicesFactory.getUsersResourcesService().deleteResource(ur.getId());
+			return ok(upload.render("fail"));
+		}
+		return ok(upload.render("success"));
+	}
 	
 	public static Result cerrarSesion() {
 		session().clear();

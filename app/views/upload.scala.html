@@ -1,0 +1,73 @@
+@(result: String)
+
+@import play.i18n._
+
+@main(Messages.get("upload")) {
+<meta charset="UTF-8">
+
+@if(!result.equals("none")){
+<h2 style="color:@(if(result.equals("success")) "green" else "red")">@(if(result.equals("success")) Messages.get("upload.success") else Messages.get("upload.fail"))</h2>
+}
+
+<h2>@Messages.get("upload.file")</h2>
+
+@helper.form(action = routes.UserController.saveFile(), 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="fichero">
+    
+    <p>
+        <input type="submit">
+    </p>
+    
+}
+
+<br>
+
+<h2>@Messages.get("upload.carga")</h2>
+
+<h3>@Messages.get("upload.excel.file")</h3>
+
+@helper.form(action = routes.API.uploadExcel, 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="excel">
+    
+    <p>
+        <input type="submit" value="@Messages.get("upload.button")">
+    </p>
+    
+}
+
+
+
+<h3>@Messages.get("upload.json.file")</h3>
+
+
+@helper.form(action = routes.API.uploadJSON, 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="JSON">
+    
+    <p>
+        <input type="submit" value="@Messages.get("upload.button")">
+    </p>
+    
+}
+
+<h3>@Messages.get("upload.csv.file")</h3>
+
+
+@helper.form(action = routes.API.uploadCSV, 
+	  'enctype -> "multipart/form-data") {
+    
+    <input type="file" name="csv">
+    
+    <p>
+        <input type="submit" value="@Messages.get("upload.button")">
+    </p>
+    
+} 
+
+    
+}

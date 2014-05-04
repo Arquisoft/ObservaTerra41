@@ -76,7 +76,7 @@
 
 					<!-- Enlaces para usuarios registrados -->
 					@if(Util.getSessionUser() != null){
-						<li><a href="#">@Messages.get("upload.data")</a>
+						<li><a href="@routes.UserController.showUpload">@Messages.get("upload.data")</a>
 						
 						<!-- Enlaces de administración -->
 						@if(Util.isAdmin()){

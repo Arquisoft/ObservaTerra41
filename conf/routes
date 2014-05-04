@@ -37,7 +37,7 @@ DELETE	/api/observation/:country/:indicator	controllers.API.delObservation(count
 POST	/api/excel/upload			controllers.API.uploadExcel()
 POST	/api/json/upload			controllers.API.uploadJSON()
 POST	/api/csv/upload				controllers.API.uploadCSV()
-POST	/otherFile/upload				controllers.Application.saveFile()
+POST	/file/upload				controllers.UserController.saveFile()
 
 
 # API2 showing the concept of HATEOAS
@@ -74,3 +74,7 @@ POST    /login                  controllers.Application.authenticate()
 GET 	/logout					controllers.UserController.cerrarSesion()
 
 GET		/language				controllers.Application.changeLanguage()
+
+GET		/upload					controllers.UserController.showUpload()
+
+GET		/download/:id			controllers.Application.download(id: Long)				

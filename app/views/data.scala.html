@@ -1,50 +1,31 @@
-@(observations: List[Observation], countries: List[Country], indicators: List[Indicator])
+@(resources: List[UsersResources])
 
 @import play.i18n._
 
-@main("ObservaTerra") {
-<meta charset="UTF-8">
+@main(Messages.get("accessdata")) {
 
-<h1>@Messages.get("Wellcome")</h1>
-<h2>@Messages.get("list.observations")</h2>
+	<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/downloads.css")' >
+	<meta charset="UTF-8">
 
-<table>
-<tr>	
-<th>@Messages.get("Country")</th>
-<th>@Messages.get("Indicator")</th>
-<th>@Messages.get("Value")Value</th>
-</tr>
-@for(observation <- observations) {
-	<tr>
+	<h1>@Messages.get("data.title")</h1>
 
-	<td>@observation.getCountry().getName()</td>
-	<td>@observation.getIndicator().getName()</td>
-	<td>@observation.getObsValue()</td>
-	</tr> 
-}
-</table>
-
-<h2>@Messages.get("Bar.chart")</h2>
-<ul>
-@for(indicator <- indicators) {
-
- <li><a href="@routes.Application.bars(indicator.getCode())">@indicator.getName()</a></li>
-	
-}
-</ul>
-
-<h2>@Messages.get("upload.file")</h2>
-
-
-@helper.form(action = routes.Application.saveFile(), 
-	  'enctype -> "multipart/form-data") {
-    
-    <input type="file" name="fichero">
-    
-    <p>
-        <input type="submit">
-    </p>
-    
-}
+	@for(res <- resources) { 
+		<div class="download">
+			<div class="info"> <p>@Messages.get("data.msg1"): <strong class="username">@res.getOwner().getUserName()</strong> - <i class="date">@res.getUploadDate()</i></p></div>
+			 
+			<div class="fileinfo">
+				<p>@Messages.get("data.msg2"): <strong class="filename">@res.getName()</strong></p>
+				<p>@Messages.get("data.msg3"): <strong class="filetype">@res.getContentType()</strong></p>
+				
+				<a href="@routes.Application.download(res.getId())">
+					<h3>@Messages.get("data.download")</h3>
+					<img class="button" src='@routes.Assets.at("images/download.png")' alt="Download"/>
+				</a>
+			</div>
+			 
+			<embed class="embed" src="@routes.Assets.at(res.getFilePath())" @(if(res.isAudioVideo()) "autostart=false" else "") type="@res.getContentType()"/>
+			
+		</div>
+	}
 
 }

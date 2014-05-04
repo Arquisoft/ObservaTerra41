@@ -99,11 +99,7 @@ public class Admin extends Controller {
   	  return redirect(routes.Admin.showObservations());  
     }
 
-    /**
-     * No va funcionar aun
-     * @param id
-     * @return
-     */
+    
     public static Result deleteObservation(Long id) {
         ServicesFactory.getObservationService().delete(id);
         return redirect(routes.Admin.showObservations());

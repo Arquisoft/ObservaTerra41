@@ -31,7 +31,7 @@ upload.excel.file	= Cargar fichero excel
 upload.json.file	= Cargar fichero json
 upload.csv.file		= Cargar fichero csv
 upload				= Subir
-upload.file			= Subir fichero
+upload.file			= Subir archivo
 upload.data			= Subir datos
 
 compare.countries   = Comparar datos
@@ -84,6 +84,7 @@ save				= Guardar
 url.list			= Lista de Urls
 url.add				= Añadir Url
 url.address			= Dirección url
+url.provider		= Proveedor
 
 index.message1		= ObservaTerra es una aplicación para el procesado y visualización de todo tipo de datos relativos a países del mundo.
 index.message2		= Para acceder a dicha información puedes hacer click 
@@ -99,3 +100,15 @@ developer.title		= Desarrolladores de la applicacion
 
 footer.message		= Aplicación desarrollada para la asignatura de Arquitectura del Software 2013/2014 - Uniovi - 
 footer.authors		= Desarrolladores
+
+upload				= Subir datos
+upload.button		= Enviar
+upload.success		= Archivo subido con éxito
+upload.fail			= Error al subir el archivo
+upload.carga		= Cargar datos desde fichero
+
+data.title			= Archivos subidos por los usuarios
+data.msg1			= Subido por
+data.msg2			= Nombre de archivo
+data.msg3			= Tipo de archivo
+data.download		= Descargar
