@@ -1,0 +1,23 @@
+1. Arrancamos la web
+
+2. Explicamos principal(INDEX)
+
+3. Cambio de IDIOMA
+
+4 Abrir COMPARAR paises, decir no hay datos
+
+5 LOGEARNOS labra labra
+
+6 Enseñar URLS a modo de ejemplo
+
+7 COLLECT DATA, tirarse rollos en que bajar ficheros etc...
+
+8 Explicar GRAFICAS
+
+9 Enseñar CRUDS datos (countries, indica, obser)
+
+10 LOGEARSE aquilino aquilino
+
+11 Subir VIDEO, reproducir, descargar
+
+13 DEVELOPERS
