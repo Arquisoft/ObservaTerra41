@@ -8,6 +8,7 @@ import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import utils.DataRequester;
 import views.html.*;
 
 @Security.Authenticated(SecuredAdmin.class)
@@ -54,7 +55,8 @@ public class Admin extends Controller {
 			return badRequest(data.render(ob.all(),
 					cs.all(), is.all()));
 		}*/
-		return Application.data();
+		DataRequester.request();
+		return Application.comparar();
 	}
 
 	public static Result newCountry() {

@@ -167,10 +167,10 @@ public class API extends Controller {
     
     public static Result  uploadCSV(){
     	MultipartFormData body = request().body().asMultipartFormData();
-        FilePart JSON = body.getFile("JSON");
+        FilePart csv = body.getFile("csv");
         
         CSVReader reader = new CSVReader();
-        File file = JSON.getFile();
+        File file = csv.getFile();
         try {
 			List<Observation> aux= reader.read(new FileInputStream(file));
 			  for (Observation obs: aux) {

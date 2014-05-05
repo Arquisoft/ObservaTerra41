@@ -1,5 +1,6 @@
 import play.*;
 import utils.DataRequester;
+import utils.MD5Hash;
 import conf.ServicesFactory;
 import models.*;
 
@@ -24,11 +25,12 @@ public class Global extends GlobalSettings {
 			//table 10:no compaible
 			// url repo
 			
-			
+			/*
 			ServicesFactory
 					.getUrlRepositoryService()
 					.addURL(new UrlRepository(
-							"https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
+						"https://data.undp.org/api/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
+						*/
 			ServicesFactory
 			.getUrlRepositoryService()
 			.addURL(new UrlRepository(
@@ -38,11 +40,12 @@ public class Global extends GlobalSettings {
 			.getUrlRepositoryService()
 			.addURL(new UrlRepository(
 					"https://data.undp.org/api/views/pq34-nwq7/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
-			/*problemas de integridad... revisar, el fichero es valido
+			
+			//problemas de integridad... revisar, el fichero es valido
 			ServicesFactory
 			.getUrlRepositoryService()
 			.addURL(new UrlRepository(
-					"https://data.undp.org/api/views/ti85-2nvi/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));*/
+					"https://data.undp.org/api/views/ti85-2nvi/rows.csv?accessType=DOWNLOAD","Naciones Unidas"));
 			
 
 			
@@ -51,17 +54,22 @@ public class Global extends GlobalSettings {
 
 			// an admin
 			ServicesFactory.getAdminService().createAdmin(
-					new Admin("roque", "Alberto Roque", "Carrizo Fernandez",
-							"e10adc3949ba59abbe56e057f20f883e",
-							"roque@roque.roque"));
+					new Admin("labra", "labra", "labra",
+							MD5Hash.codeToMD5("labra"),
+							"labra@labra.labra"));
 			//a user
 			ServicesFactory.getMiembroService().createMiembro(
-					new Miembro("sergio", "sergio", "Sergio Jimenez",
-							"e10adc3949ba59abbe56e057f20f883e",
-							"sergio@sergio.sergio"));
+					new Miembro("aquilino", "aquilino", "aquilino",
+							MD5Hash.codeToMD5("aquilino"),
+							"aquilino@aquilino.aquilino"));
+			
+			ServicesFactory.getMiembroService().createMiembro(
+					new Miembro("cristina", "cristina", "cristina",
+							MD5Hash.codeToMD5("cristina"),
+							"cristina@cristina.cristina"));
 
 			//download the data,parse it and load into bd
-			 DataRequester.request();
+			 //DataRequester.request();
 			 //DataRequester.persistsCsvData("data/1");
 		}
 

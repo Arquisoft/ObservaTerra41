@@ -12,7 +12,7 @@ public class IndicatorServiceImpl implements IndicatorSercive {
 			Indicator.class);
 
 	public void create(Indicator indicator) {
-		if (findByName(indicator.getName()) == null) {
+		if (find.byId(indicator.getCode()) == null) {
 			indicator.save();
 		}
 	}

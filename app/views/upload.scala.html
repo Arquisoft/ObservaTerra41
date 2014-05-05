@@ -26,23 +26,12 @@
 
 <h2>@Messages.get("upload.carga")</h2>
 
-<h3>@Messages.get("upload.excel.file")</h3>
 
-@helper.form(action = routes.API.uploadExcel, 
-	  'enctype -> "multipart/form-data") {
-    
-    <input type="file" name="excel">
-    
-    <p>
-        <input type="submit" value="@Messages.get("upload.button")">
-    </p>
-    
-}
+
 
 
 
 <h3>@Messages.get("upload.json.file")</h3>
-
 
 @helper.form(action = routes.API.uploadJSON, 
 	  'enctype -> "multipart/form-data") {
@@ -55,7 +44,9 @@
     
 }
 
+
 <h3>@Messages.get("upload.csv.file")</h3>
+
 
 
 @helper.form(action = routes.API.uploadCSV, 
