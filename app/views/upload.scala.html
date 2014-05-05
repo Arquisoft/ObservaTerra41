@@ -36,7 +36,7 @@
 @helper.form(action = routes.API.uploadJSON, 
 	  'enctype -> "multipart/form-data") {
     
-    <input type="file" name="JSON">
+    <input type="file" name="JSON" accept=".json">
     
     <p>
         <input type="submit" value="@Messages.get("upload.button")">
@@ -52,7 +52,7 @@
 @helper.form(action = routes.API.uploadCSV, 
 	  'enctype -> "multipart/form-data") {
     
-    <input type="file" name="csv">
+    <input type="file" name="csv" accept=".csv">
     
     <p>
         <input type="submit" value="@Messages.get("upload.button")">

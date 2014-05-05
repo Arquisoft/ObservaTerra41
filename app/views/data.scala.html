@@ -23,9 +23,14 @@
 						<img class="button" src='@routes.Assets.at("images/download.png")' alt="Download"/>
 					</a>
 				</div>
-				 
-				<embed class="embed" src="@routes.Assets.at(res.getFilePath())" @(if(res.isAudioVideo()) "autostart=false" else "") type="@res.getContentType()"/>
 				
+				@if(!(res.getContentType().contains("application") && !res.getContentType().contains("pdf"))){
+					<embed class="embed" src="@routes.Assets.at(res.getFilePath())" @(if(res.isAudioVideo()) "autostart=false" else "") type="@res.getContentType()"/>
+				} else {
+					<div style="text-align:center; padding-top:150px; font-size:120%;">
+						<p>@Messages.get("data.visual.fail")</p>
+					</div>
+				}
 			</div>
 		}
 	}else{

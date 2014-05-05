@@ -8,11 +8,17 @@
 
 
 <h1>@Messages.get("countries")</h1>
-<div style="height:300px;overflow:scroll;">
-<table>
+
+<input type="text" id="searchCountry" placeholder="@Messages.get("filter")" onkeyup="filter('searchCountry', 'crudtable', [0]);"/>
+<br>
+<div class="scrolldiv">
+<table class="crudtable">
+<tr>
+<th>@Messages.get("country")</th>
+<th>@Messages.get("remove")</th>
+</tr>
 @for(country <- countries) { 
   <tr><td>@country.getName()</td>
-      <td>
       <td>@helper.form(routes.Admin.deleteCountry(country.getCode())) {
                <input type="image" 
                       src="@{routes.Assets.at("images/delete.gif")}" 

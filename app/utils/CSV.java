@@ -141,26 +141,36 @@ public class CSV {
 	 * @param dato
 	 */
 	private static boolean isIndicator(String dato, int index) {
-		char[] valor = dato.toCharArray();
-		String fecha = "";
-		String indicador = "";
-		for (char c : valor) {
-			if (Character.isDigit(c)) {
-				fecha += c;
-			} else {
-				if (fecha.equals("")) {
-					// no es un indicador, no continues
-					break;
+		String[] fechaind = dato.split(" ", 2);
+		
+		if(fechaind.length == 2 && Character.isDigit(fechaind[0].charAt(0))){
+			String fecha = fechaind[0];
+			String indicador = fechaind[1];
+			
+			/*
+			char[] valor = dato.toCharArray();
+			
+			for (char c : valor) {
+				if (Character.isDigit(c) || c == '-') {
+					fecha += c;
 				} else {
-					indicador += c;
+					if (fecha.equals("")) {
+						// no es un indicador, no continues
+						break;
+					} else {
+						indicador += c;
+					}
 				}
 			}
-		}
-		indicador = StripString.Strip(indicador);
-		if (!indicador.equals("") && !indicador.contains("Note")) {
-			indicadores[index] = new Indicator(indicador,
-					Integer.parseInt(fecha));
-			return true;
+			
+			dato.split(" ", 2);
+			*/
+			
+			indicador = StripString.Strip(indicador);
+			if (!indicador.equals("") && !indicador.contains("Note")) {
+				indicadores[index] = new Indicator(indicador,fecha);
+				return true;
+			}
 		}
 		return false;
 	}

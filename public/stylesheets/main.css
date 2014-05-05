@@ -68,6 +68,7 @@ div#opciones{
 	float:right;
 	width:280px;
 	text-align: right;
+	font-size: 110%;
 }
 
 div#login{
@@ -78,15 +79,15 @@ div#login{
 /* ESTILOS NAVEGACION */
 nav {
 	clear:both;
-	padding:1em;
+	padding:1em 0;
 	background:#ddd;
 	border-bottom:6px double gray;
 }
 
 nav li{
 	display: inline-block;
-	margin-right: 2em;
-	font-size: 115%;
+	margin-right: 1.4em;
+	font-size: 125%;
 }
 
 nav a{
@@ -94,10 +95,31 @@ nav a{
 }
 
 /* ESTILOS CONTENIDO */
-main {
+#main {
 	background: white;
 	padding:1em 1em 7em; /* bottom padding for footer */
 	color: #333;
+}
+
+.crudtable{
+	background-color:#ddd;
+	border-collapse:collapse;
+}
+
+.crudtable th{
+	text-align: left;
+	background-color: #444;
+	color: white;
+}
+
+.crudtable td, .crudtable th{
+	padding: 2px 10px;
+}
+
+.scrolldiv{
+	max-height: 300px;
+	overflow: auto;
+	display: inline-block;
 }
 
 /* ESTILOS FOOTER */

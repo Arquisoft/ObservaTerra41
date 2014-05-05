@@ -16,6 +16,7 @@ indicators			= Indicators
 list.indicators		= List of Indicators
 add.indicator 		= Add Indicator
 delete.indicator 	= Delete Indicator
+year				= Year
 
 observations		= Observations
 list.observations	= List of Observations
@@ -116,6 +117,7 @@ data.msg4			= on
 data.download		= Download
 data.empty			= There is no files uploaded yet,
 data.empty2			= be the first to upload one.
+data.visual.fail	= There is no available visualization
 
 question1			= What is Observaterra?
 question2			= How can I start to see data?

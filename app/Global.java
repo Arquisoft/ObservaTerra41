@@ -1,5 +1,4 @@
 import play.*;
-import utils.DataRequester;
 import utils.MD5Hash;
 import conf.ServicesFactory;
 import models.*;

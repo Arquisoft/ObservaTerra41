@@ -16,6 +16,7 @@ indicators			= Indicadores
 list.indicators		= Lista de indicadores
 add.indicator 		= Añadir indicador
 delete.indicator 	= Borrar indicador
+year				= Año
 
 observations		= Observaciones
 list.observations	= Lista de observaciones
@@ -116,6 +117,7 @@ data.msg4			= el
 data.download		= Descargar
 data.empty			= Todavía no hay ningún archivo en la aplicación,
 data.empty2			= sé el primero en subir uno.
+data.visual.fail	= No hay visualización disponible
 
 question1			= ¿Qué es Observaterra?
 question2			= ¿Cómo puedo empezar a ver datos?

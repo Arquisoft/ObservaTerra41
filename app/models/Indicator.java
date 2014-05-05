@@ -20,7 +20,7 @@ public class Indicator extends Model {
 	@Id
 	private String code;
 	
-	private  int year;
+	private  String year;
 
 	@Required
 	private String name;
@@ -47,7 +47,7 @@ public class Indicator extends Model {
 		this.name = name;
 	}
 
-	public void setName(String name,int year) {
+	public void setName(String name,String year) {
 		this.name = name;
 		this.year = year;
 	}
@@ -60,16 +60,14 @@ public class Indicator extends Model {
 	public Indicator(String name) {
 		this.name = name;
 		this.code = generatedId(name);
+		this.year = "-";
 	}
 	
-	public Indicator(String name, int year) {
+	public Indicator(String name, String year) {
+		setYear(year);
 		this.name = name;
-		this.year = year;
 		this.code = generatedId(name);
 	}
-	
-
-
 
 	private String generatedId(String name){
 		char[] code = name.toCharArray();
@@ -83,13 +81,16 @@ public class Indicator extends Model {
 	}
 
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setYear(String year) {
+		if(year.equals("") || year == null)
+			this.year = "-";
+		else
+			this.year = year;
 	}
 
 	

@@ -6,16 +6,12 @@
 <!-- PLANTILLA GENERAL -->
 <!DOCTYPE html>
 
-<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>	
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/font.css")' >
 <html>
 	
 	<head>
 		<title>@title</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
-		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bars.css")' >
-		<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/font.css")' >
 		
 		<link rel="shortcut icon" href='@routes.Assets.at("images/favicon.png")'>
 		<script type="text/javascript">
@@ -94,10 +90,10 @@
 				</ul>
 		    </nav>
 			
-			<main>
+			<div id="main">
 				<!-- Contenido de la vista que implemente esta plantilla -->
 				@content
-			</main>
+			</div>
 			
 			<footer>
 			    @Messages.get("footer.message")

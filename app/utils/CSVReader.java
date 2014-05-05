@@ -43,11 +43,6 @@ public class CSVReader {
 			aux[i]=st;
 		}
 		
-		for(int i =0;i<aux.length;i++){
-			System.out.println(aux[i]);
-		}
-		
-		
 		IndicatorSercive is = new IndicatorServiceImpl();
 		//List<Indicator>lst= is.all();
 		

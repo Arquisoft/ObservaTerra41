@@ -3,33 +3,38 @@
 @import play.i18n._
 
 @main(Messages.get("list.indicators")) {
-<meta charset="UTF-8">
-
-<h1>@Messages.get("indicators")</h1>
-<div style="height:300px;overflow:scroll;">
-<table>
-@for(ind <- indicators) { 
-  <tr><td>@ind.getName()</td>
-      <td>
-      <td>@helper.form(routes.Admin.deleteIndicator(ind.getCode())) {
-               <input type="image" 
-                      src="@{routes.Assets.at("images/delete.gif")}" 
-                      alt='@{Messages.get("delete.indicator")}'>
-         }
-      </td>
-  </tr>
-   
-}
-</table>
-</div>
-<h2>@{Messages.get("add.indicator")}</h2>
-    
+	<meta charset="UTF-8">
+	
+	<h1>@Messages.get("indicators")</h1>
+	
+	<input type="text" id="searchInd" placeholder="@Messages.get("filter")" onkeyup="filter('searchInd', 'crudtable', [0,1]);"/>
+	<br>
+	<div class="scrolldiv">
+		<table class="crudtable">
+			<tr>
+				<th>@Messages.get("indicator")</th>
+				<th>@Messages.get("year")</th>
+				<th>@Messages.get("remove")</th>
+			</tr>
+			@for(ind <- indicators) { 
+				<tr>
+					<td>@ind.getName()</td>
+					<td>@ind.getYear()</td>
+					<td>
+						@helper.form(routes.Admin.deleteIndicator(ind.getCode())) {
+							<input type="image" src="@{routes.Assets.at("images/delete.gif")}" alt='@{Messages.get("delete.indicator")}'>
+						}
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+	
+	
+	<h2>@{Messages.get("add.indicator")}</h2>
+	    
 	@helper.form(action = routes.Admin.newIndicator()) {
-	 
-	    @helper.inputText(form("name")) 
-        
-        <input type="submit" value="@{Messages.get("create")}">
-        
-    }    
-    
+		@helper.inputText(form("name"))
+	    <input type="submit" value="@{Messages.get("create")}">       
+    }
 }

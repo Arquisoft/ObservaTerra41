@@ -11,21 +11,22 @@
 
 <h1>@Messages.get("observations")</h1>
 
-<input type="text" id="searchObs" placeholder="@Messages.get("filter")" onkeyup="filter('searchObs', 'obsTable', [1,2]);"/>
-<div style="height:300px;overflow:scroll;">
-<table class="obsTable">
+<input type="text" id="searchObs" placeholder="@Messages.get("filter")" onkeyup="filter('searchObs', 'crudtable', [0,1,2,3]);"/>
+<br>
+<div class="scrolldiv">
+<table class="crudtable">
 <tr>
-<th>@Messages.get("id")</th>
 <th>@Messages.get("country")</th>
 <th>@Messages.get("indicator")</th>
+<th>@Messages.get("year")</th>
 <th>@Messages.get("value")</th>
 <th>@Messages.get("remove")</th>
 </tr>
 @for(obs <- observations) { 
   <tr>
-  <td>@obs.getId()</td>
   <td>@obs.getCountry().getName()</td>
   <td>@obs.getIndicator().getName()</td>
+  <td>@obs.getIndicator().getYear()</td>
   <td>@obs.getObsValue()</td>
   <td>@helper.form(routes.Admin.deleteObservation(obs.getId())) {
                <input type="image" 
@@ -60,24 +61,7 @@
         <input type="submit" value="@{Messages.get("create")}">
         <h3>@mensaje</h3>
         
-    }    
-
-
-    
-<h2>@Messages.get("upload.excel.file")</h2>
-
-@helper.form(action = routes.API.uploadExcel, 
-	  'enctype -> "multipart/form-data") {
-    
-    <input type="file" name="excel">
-    
-    <p>
-        <input type="submit">
-    </p>
-    
-}
-
-
+    }
 
 <h2>@Messages.get("upload.json.file")</h2>
 
@@ -85,7 +69,7 @@
 @helper.form(action = routes.API.uploadJSON, 
 	  'enctype -> "multipart/form-data") {
     
-    <input type="file" name="JSON">
+    <input type="file" name="JSON" accept=".json">
     
     <p>
         <input type="submit">
@@ -99,7 +83,7 @@
 @helper.form(action = routes.API.uploadCSV, 
 	  'enctype -> "multipart/form-data") {
     
-    <input type="file" name="csv">
+    <input type="file" name="csv" accept=".csv">
     
     <p>
         <input type="submit">

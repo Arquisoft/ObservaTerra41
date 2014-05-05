@@ -65,7 +65,7 @@ public class Admin extends Controller {
 			return badRequest(views.html.country.render(ServicesFactory
 					.getCountryService().all(), countryForm));
 		} else {
-			Country countryToAdd = form.get();
+			Country countryToAdd = new Country(form.get().getName());
 			ServicesFactory.getCountryService().create(countryToAdd);
 			return redirect(routes.Admin.showCountries());
 		}
@@ -82,7 +82,7 @@ public class Admin extends Controller {
 			return badRequest(views.html.indicator.render(ServicesFactory
 					.getIndicatorService().all(), indicatorForm));
 		} else {
-			Indicator ind = form.get();
+			Indicator ind = new Indicator(form.get().getName());
 			ServicesFactory.getIndicatorService().create(ind);
 			return redirect(routes.Admin.showIndicators());
 		}

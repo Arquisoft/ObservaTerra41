@@ -8,9 +8,9 @@ import org.junit.Test;
 public class ModelTest {
 	@Test
 	public void testIndicadores(){
-		Indicator uno = new Indicator("HDI rank",2012);
-		Indicator dos = new Indicator("HDI rank",2012);
-		Indicator tres = new Indicator("HDI rank",2013);
+		Indicator uno = new Indicator("HDI rank","2012");
+		Indicator dos = new Indicator("HDI rank","2012");
+		Indicator tres = new Indicator("HDI rank","2013");
 
 		Assert.assertTrue(uno.equals(dos));
 		Assert.assertFalse(uno.equals(tres));
