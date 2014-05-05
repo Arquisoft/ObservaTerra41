@@ -7,7 +7,7 @@ create table country (
   code                      varchar(255) not null,
   name                      varchar(255),
   constraint pk_country primary key (code))
-;
+; 
 
 create table indicator (
   code                      varchar(255) not null,
