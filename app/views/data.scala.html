@@ -12,7 +12,7 @@
 	@if(!resources.isEmpty()){
 		@for(res <- resources) { 
 			<div class="download">
-				<div class="info"> <p>@Messages.get("data.msg1"): <strong class="username">@res.getOwner().getUserName()</strong> - <i class="date">@res.getUploadDate()</i></p></div>
+				<div class="info"> <p>@Messages.get("data.msg1") <strong class="username">@res.getOwner().getUserName()</strong> @Messages.get("data.msg4") <i class="date">@res.getFormattedDate()</i></p></div>
 				 
 				<div class="fileinfo">
 					<p>@Messages.get("data.msg2"): <strong class="filename">@res.getName()</strong></p>

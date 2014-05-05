@@ -1,7 +1,9 @@
 package models;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import conf.ServicesFactory;
+import controllers.Util;
 import play.db.ebean.Model;
 import play.libs.Json;
 
@@ -86,6 +89,10 @@ public class UsersResources extends Model {
 
 	public Date getUploadDate() {
 		return uploadDate;
+	}
+	
+	public String getFormattedDate(){
+		return DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale(Util.language())).format(getUploadDate());
 	}
 
 	public void setUploadDate(Date uploadDate) {

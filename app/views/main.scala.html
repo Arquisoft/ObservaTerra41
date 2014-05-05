@@ -49,10 +49,8 @@
 					<!-- Sección de login y gestión de usuarios -->
 					<div id="login">
 						@if(Util.getSessionUser() != null){
-					    	<p>
-						    	@Messages.get("loguedas"): <a href="@routes.UserController.fillRegister(Util.getSessionUser())"><strong id="userName">@Util.getSessionUser()</strong></a> | 
-						    	<a href="@routes.UserController.cerrarSesion">@Messages.get("logout")</a>
-							</p>
+						    @Messages.get("loguedas"): <a href="@routes.UserController.fillRegister(Util.getSessionUser())"><strong id="userName">@Util.getSessionUser()</strong></a> | 
+						    <a href="@routes.UserController.cerrarSesion">@Messages.get("logout")</a>
 					    } else {
 					    	<a href="@routes.Application.login">@Messages.get("login")</a> | 
 					    	<a href="@routes.Application.showRegister">@Messages.get("register")</a> 
