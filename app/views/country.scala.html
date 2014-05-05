@@ -8,6 +8,7 @@
 
 
 <h1>@Messages.get("countries")</h1>
+<div style="height:300px;overflow:scroll;">
 <table>
 @for(country <- countries) { 
   <tr><td>@country.getName()</td>
@@ -22,6 +23,7 @@
    
 }
 </table>
+</div>
 
 <h2>@{Messages.get("add.country")}</h2>
     

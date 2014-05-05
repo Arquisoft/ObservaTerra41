@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 
 <h1>@Messages.get("indicators")</h1>
+<div style="height:300px;overflow:scroll;">
 <table>
 @for(ind <- indicators) { 
   <tr><td>@ind.getName()</td>
@@ -20,7 +21,7 @@
    
 }
 </table>
-
+</div>
 <h2>@{Messages.get("add.indicator")}</h2>
     
 	@helper.form(action = routes.Admin.newIndicator()) {
