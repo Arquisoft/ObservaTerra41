@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 
 	<h1>@Messages.get("user.list")</h1>
-	<table>
+	<div class="scrolldiv">
+		<table>
 		@for(user <- users) {
 		<tr>
 			<td>@user.getName()</td>
@@ -22,7 +23,8 @@
 
 		}
 	</table>
-
+	</div>
+	
 	@helper.form(routes.Application.showRegister()) {
 	<h2>@Messages.get("user.new")</h2>
 	<input type="submit" value="@Messages.get("register")" />

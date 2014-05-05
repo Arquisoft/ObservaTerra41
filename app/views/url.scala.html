@@ -6,10 +6,12 @@
 
 	<h1>@Messages.get("url.list")</h1>
 	
-	<table class="crudtable">
+	<div class="scrolldiv">
+		<table class="crudtable">
 		<tr>
 			<th>@Messages.get("url.provider")</th>
 			<th>@Messages.get("url.address")</th>
+			<th>@Messages.get("remove")</th>
 		</tr>
 		@for(url <- urls) {
 		
@@ -23,6 +25,7 @@
 		</tr>
 		}
 	</table>
+	</div>
 	
 	<h1>@Messages.get("url.add")</h1> 
 	@helper.form(routes.Admin.addUrl()){
