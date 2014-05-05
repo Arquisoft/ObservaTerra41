@@ -16,6 +16,7 @@ namespace MyWebRequest
             //create the constructor with post type and few data
             MyWebClient myRequest = new MyWebClient();
             //show the response string on the console screen.
+            String[] resources = myRequest.takeResources().Split("code");
             Console.WriteLine(myRequest.takeResources());
         }
     }
