@@ -22,4 +22,4 @@ server.pid
 .project
 .class
 .classpath
-
+public/data/user/*
