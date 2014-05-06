@@ -11,7 +11,7 @@ create table country (
 
 create table indicator (
   code                      varchar(255) not null,
-  year                      integer,
+  year                      varchar(255),
   name                      varchar(255),
   constraint pk_indicator primary key (code))
 ;

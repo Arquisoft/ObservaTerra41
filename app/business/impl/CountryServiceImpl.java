@@ -23,12 +23,22 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	public  void remove(String code) {
-		find.ref(code).delete();
+		try {
+			find.ref(code).delete();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	public  void deleteAll() {
-		for (Country c : all())
-			c.delete();
+		try {
+			for (Country c : all())
+				c.delete();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	public  Country findByName(String name) {

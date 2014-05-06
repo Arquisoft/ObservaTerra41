@@ -22,7 +22,11 @@ public class IndicatorServiceImpl implements IndicatorSercive {
 	}
 
 	public void remove(String id) {
-		find.ref(id).delete();
+		try {
+			find.ref(id).delete();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public Indicator findByName(String name) {
@@ -35,8 +39,14 @@ public class IndicatorServiceImpl implements IndicatorSercive {
 	}
 
 	public void deleteAll() {
-		for (Indicator ind : all())
-			ind.delete();
+		try {
+			for (Indicator ind : all())
+				ind.delete();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 }
